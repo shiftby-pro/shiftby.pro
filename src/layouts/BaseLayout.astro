@@ -1,0 +1,35 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Shiftby.pro — evidence-led fieldwork on AI-assisted work.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <title>{title} | Shiftby.pro</title>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">Shiftby.pro</a>
+      <nav aria-label="Primary navigation">
+        <a href="/fieldwork/">Fieldwork</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>Independent fieldwork on AI-assisted research, systems and practice.</p>
+    </footer>
+  </body>
+</html>
