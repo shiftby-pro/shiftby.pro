@@ -36,20 +36,20 @@ One recurring pattern appeared when a downstream Content Opportunity looked stru
 
 The next task needs enough surrounding state to know what can safely be reused.
 
-<figure>
-  <pre aria-label="Comparison of isolated generation with continuing work that retains context">
-ISOLATED GENERATION
-Prompt → Output
-
-CONTINUING WORK
-Sources + decisions + evidence + current state + limitations
-                         ↓
-                    Current task
-                         ↓
-                       Output
-                         ↓
-              Retained learning / new state
-  </pre>
+<figure class="continuity-comparison">
+  <div class="continuity-isolated">
+    <p class="continuity-label">Isolated generation</p>
+    <p class="continuity-output">Prompt <span aria-hidden="true">→</span> Output</p>
+  </div>
+  <div class="continuity-continuing">
+    <p class="continuity-label">Continuing work</p>
+    <ol class="continuity-flow" aria-label="Continuing work flow">
+      <li>Sources, decisions, evidence, current state and limitations</li>
+      <li>Current task</li>
+      <li>Output</li>
+      <li>Retained learning / new state</li>
+    </ol>
+  </div>
   <figcaption>Isolated generation can end at an output. Continuing work also depends on retained context, evidence, decisions, current state and limitations.</figcaption>
 </figure>
 
