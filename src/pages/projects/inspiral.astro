@@ -1,5 +1,11 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const fieldworkNotes = (await getCollection('fieldwork', ({ data }) => data.visibility === 'public'))
+  .sort((a, b) => (b.data.published_at?.getTime() ?? 0) - (a.data.published_at?.getTime() ?? 0) || b.id.localeCompare(a.id));
+const [featuredFieldwork, ...remainingFieldwork] = fieldworkNotes;
+const latestFieldwork = remainingFieldwork.slice(0, 3);
 
 const inspiral = {
   hero: {
@@ -161,15 +167,34 @@ const inspiral = {
       <p class="signal-principle">{inspiral.openai.principle}</p>
     </section>
 
-    <section class="signal-section signal-close">
-      <p class="signal-label">Fieldwork note</p>
-      <h2><a class="signal-fieldwork-title-link" href="/fieldwork/why-content-generation-was-not-the-hard-problem/">{inspiral.fieldwork.title}</a></h2>
-      <blockquote>{inspiral.fieldwork.statement}</blockquote>
-      <div class="signal-surfaces">
-        <p class="signal-label">Where this lives</p>
-        {inspiral.fieldwork.surfaces.map((surface) => <p>{surface}</p>)}
-        <a class="signal-fieldwork-link" href="/fieldwork/why-content-generation-was-not-the-hard-problem/">Read the founding field note <span>↗</span></a>
-      </div>
+    <section class="signal-section signal-close" aria-labelledby="inspiral-fieldwork">
+      <p class="signal-label">Fieldwork</p>
+      {featuredFieldwork && (
+        <div class="signal-featured-fieldwork">
+          <p class="signal-featured-kicker">Featured note</p>
+          <h2 id="inspiral-fieldwork"><a class="signal-fieldwork-title-link" href={`/projects/inspiral/fieldwork/${featuredFieldwork.data.slug}/`}>{featuredFieldwork.data.title}</a></h2>
+          <blockquote>The hard part is deciding what every output must inherit—and refusing to invent what the organisation has not yet established.</blockquote>
+          <p class="signal-featured-description">{featuredFieldwork.data.description}</p>
+          <a class="signal-fieldwork-link" href={`/projects/inspiral/fieldwork/${featuredFieldwork.data.slug}/`}>Read this field note <span aria-hidden="true">→</span></a>
+        </div>
+      )}
+      {latestFieldwork.length > 0 && (
+        <div class="signal-latest-fieldwork">
+          <p class="signal-label">Latest fieldwork</p>
+          <ol>
+            {latestFieldwork.map((note) => (
+              <li>
+                <a href={`/projects/inspiral/fieldwork/${note.data.slug}/`}>
+                  <span>{note.data.format.replace('-', ' ')}</span>
+                  <strong>{note.data.title}</strong>
+                  <small>{note.data.description}</small>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      )}
+      <a class="signal-fieldwork-archive" href="/projects/inspiral/fieldwork/">View all fieldwork <span aria-hidden="true">→</span></a>
     </section>
   </article>
 </BaseLayout>
