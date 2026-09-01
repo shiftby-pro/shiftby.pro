@@ -62,15 +62,15 @@ h3 { font-size:1.55rem; line-height:1.1; margin:0; }
 .skip-link { position:absolute; left:-9999px; top:8px; z-index:10; padding:8px 12px; background:var(--accent); color:#fff; }
 .skip-link:focus { left:20px; color:#fff; }
 .article-header { border-bottom:1px solid var(--line); padding-bottom:48px; margin-bottom:58px; }
-.article-header h1 { max-width:12ch; margin:22px 0 28px; font-size:clamp(3.4rem,8vw,6.8rem); }
+.article-header h1 { max-width:12ch; margin:22px 0 28px; font-family:var(--font-body); font-size:clamp(3.4rem,8vw,6.8rem); }
 .article-header .lede { max-width:46rem; }
 .meta { display:flex; flex-wrap:wrap; gap:28px; border-top:1px solid var(--line); margin:38px 0 0; padding-top:18px; }
 .meta div { display:grid; gap:5px; }
 .meta dt { font-family:'DM Mono',monospace; font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--faint); }
 .meta dd { margin:0; font-size:.83rem; color:var(--muted); }
-.prose { max-width:690px; margin:0 auto; font-family:'Instrument Serif',Georgia,serif; font-size:1.32rem; line-height:1.58; }
+.prose { max-width:690px; margin:0 auto; font-family:var(--font-body); font-size:1.32rem; line-height:1.58; }
 .prose p { margin:0 0 1.35em; }
-.prose h2 { font-family:'Instrument Serif',Georgia,serif; font-size:clamp(2.2rem,4vw,3.5rem); margin:2.25em 0 .55em; }
+.prose h2 { font-family:var(--font-body); font-size:clamp(2.2rem,4vw,3.5rem); margin:2.25em 0 .55em; }
 .prose strong { font-weight:400; }
 .prose blockquote { border-left:2px solid var(--accent); margin:2.3rem 0; padding:4px 0 4px 28px; font-size:1.55rem; line-height:1.25; }
 .prose a { color:var(--accent-dark); }
