@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600&family=Instrument+Serif:ital@0;1&display=swap');
+
+:root {
+  --surface-page: #f7f8f5;
+  --surface-subtle: #eef1ed;
+  --surface-diagram: #f4f3ed;
+  --text-primary: #17201f;
+  --text-secondary: #3f4a47;
+  --text-muted: #687270;
+  --text-faint: #a6afab;
+  --accent: #0b6b66;
+  --accent-strong: #07514e;
+  --border: #d5dbd7;
+  --border-strong: #17201f;
+  --status-active: #0b6b66;
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+  --container: 1280px;
+  --reading-width: 700px;
+  --font-display: 'Instrument Serif', Georgia, serif;
+  --font-body: 'DM Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-meta: 'DM Mono', monospace;
+}

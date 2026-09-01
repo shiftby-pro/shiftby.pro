@@ -1,0 +1,15 @@
+---
+interface Props { activeSection?: 'projects' | 'fieldwork' | 'about' | '' }
+const { activeSection = '' } = Astro.props;
+---
+<header class="site-header">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <div class="header-inner">
+    <a class="brand" href="/" aria-label="Shiftby.pro home">Shiftby<span>.</span>pro</a>
+    <nav aria-label="Primary navigation">
+      <a class={activeSection === 'projects' ? 'list-active' : undefined} href="/projects/">Projects</a>
+      <a class={activeSection === 'fieldwork' ? 'list-active' : undefined} href="/fieldwork/">Fieldwork</a>
+      <a class={activeSection === 'about' ? 'list-active' : undefined} href="/about/">About</a>
+    </nav>
+  </div>
+</header>

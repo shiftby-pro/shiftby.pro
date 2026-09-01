@@ -4,23 +4,23 @@ import { getCollection } from 'astro:content';
 
 const items = await getCollection('fieldwork', ({ data }) => data.visibility === 'public');
 ---
-<BaseLayout title="Fieldwork" description="Evidence-led fieldwork from Shiftby.pro.">
+<BaseLayout title="Shiftby.pro" seoTitle="Shiftby.pro — Independent Fieldwork on AI-Assisted Work" description="Independent fieldwork on AI-assisted research, systems and practice, documenting projects, implementation decisions, evidence and learning." activeSection="">
   <section class="hero">
-    <p class="eyebrow">Shiftby.pro</p>
-    <h1>Practical fieldwork on AI-assisted work.</h1>
-    <p class="lede">Projects, evidence, implementation decisions, limitations and lessons from real work.</p>
+    <div class="hero-grid"><div><p class="kicker">Independent fieldwork publication</p><h1>Work that<br />stays connected.</h1><p class="lede">Practical fieldwork on how AI-assisted research, decisions, evidence and systems carry understanding forward as the work changes.</p><div class="hero-actions"><a class="button-link" href="/fieldwork/">Explore Fieldwork <span>→</span></a><a class="arrow-link" href="/about/">About Shiftby.pro</a></div></div><aside class="purpose-note"><div class="note-heading"><span class="quote-mark">“</span><span>Why this publication exists</span></div><p>When work changes, context is lost. Decisions get repeated. Evidence gets scattered. Understanding doesn’t carry forward.</p><p>Shiftby.pro documents how we build continuity—so the next step starts with what’s already known.</p><div class="note-rule"></div><strong>Evidence before certainty.</strong></aside></div>
   </section>
-  <section>
-    <h2>Fieldwork</h2>
-    <ul class="card-list">
+  <section class="section">
+    <div class="section-heading"><h2 class="section-label heading-label">Founding fieldwork</h2><a class="section-link" href="/fieldwork/">View all fieldwork <span>→</span></a></div>
+    <div class="founding-feature">
+      <a class="home-diagram" href={`/fieldwork/${items[0]?.data.slug}/`} aria-label="Read the founding analysis: Why Content Generation Was Not the Hard Problem"><div class="home-diagram-grid"><div><span>Isolated generation</span><div class="home-stack"><b>Prompt</b><i>↓</i><b>Output</b></div></div><div class="diagram-rule"></div><div><span>Continuing work</span><div class="context-list"><b>Sources</b><b>Decisions</b><b>Evidence</b><b>Current state</b><b>Limitations</b><i>↓</i><b>Current task</b><i>↓</i><b>Output</b><i>↓</i><b>Retained learning<br />/ new state</b></div></div></div><svg class="diagram-curve" viewBox="0 0 180 100" aria-hidden="true"><path d="M18 60c35 55 77 45 94-3s43-42 57-35" /></svg></a>
+      <div class="feature-content home-feature-content">
       {items.map((item) => (
-        <li>
-          <a href={`/projects/inspiral/fieldwork/${item.data.slug}/`}>
-            <strong>{item.data.title}</strong>
-            <span>{item.data.description}</span>
-          </a>
-        </li>
+        <div><p class="kicker">{item.data.format} <span>•</span> {item.data.project}</p><h3>{item.data.title}</h3><p>{item.data.description}</p><p class="topic-label">Knowledge &amp; Context Engineering</p><a class="arrow-link" href={`/fieldwork/${item.data.slug}/`}>Read analysis</a></div>
       ))}
-    </ul>
+      </div>
+    </div>
+  </section>
+  <section class="section"><div class="section-heading"><h2 class="section-label heading-label">Work in progress</h2></div><div class="projects"><a class="project-panel" href="/projects/inspiral/" aria-label="Explore the Inspiral project"><span class="section-label">01 / Exploration • Ongoing</span><h3>Inspiral</h3><p>Exploring continuity of governed knowledge, context and meaning across AI-assisted work.</p><span class="project-status">Current state: Active exploration <i></i></span><svg class="project-motif circles" viewBox="0 0 110 120" aria-hidden="true"><circle cx="55" cy="42" r="35"/><circle cx="55" cy="78" r="35"/><path d="M18 7h74M18 113h74"/></svg></a><div class="project-panel"><span class="section-label">02 / Practice • Ongoing</span><h3>AI Security Assurance</h3><p>Repository-grounded experiments in assurance, testing and accountable AI engineering.</p><span class="project-status">Current state: Active practice <i></i></span><svg class="project-motif cube" viewBox="0 0 110 120" aria-hidden="true"><path d="m55 10 39 24v45l-39 24-39-24V34zM16 34l39 24 39-24M55 58v45M16 79l39-24 39 24"/><ellipse cx="55" cy="58" rx="23" ry="14"/></svg></div></div>
+  </section>
+  <section class="section about" id="about"><div class="method"><div><span class="section-label">How this publication works</span><h2>Evidence before<br />certainty.</h2></div><div><p class="method-copy">Current state is distinguished from historical rationale. Evidence strength is made visible. Limitations are retained. AI assists; humans retain publication authority.</p><div class="method-steps"><div><span class="step-icon">01</span><h3>Evidence</h3><p>From sources, code, runs and decisions.</p></div><div><span class="step-icon">02</span><h3>Bounded claims</h3><p>What the evidence supports—and what it doesn’t.</p></div><div><span class="step-icon">03</span><h3>Fieldwork</h3><p>Context, decisions, trade-offs and intent in the work.</p></div><div><span class="step-icon">04</span><h3>Public learning</h3><p>Published for others to build on, challenge and extend.</p></div></div></div></div>
   </section>
 </BaseLayout>

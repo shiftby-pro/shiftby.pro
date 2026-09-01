@@ -1,0 +1,39 @@
+---
+import SiteHeader from './SiteHeader.astro';
+import SiteFooter from './SiteFooter.astro';
+import SEO from '../seo/SEO.astro';
+import '../../styles/global.css';
+
+interface Props {
+  title: string;
+  description?: string;
+  activeSection?: 'projects' | 'fieldwork' | 'about' | '';
+  author?: string;
+  type?: string;
+  seoTitle?: string;
+  ogTitle?: string;
+  ogImage?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  robots?: string;
+  structuredData?: Record<string, unknown>;
+}
+
+const { title, description = 'Independent fieldwork on AI-assisted research, systems and practice.', activeSection = '', author = 'Ananda Krishna Marri', type = 'website', seoTitle, ogTitle, ogImage, twitterCard, robots, structuredData } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const pageTitle = seoTitle ?? (title === 'Shiftby.pro' ? title : `${title} | Shiftby.pro`);
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f7f8f5" />
+    <title>{pageTitle}</title>
+    <SEO title={pageTitle} description={description} canonical={canonical} author={author} type={type} ogTitle={ogTitle} ogImage={ogImage} twitterCard={twitterCard} robots={robots} structuredData={structuredData} />
+  </head>
+  <body>
+    <SiteHeader activeSection={activeSection} />
+    <main id="main-content"><slot /></main>
+    <SiteFooter />
+  </body>
+</html>

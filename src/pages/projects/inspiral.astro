@@ -1,0 +1,175 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const inspiral = {
+  hero: {
+    eyebrow: 'Inspiral / Active exploration',
+    title: 'Make every next output begin with understanding.',
+    statement: 'A reusable context foundation, actively tested through ShiftBy’s Semantic Content Engineering project.',
+    inputs: ['Intent & doctrine', 'Research & evidence', 'Capabilities & service thinking', 'Decisions & rationale', 'Market & use context', 'Applied observations'],
+    outputs: ['Explain', 'Decide', 'Assure', 'Communicate'],
+    mobileInputs: ['Intent', 'Evidence', 'Decisions', 'Application context'],
+    mobileOutputs: ['Explain', 'Decide', 'Assure', 'Communicate'],
+    mobileInputX: [48, 140, 230, 335],
+    mobileOutputX: [48, 145, 242, 339],
+  },
+  promise: {
+    title: 'Turn source material into a foundation you can trust.',
+    body: 'Inspiral is designed to preserve the meaning, evidence, relationships and boundaries that matter, so new work begins from more than an isolated instruction.',
+  },
+  unlocks: {
+    title: 'One foundation. Different kinds of work.',
+    items: [
+      ['Retain context', 'Keep source material, evidence and established meaning connected for later work.'],
+      ['Shape for purpose', 'Use the same foundation differently when the task is to explain, diagnose, decide or assure.'],
+      ['Keep boundaries visible', 'Surface uncertainty and gaps instead of letting downstream work silently invent meaning.'],
+    ],
+  },
+  evidence: {
+    title: 'ContextCore is already running on ShiftBy’s own material.',
+    metrics: [
+      ['24', 'active sources'],
+      ['4,500+', 'knowledge objects'],
+      ['3,000+', 'supported relationships'],
+    ],
+    maturityBoundary: [
+      ['Working', 'ContextCore', 'Reusable, evidence-connected knowledge.'],
+      ['Building next', 'CanonLens', 'Purpose-specific semantic profiles.'],
+      ['Later', 'ContentFlight', 'Qualified communication opportunities and outputs.'],
+    ],
+  },
+  valueRisk: {
+    title: 'More capacity only matters if understanding does not become more fragile.',
+    value: ['Build the expensive context once.', 'Reduce repeated research and interpretation, then reuse a tested foundation across different communication tasks.'],
+    risk: ['Scale output. Bound drift.', 'Keep downstream work connected to evidence, limitations and human authority as formats and volume multiply.'],
+  },
+  openai: {
+    title: 'OpenAI supports the work across research, engineering and bounded agentic execution.',
+    rows: [
+      ['Research + method', 'ChatGPT Work', 'Research, synthesis, challenge, working context and methodology development.'],
+      ['Engineering + interface', 'Codex · ChatGPT Sites', 'Architecture, implementation, testing, reconciliation and rapid interface exploration.'],
+      ['Runtime + connected context', 'OpenAI models / agents · MCP-connected tools', 'Bounded semantic reasoning, structured outputs, and access to documents, knowledge, provenance and runtime state.'],
+    ],
+    principle: 'AI reasons over context. Tools retrieve it. Code and human review keep boundaries explicit.',
+  },
+  fieldwork: {
+    title: 'Content generation was not the hard problem.',
+    statement: 'The hard part is deciding what every output must inherit—and refusing to invent what the organisation has not yet established.',
+    surfaces: ['Inspiral experiment → Shiftby.pro / fieldwork publication', 'Qualified communication → Shiftby.sg + channels'],
+  },
+};
+---
+
+<BaseLayout
+  title="Inspiral"
+  seoTitle="Inspiral — Persistent Understanding for Agentic Work | Shiftby.pro"
+  ogTitle="Inspiral — Persistent Understanding for Agentic Work"
+  description="Inspiral is Shiftby’s active exploration of preserving hard-won context before agentic AI produces downstream communication work."
+  activeSection="projects"
+>
+  <article class="inspiral-signal-page">
+    <header class="signal-hero">
+      <p class="signal-eyebrow">{inspiral.hero.eyebrow}</p>
+      <h1>{inspiral.hero.title}</h1>
+      <p class="signal-hero-statement">{inspiral.hero.statement}</p>
+      <p class="signal-application">Current application / Semantic Content Engineering for Shiftby</p>
+      <div class="convergence-visual">
+        <svg class="convergence-desktop" viewBox="0 0 960 260" role="img" aria-labelledby="convergence-title convergence-desc">
+          <title id="convergence-title">Research and evidence converge into an understanding foundation, then branch into purposeful work</title>
+          <desc id="convergence-desc">Research, decisions, evidence and observations connect to established understanding. From that foundation, work can explain, decide, assure or communicate.</desc>
+          <g class="convergence-labels convergence-inputs">
+            {inspiral.hero.inputs.map((label, index) => <text x="245" y={38 + index * 34}>{label}</text>)}
+          </g>
+          <g class="convergence-labels convergence-outputs">
+            {inspiral.hero.outputs.map((label, index) => <text x="715" y={62 + index * 34}>{label}</text>)}
+          </g>
+          <g class="convergence-lines convergence-left" aria-hidden="true">
+            {inspiral.hero.inputs.map((_, index) => <path d={`M 275 ${34 + index * 34} C 317 ${34 + index * 34}, 358 112, 400 130`} />)}
+          </g>
+          <circle class="convergence-core" cx="480" cy="130" r="80" />
+          <text class="convergence-core-label" x="480" y="124">Understanding</text>
+          <text class="convergence-core-label" x="480" y="147">foundation</text>
+          <g class="convergence-lines convergence-right" aria-hidden="true">
+            {inspiral.hero.outputs.map((_, index) => <path d={`M 560 130 C 602 130, 643 ${58 + index * 34}, 685 ${58 + index * 34}`} />)}
+          </g>
+          <text class="convergence-note" x="0" y="238">Input becomes connected, reusable context.</text>
+          <text class="convergence-note convergence-note-right" x="960" y="238">The next task starts from connected context.</text>
+        </svg>
+        <svg class="convergence-mobile" viewBox="0 0 390 560" role="img" aria-labelledby="mobile-convergence-title mobile-convergence-desc">
+          <title id="mobile-convergence-title">Inputs converge into an understanding foundation, then branch into four uses</title>
+          <desc id="mobile-convergence-desc">Research, decisions, evidence and observations converge into an understanding foundation. From it, work can explain, decide, assure or communicate.</desc>
+          <g class="convergence-mobile-labels">
+            {inspiral.hero.mobileInputs.map((label, index) => <text class={index === 3 ? 'convergence-mobile-long' : undefined} x={inspiral.hero.mobileInputX[index]} y="48">{label}</text>)}
+            {inspiral.hero.mobileOutputs.map((label, index) => <text x={inspiral.hero.mobileOutputX[index]} y="452">{label}</text>)}
+          </g>
+          <g class="convergence-mobile-lines convergence-mobile-input-lines" aria-hidden="true">
+            {inspiral.hero.mobileInputs.map((_, index) => <path d={`M ${inspiral.hero.mobileInputX[index]} 58 L ${inspiral.hero.mobileInputX[index]} 76 C ${inspiral.hero.mobileInputX[index]} 130, 195 155, 195 188`} />)}
+          </g>
+          <circle class="convergence-mobile-core" cx="195" cy="260" r="70" />
+          <text class="convergence-mobile-core-label" x="195" y="254">Understanding</text>
+          <text class="convergence-mobile-core-label" x="195" y="277">foundation</text>
+          <g class="convergence-mobile-lines convergence-mobile-output-lines" aria-hidden="true">
+            {inspiral.hero.mobileOutputs.map((_, index) => <path d={`M 195 332 C 195 365, ${inspiral.hero.mobileOutputX[index]} 390, ${inspiral.hero.mobileOutputX[index]} 444 L ${inspiral.hero.mobileOutputX[index]} 438`} />)}
+          </g>
+          <text class="convergence-mobile-note" x="195" y="520">The next task starts from connected context.</text>
+        </svg>
+      </div>
+      <a class="signal-scroll" href="#promise" aria-label="Scroll to the product promise">↓</a>
+    </header>
+
+    <section class="signal-section signal-promise" id="promise">
+      <p class="signal-label">The product promise</p>
+      <h2>{inspiral.promise.title}</h2>
+      <p>{inspiral.promise.body}</p>
+    </section>
+
+    <section class="signal-section signal-unlocks">
+      <p class="signal-label">What it unlocks</p>
+      <h2>{inspiral.unlocks.title}</h2>
+      <div class="unlock-list">
+        {inspiral.unlocks.items.map(([title, body]) => <div><h3>{title}</h3><p>{body}</p></div>)}
+      </div>
+    </section>
+
+    <section class="signal-section signal-evidence">
+      <p class="signal-label">Proof it is real</p>
+      <h2>{inspiral.evidence.title}</h2>
+      <div class="evidence-rail" aria-label="Verified evidence snapshot">
+        {inspiral.evidence.metrics.map(([value, label]) => <span><strong>{value}</strong>{label && <small>{label}</small>}</span>)}
+        <span class="evidence-provenance-item"><strong>Provenance</strong><small>Retained</small></span>
+      </div>
+      <div class="maturity-boundary" aria-label="Inspiral maturity boundary">
+        {inspiral.evidence.maturityBoundary.map(([state, project, detail]) => <div><small>{state}</small><span>{project}</span><p>{detail}</p></div>)}
+      </div>
+    </section>
+
+    <section class="signal-section signal-value-risk">
+      <p class="signal-label">Why this matters</p>
+      <h2>{inspiral.valueRisk.title}</h2>
+      <div class="value-risk-grid">
+        <div><h3>{inspiral.valueRisk.value[0]}</h3><p>{inspiral.valueRisk.value[1]}</p></div>
+        <div><h3>{inspiral.valueRisk.risk[0]}</h3><p>{inspiral.valueRisk.risk[1]}</p></div>
+      </div>
+    </section>
+
+    <section class="signal-section signal-openai">
+      <p class="signal-label">OpenAI across the fieldwork</p>
+      <h2>{inspiral.openai.title}</h2>
+      <div class="openai-lifecycle-rows">
+        {inspiral.openai.rows.map(([label, product, role]) => <div class="openai-lifecycle-row"><span>{label}</span><h3>{product}</h3><p>{role}</p></div>)}
+      </div>
+      <p class="signal-principle">{inspiral.openai.principle}</p>
+    </section>
+
+    <section class="signal-section signal-close">
+      <p class="signal-label">Fieldwork note</p>
+      <h2><a class="signal-fieldwork-title-link" href="/fieldwork/why-content-generation-was-not-the-hard-problem/">{inspiral.fieldwork.title}</a></h2>
+      <blockquote>{inspiral.fieldwork.statement}</blockquote>
+      <div class="signal-surfaces">
+        <p class="signal-label">Where this lives</p>
+        {inspiral.fieldwork.surfaces.map((surface) => <p>{surface}</p>)}
+        <a class="signal-fieldwork-link" href="/fieldwork/why-content-generation-was-not-the-hard-problem/">Read the founding field note <span>↗</span></a>
+      </div>
+    </section>
+  </article>
+</BaseLayout>

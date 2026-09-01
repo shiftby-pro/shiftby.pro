@@ -1,36 +1,20 @@
 ---
-import '../styles/global.css';
+import SiteShell from '../components/shell/SiteShell.astro';
 
 interface Props {
   title: string;
   description?: string;
+  activeSection?: 'projects' | 'fieldwork' | 'about' | '';
+  author?: string;
+  type?: string;
+  seoTitle?: string;
+  ogTitle?: string;
+  ogImage?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  robots?: string;
+  structuredData?: Record<string, unknown>;
 }
 
-const { title, description = 'Shiftby.pro — evidence-led fieldwork on AI-assisted work.' } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site);
-const isFieldwork = Astro.url.pathname.includes('/fieldwork/');
+const { title, description, activeSection = '', author, type, seoTitle, ogTitle, ogImage, twitterCard, robots, structuredData } = Astro.props;
 ---
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <title>{title} | Shiftby.pro</title>
-  </head>
-  <body>
-    <header class="site-header">
-      <a class="brand" href="/">Shiftby.pro</a>
-      <nav aria-label="Primary navigation">
-        <a href="/projects/inspiral/fieldwork/" aria-current={isFieldwork ? 'page' : undefined}>Fieldwork</a>
-      </nav>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer class="site-footer">
-      <p>Independent fieldwork on AI-assisted research, systems and practice.</p>
-    </footer>
-  </body>
-</html>
+<SiteShell title={title} description={description} activeSection={activeSection} author={author} type={type} seoTitle={seoTitle} ogTitle={ogTitle} ogImage={ogImage} twitterCard={twitterCard} robots={robots} structuredData={structuredData}><slot /></SiteShell>

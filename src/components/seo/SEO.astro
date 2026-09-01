@@ -1,0 +1,32 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonical: URL;
+  author?: string;
+  type?: string;
+  siteName?: string;
+  ogTitle?: string;
+  ogImage?: string;
+  twitterCard?: 'summary' | 'summary_large_image';
+  robots?: string;
+  structuredData?: Record<string, unknown>;
+}
+
+const { title, description, canonical, author = 'Ananda Krishna Marri', type = 'website', siteName = 'Shiftby.pro', ogTitle = title, ogImage, twitterCard = 'summary', robots = 'index, follow', structuredData } = Astro.props;
+---
+<meta name="description" content={description} />
+<meta name="author" content={author} />
+<meta name="robots" content={robots} />
+<meta property="og:title" content={ogTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonical} />
+<meta property="og:site_name" content={siteName} />
+<meta name="twitter:card" content={twitterCard} />
+<meta name="twitter:title" content={ogTitle} />
+<meta name="twitter:description" content={description} />
+{ogImage && <meta property="og:image" content={ogImage} />}
+{ogImage && <meta name="twitter:image" content={ogImage} />}
+<link rel="canonical" href={canonical} />
+{structuredData && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
