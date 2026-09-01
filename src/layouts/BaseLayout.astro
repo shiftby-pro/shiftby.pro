@@ -8,6 +8,7 @@ interface Props {
 
 const { title, description = 'Shiftby.pro — evidence-led fieldwork on AI-assisted work.' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
+const isFieldwork = Astro.url.pathname.includes('/fieldwork/');
 ---
 <!doctype html>
 <html lang="en">
@@ -22,7 +23,7 @@ const canonical = new URL(Astro.url.pathname, Astro.site);
     <header class="site-header">
       <a class="brand" href="/">Shiftby.pro</a>
       <nav aria-label="Primary navigation">
-        <a href="/fieldwork/">Fieldwork</a>
+        <a href="/projects/inspiral/fieldwork/" aria-current={isFieldwork ? 'page' : undefined}>Fieldwork</a>
       </nav>
     </header>
     <main>

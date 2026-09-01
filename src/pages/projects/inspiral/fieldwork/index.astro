@@ -1,0 +1,27 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const items = await getCollection('fieldwork', ({ data }) => data.visibility === 'public');
+---
+<BaseLayout title="Inspiral Fieldwork" description="Field notes from ShiftBy's Inspiral project.">
+  <section class="hero">
+    <p class="eyebrow">Inspiral / Fieldwork</p>
+    <h1>Notes from an active exploration of trustworthy continuing work.</h1>
+    <p class="lede">Analysis, evidence and build notes on preserving context, decisions, current state and human authority across AI-assisted work.</p>
+  </section>
+  <section aria-labelledby="fieldwork-notes">
+    <p class="eyebrow">All notes</p>
+    <h2 id="fieldwork-notes">Fieldwork archive</h2>
+    <ul class="card-list">
+      {items.map((item) => (
+        <li>
+          <a href={`/projects/inspiral/fieldwork/${item.data.slug}/`}>
+            <strong>{item.data.title}</strong>
+            <span>{item.data.description}</span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+</BaseLayout>

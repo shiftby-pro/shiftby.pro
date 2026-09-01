@@ -15,7 +15,7 @@ const items = await getCollection('fieldwork', ({ data }) => data.visibility ===
     <ul class="card-list">
       {items.map((item) => (
         <li>
-          <a href={`/fieldwork/${item.data.slug}/`}>
+          <a href={`/projects/inspiral/fieldwork/${item.data.slug}/`}>
             <strong>{item.data.title}</strong>
             <span>{item.data.description}</span>
           </a>
