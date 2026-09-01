@@ -2,7 +2,8 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 
-const items = await getCollection('fieldwork', ({ data }) => data.visibility === 'public');
+const items = (await getCollection('fieldwork', ({ data }) => data.visibility === 'public'))
+  .sort((a, b) => (b.data.published_at?.getTime() ?? 0) - (a.data.published_at?.getTime() ?? 0) || b.id.localeCompare(a.id));
 ---
 <BaseLayout title="Inspiral Fieldwork" description="Field notes from ShiftBy's Inspiral project.">
   <section class="hero">

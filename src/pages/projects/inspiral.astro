@@ -173,7 +173,7 @@ const inspiral = {
         <div class="signal-featured-fieldwork">
           <p class="signal-featured-kicker">Featured note</p>
           <h2 id="inspiral-fieldwork"><a class="signal-fieldwork-title-link" href={`/projects/inspiral/fieldwork/${featuredFieldwork.data.slug}/`}>{featuredFieldwork.data.title}</a></h2>
-          <blockquote>The hard part is deciding what every output must inherit—and refusing to invent what the organisation has not yet established.</blockquote>
+          <blockquote>{featuredFieldwork.data.featured_statement ?? featuredFieldwork.data.description}</blockquote>
           <p class="signal-featured-description">{featuredFieldwork.data.description}</p>
           <a class="signal-fieldwork-link" href={`/projects/inspiral/fieldwork/${featuredFieldwork.data.slug}/`}>Read this field note <span aria-hidden="true">→</span></a>
         </div>

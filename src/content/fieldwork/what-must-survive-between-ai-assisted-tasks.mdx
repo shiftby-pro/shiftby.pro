@@ -1,0 +1,72 @@
+---
+content_id: SBP-CNT-0002
+title: "What Must Survive Between AI-Assisted Tasks"
+slug: "what-must-survive-between-ai-assisted-tasks"
+description: "A lightweight handoff for recovering the evidence, decisions, current state, limitations and authority a later AI-assisted task needs to reuse work safely."
+featured_statement: "Before a later AI-assisted task reuses earlier work, it needs to recover the conditions that make reuse safe—not simply receive the last answer."
+format: method
+content_role: companion
+project: inspiral
+work_domains:
+  - knowledge-context-engineering
+author: ananda-krishna-marri
+visibility: public
+editorial_status: ready
+body_authority: git
+published_at: 2026-09-01
+---
+
+## When a task resumes
+
+A useful output can end one task. It does not tell a later task what remains usable.
+
+The work may have changed since the earlier output: a source can be rechecked, a decision revised, implementation advanced, a claim narrowed, or an uncertainty left open. The practical question is not only *What was said?* It is *What may still be used for this task, and on what basis?*
+
+## The five handoff questions
+
+Before continuing work that may affect a claim, decision or current state, use this lightweight handoff. The questions identify the context relevant to the task; they do not require every task to carry every record.
+
+| Ask | Recover | If it is unclear |
+| --- | --- | --- |
+| What exactly are we continuing? | The current task, intended decision or bounded claim. | Restate or narrow the task before reusing prior work. |
+| What supports it? | The relevant source and evidence path. | Recheck the source, investigate further or reduce the claim. |
+| Why does this direction still apply? | The decision, rationale and known alternatives. | Confirm that the decision still applies, or reopen it; do not treat history as authority. |
+| What is current, superseded or unresolved? | Current state, changed conditions and visible limitations. | Pause, mark the uncertainty or ask for a current-state check. |
+| Who can authorise reuse or change? | The accountable human role and the decision it can make. | Escalate; do not convert an unapproved inference into an operating conclusion. |
+
+## How the handoff changes the next action
+
+The handoff does not produce one automatic outcome. It makes the appropriate next action visible.
+
+- If the support remains applicable and the authority is clear, the task can reuse the relevant material.
+- If evidence is weak or the claim is broader than its support, narrow the wording or investigate further.
+- If the record is historical but current state is unknown, do not treat it as current operating truth.
+- If an important limitation remains open, retain it as a limitation rather than generating certainty around it.
+- If the required authority is absent, stop or escalate.
+
+This is deliberately small. It turns continuity from a vague instruction to “preserve context” into a concrete check before later work proceeds.
+
+## A bounded fieldwork application
+
+The [earlier fieldwork note](/projects/inspiral/fieldwork/why-content-generation-was-not-the-hard-problem/) describes a proposed downstream communication item that initially looked structurally valid. Review found that its wording depended on meaning beyond the available upstream semantic material.
+
+The handoff made the responsible response clearer: the claim could not be reused as written; its support and boundary needed review. Progression stopped while the wording and upstream boundary were reconsidered.
+
+The example does not prove that the method will resolve every gap. It shows the kind of decision a handoff is meant to make visible: reuse, narrow, investigate, hold or escalate.
+
+## When this method is insufficient
+
+A handoff is not a substitute for evidence, current-state checks or human judgement. It cannot establish an unsupported relationship, answer an unresolved question or authorise a consequential decision.
+
+Where the material is incomplete, conflicting or too sensitive for inference, the useful result may be a visible insufficiency and a request for further work—not a completed answer.
+
+<aside class="fieldwork-endmatter" aria-label="Fieldwork notes">
+  <div>
+    <p class="fieldwork-endmatter-label">Fieldwork boundary</p>
+    <p>This method is a bounded practice from ShiftBy’s working context. It does not establish that every task needs all five questions, that a technical mechanism can answer them automatically, or that Inspiral has implemented or validated an end-to-end continuity system.</p>
+  </div>
+  <div class="fieldwork-endmatter-next">
+    <p class="fieldwork-endmatter-label">Continue the fieldwork</p>
+    <p>Next: <strong>How OpenAI Supports Inspiral Fieldwork</strong>—a focused account of the concrete contribution of OpenAI and ChatGPT tools, the limits of retrieval and generation, and the human authority that remains with the work.</p>
+  </div>
+</aside>
