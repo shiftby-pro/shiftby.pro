@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1000" role="img" aria-labelledby="title description">
+  <title id="title">CanonLens boundary handoff</title>
+  <desc id="description">A simplified working-specification view of the STG-04 to STG-06 handoff from a governed ContextCore baseline to bounded contextual meaning.</desc>
+  <rect width="720" height="1000" fill="#fffefd"/>
+  <g fill="#1c2523" font-family="Arial, Helvetica, sans-serif">
+    <text x="54" y="82" font-size="36" font-weight="700">CanonLens boundary</text>
+    <text x="54" y="126" font-size="22">Working specification handoff</text>
+  </g>
+  <g fill="#f7f7f5" stroke="#cbd1cd" stroke-width="2">
+    <rect x="54" y="178" width="612" height="174" rx="14"/>
+    <rect x="54" y="416" width="612" height="206" rx="14"/>
+    <rect x="54" y="686" width="612" height="196" rx="14"/>
+  </g>
+  <g fill="#0b6b66" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" letter-spacing="2">
+    <text x="86" y="222">STG-04</text>
+    <text x="86" y="460">STG-05</text>
+    <text x="86" y="730">STG-06</text>
+  </g>
+  <g fill="#1c2523" font-family="Arial, Helvetica, sans-serif">
+    <text x="86" y="270" font-size="30" font-weight="700">Governed capability baseline</text>
+    <text x="86" y="310" font-size="24">Complete and ready for the next stage</text>
+    <text x="86" y="508" font-size="30" font-weight="700">Capability semantic profiles</text>
+    <text x="86" y="546" font-size="24">Purpose-specific projection</text>
+    <text x="86" y="586" font-size="24">Governed member and proof selection</text>
+    <text x="86" y="778" font-size="30" font-weight="700">Profile enrichment and context</text>
+    <text x="86" y="816" font-size="24">Supporting context and evidence admission</text>
+    <text x="86" y="856" font-size="24">Sufficiency assessment</text>
+  </g>
+  <g fill="#0b6b66" font-family="Arial, Helvetica, sans-serif" font-size="38" text-anchor="middle">
+    <text x="360" y="398">↓</text>
+    <text x="360" y="668">↓</text>
+  </g>
+  <text x="360" y="952" fill="#0b6b66" font-family="Arial, Helvetica, sans-serif" font-size="26" font-weight="700" text-anchor="middle" letter-spacing="1">BOUNDED CONTEXTUAL MEANING</text>
+</svg>
