@@ -1,0 +1,12 @@
+.handoff-outcomes { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); margin:2.5rem 0 2.8rem; border-top:1px solid var(--ink); border-bottom:1px solid var(--line); }
+.handoff-outcomes > div { min-height:156px; padding:18px 16px 20px; border-left:1px solid var(--line); }
+.handoff-outcomes > div:first-child { border-left:0; }
+.handoff-outcomes-label { margin:0 0 12px; color:var(--accent-dark); font-family:'DM Mono',monospace; font-size:.67rem; font-weight:500; letter-spacing:.08em; text-transform:uppercase; }
+.prose .handoff-outcomes p:not(.handoff-outcomes-label) { margin:0; font-size:.9rem; line-height:1.5; }
+
+@media (max-width:720px) {
+  .handoff-outcomes { grid-template-columns:1fr 1fr; margin:2rem 0 2.3rem; }
+  .handoff-outcomes > div { min-height:0; padding:16px 14px; border-top:1px solid var(--line); }
+  .handoff-outcomes > div:nth-child(odd) { border-left:0; }
+  .handoff-outcomes > div:nth-child(-n + 2) { border-top:0; }
+}
