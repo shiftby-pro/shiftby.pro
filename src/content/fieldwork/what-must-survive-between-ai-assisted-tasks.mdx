@@ -14,7 +14,10 @@ visibility: public
 editorial_status: ready
 body_authority: git
 published_at: 2026-09-01
+editorial_brief_url: "https://app.notion.com/p/3ce17667df5481ceae60d509ebb8ccbf?pvs=204"
 ---
+
+import '../../styles/lcp02-handoff.css';
 
 ## When a task resumes
 
@@ -34,15 +37,28 @@ Before continuing work that may affect a claim, decision or current state, use t
 | What is current, superseded or unresolved? | Current state, changed conditions and visible limitations. | Pause, mark the uncertainty or ask for a current-state check. |
 | Who can authorise reuse or change? | The accountable human role and the decision it can make. | Escalate; do not convert an unapproved inference into an operating conclusion. |
 
-## How the handoff changes the next action
+## Choose the next action
 
 The handoff does not produce one automatic outcome. It makes the appropriate next action visible.
 
-- If the support remains applicable and the authority is clear, the task can reuse the relevant material.
-- If evidence is weak or the claim is broader than its support, narrow the wording or investigate further.
-- If the record is historical but current state is unknown, do not treat it as current operating truth.
-- If an important limitation remains open, retain it as a limitation rather than generating certainty around it.
-- If the required authority is absent, stop or escalate.
+<div class="handoff-outcomes" role="list" aria-label="Possible next actions after a handoff">
+  <div role="listitem">
+    <p class="handoff-outcomes-label">Reuse</p>
+    <p>Support remains applicable, current state is known and authority is clear.</p>
+  </div>
+  <div role="listitem">
+    <p class="handoff-outcomes-label">Narrow or investigate</p>
+    <p>Evidence is weak or the proposed claim exceeds what its support can carry.</p>
+  </div>
+  <div role="listitem">
+    <p class="handoff-outcomes-label">Hold</p>
+    <p>Current state or an important limitation is still unresolved.</p>
+  </div>
+  <div role="listitem">
+    <p class="handoff-outcomes-label">Escalate</p>
+    <p>The required authority is absent; do not convert inference into a conclusion.</p>
+  </div>
+</div>
 
 This is deliberately small. It turns continuity from a vague instruction to “preserve context” into a concrete check before later work proceeds.
 
