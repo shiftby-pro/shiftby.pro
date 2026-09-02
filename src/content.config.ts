@@ -18,6 +18,7 @@ const fieldwork = defineCollection({
     visibility: z.enum(['public', 'unlisted', 'private']),
     editorial_status: z.enum(['draft', 'review', 'validation', 'ready', 'published', 'superseded']),
     body_authority: z.enum(['notion', 'git']),
+    editorial_brief_url: z.string().url().optional(),
     published_at: z.coerce.date().optional(),
     updated_at: z.coerce.date().optional(),
   }),
