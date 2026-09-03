@@ -4,24 +4,7 @@ export const formats = ['analysis', 'method', 'case-study', 'guide', 'technical-
 export const contentRoles = ['canonical', 'companion', 'adaptation'] as const;
 export const series = ['inspiral-fieldwork', 'shiftby-pro-fieldwork'] as const;
 export const projects = ['inspiral', 'ai-security-assurance'] as const;
-export const practiceAreas = [
-  'ai-assisted-work',
-  'business-analysis-process-design',
-  'product-strategy',
-  'product-service-design',
-  'enterprise-architecture',
-  'software-engineering',
-  'data-knowledge-systems',
-  'testing-evaluation-validation',
-  'cybersecurity',
-  'governance-risk-assurance',
-  'operations-delivery',
-  'content-communication',
-  'adoption-transformation',
-  'sustainability',
-  'research-development',
-  'ai-operations',
-] as const;
+export const practiceAreas = ['ai-assisted-work','business-analysis-process-design','product-strategy','product-service-design','enterprise-architecture','software-engineering','data-knowledge-systems','testing-evaluation-validation','cybersecurity','governance-risk-assurance','operations-delivery','content-communication','adoption-transformation','sustainability','research-development','ai-operations'] as const;
 export const themes = ['ai-assisted-work', 'knowledge-systems', 'data-quality', 'governance', 'evidence-and-lineage', 'execution'] as const;
 export const visibilityStates = ['public', 'unlisted', 'private'] as const;
 export const editorialStatuses = ['draft', 'review', 'validation', 'ready', 'published', 'superseded'] as const;
@@ -32,9 +15,13 @@ export const bodyAuthorities = ['notion', 'git'] as const;
 
 export const publicationLabels = {
   practiceAreas: Object.fromEntries(practiceAreas.map((value) => [value, value.replaceAll('-', ' ')])) as Record<string, string>,
-  formats: Object.fromEntries(formats.map((value) => [value, value.replaceAll('-', ' ')])) as Record<string, string>,
+  formats: Object.fromEntries(formats.map((value) => [value, value.replaceAll('-', ' ')])),
 };
 
-export function isPublishedIndexable(data: { visibility: string; published_status: string; indexing: string }): boolean {
-  return data.visibility === 'public' && data.indexing === 'index' && ['published', 'updated', 'superseded'].includes(data.published_status);
+export function isPublishedIndexable(data: { visibility: string; published_status: string; indexing: string; release_approved?: boolean }): boolean {
+  return data.visibility === 'public' && data.indexing === 'index' && data.release_approved === true && ['published', 'updated', 'superseded'].includes(data.published_status);
+}
+
+export function isReadyToPublish(data: { visibility: string; editorial_status: string; published_status: string; indexing: string; release_approved?: boolean }): boolean {
+  return data.visibility === 'public' && data.editorial_status === 'ready' && data.published_status === 'not-published' && data.indexing === 'index' && data.release_approved === true;
 }
