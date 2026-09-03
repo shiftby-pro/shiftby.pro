@@ -5,7 +5,16 @@ const absolute = (site: SiteUrl, path: string) => new URL(path, site ?? 'https:/
 
 export function publisherGraph(site: SiteUrl) {
   const about = absolute(site, '/about/');
-  return { '@type': 'Person', '@id': `${about}#author`, name: 'Ananda Krishna Marri', url: about };
+  return {
+    '@type': 'Person',
+    '@id': `${about}#author`,
+    name: 'Ananda Krishna Marri',
+    url: about,
+    sameAs: ['https://www.linkedin.com/in/anandakrishnam/'],
+    jobTitle: 'AI Solutions, Adoption and Transformation Leader',
+    description: 'AI solutions, adoption and transformation leader documenting independent fieldwork on AI-assisted research, systems and accountable practice.',
+    knowsAbout: ['AI-assisted work', 'Knowledge and Context Engineering', 'Decision Integrity', 'Human–AI Accountability'],
+  };
 }
 
 export function homeStructuredData(site: SiteUrl) {
