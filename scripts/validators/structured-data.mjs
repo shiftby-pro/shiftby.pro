@@ -1,12 +1,12 @@
 import fs from 'node:fs';
-import { distDir, fail } from './common.mjs';
+import { distDir, fail, isRedirectHtml } from './common.mjs';
 
 export function validateStructuredData() {
   const errors = [];
   if (!fs.existsSync(distDir)) errors.push('dist directory missing');
   const files = fs.existsSync(distDir) ? fs.readdirSync(distDir, { recursive: true }).filter((file) => String(file).endsWith('.html')) : [];
   for (const file of files) {
-    const html = fs.readFileSync(distDir + '/' + file, 'utf8');
+    const html = fs.readFileSync(distDir + '/' + file, 'utf8');\n    if (isRedirectHtml(html)) continue;
     const matches = [...html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)];
     if (!matches.length) { errors.push(file + ': missing JSON-LD'); continue; }
     for (const match of matches) {
