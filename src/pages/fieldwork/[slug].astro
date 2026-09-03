@@ -1,10 +1,47 @@
 ---
-import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, render } from 'astro:content';
+import { getFieldworkCanonicalPath, getSeriesName } from '../../lib/fieldwork';
 
 export async function getStaticPaths() {
   const items = await getCollection('fieldwork', ({ data }) => data.visibility === 'public');
-  return items.map((item) => ({ params: { slug: item.data.slug } }));
+  return items.map((item) => ({ params: { slug: item.data.slug }, props: { item } }));
 }
 
-return Astro.redirect(`/projects/inspiral/fieldwork/${Astro.params.slug}/`, 301);
+const { item } = Astro.props;
+const canonicalPath = getFieldworkCanonicalPath(item);
+
+if (canonicalPath !== `/fieldwork/${item.data.slug}/`) {
+  return Astro.redirect(canonicalPath, 301);
+}
+
+const { Content } = await render(item);
+const title = item.data.seo_title ?? item.data.title;
+const description = item.data.seo_description ?? item.data.description;
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: item.data.title,
+  description,
+  datePublished: item.data.published_at?.toISOString(),
+  dateModified: (item.data.updated_at ?? item.data.published_at)?.toISOString(),
+  author: { '@type': 'Person', name: item.data.author.replaceAll('-', ' ') },
+  mainEntityOfPage: { '@type': 'WebPage', '@id': new URL(canonicalPath, Astro.site).href },
+  isPartOf: { '@type': 'CollectionPage', name: getSeriesName(item) },
+};
 ---
+<BaseLayout title={item.data.title} seoTitle={title} description={description} activeSection="fieldwork" robots={item.data.indexing === 'noindex' ? 'noindex, follow' : undefined} structuredData={structuredData}>
+  <article class="article">
+    <header class="article-header">
+      <p class="eyebrow">{getSeriesName(item)} / {item.data.format.replace('-', ' ')}</p>
+      <h1>{item.data.title}</h1>
+      <p class="lede">{item.data.description}</p>
+      <dl class="meta">
+        <div><dt>Project</dt><dd>Shiftby.pro Fieldwork</dd></div>
+        <div><dt>Work domain</dt><dd>{item.data.work_domains[0].replaceAll('-', ' ')}</dd></div>
+        <div><dt>Author</dt><dd>{item.data.author.replaceAll('-', ' ')}</dd></div>
+      </dl>
+    </header>
+    <div class="prose"><Content /></div>
+  </article>
+</BaseLayout>
