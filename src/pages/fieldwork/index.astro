@@ -2,9 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import '../../styles/project-fieldwork-hubs.css';
-import { getFieldworkCanonicalPath, sortFieldworkByPublication } from '../../lib/fieldwork';
+import { getFieldworkCanonicalPath, isPublishedIndexable, sortFieldworkByPublication } from '../../lib/fieldwork';
 
-const publicItems = sortFieldworkByPublication(await getCollection('fieldwork', ({ data }) => data.visibility === 'public'));
+const publicItems = sortFieldworkByPublication(await getCollection('fieldwork', ({ data }) => isPublishedIndexable(data)));
 
 const projectDetails: Record<string, { name: string; description: string; projectPath: string; archivePath: string }> = {
   inspiral: {
@@ -32,6 +32,8 @@ const formatLabel = (format: string) => format.replace(/-/g, ' ');
 const purposeLabel: Record<string, string> = { analyze: 'Analysis', explain: 'Explanation', document: 'Documentation', teach: 'Teaching', report: 'Report', reflect: 'Reflection' };
 const projects = [...new Set(publicItems.map(({ data }) => data.project).filter(Boolean))] as string[];
 const formats = [...new Set(publicItems.map(({ data }) => data.format))];
+const practiceAreas = [...new Set(publicItems.map(({ data }) => data.practice_area))];
+const statuses = [...new Set(publicItems.map(({ data }) => data.current_status))];
 const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains))];
 ---
 <BaseLayout title="Fieldwork" description="Independent, evidence-bounded notes on AI-assisted research, systems and practice." activeSection="fieldwork">
@@ -57,11 +59,13 @@ const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains)
           <label>Project<select data-filter="project"><option value="">All projects</option>{projects.map((project) => <option value={project}>{project.replaceAll('-', ' ')}</option>)}</select></label>
           <label>Format<select data-filter="format"><option value="">All formats</option>{formats.map((format) => <option value={format}>{formatLabel(format)}</option>)}</select></label>
           <label>Domain<select data-filter="domain"><option value="">All domains</option>{domains.map((domain) => <option value={domain}>{domain.replaceAll('-', ' ')}</option>)}</select></label>
+          <label>Practice<select data-filter="practice"><option value="">All practices</option>{practiceAreas.map((practice) => <option value={practice}>{practice.replaceAll('-', ' ')}</option>)}</select></label>
+          <label>Status<select data-filter="status"><option value="">All statuses</option>{statuses.map((status) => <option value={status}>{status.replaceAll('-', ' ')}</option>)}</select></label>
         </form>
         <p class="fieldwork-filter-count" data-filter-count>{publicItems.length} {publicItems.length === 1 ? 'note' : 'notes'}</p>
-        <ol class="fieldwork-note-list">
+        <ol class="fieldwork-note-list" data-archive-list>
           {featuredItems.map((item) => (
-            <li data-archive-item data-project={item.data.project ?? ''} data-format={item.data.format} data-domain={item.data.work_domains.join(' ')}>
+              <li data-archive-item data-project={item.data.project ?? ''} data-format={item.data.format} data-domain={item.data.work_domains.join(' ')} data-practice={item.data.practice_area} data-status={item.data.current_status}>
               <a href={getFieldworkCanonicalPath(item)}>
                 <span class="fieldwork-note-meta">{purposeLabel[item.data.editorial_purpose]} · {formatLabel(item.data.format)} · {item.data.project ?? 'Fieldwork'}</span>
                 <strong>{item.data.title}</strong>
@@ -70,6 +74,12 @@ const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains)
             </li>
           ))}
         </ol>
+        <p class="fieldwork-filter-empty" data-filter-empty hidden>No published notes match these filters.</p>
+        <nav class="fieldwork-pagination" aria-label="Fieldwork pages" data-pagination hidden>
+          <button type="button" data-page-prev>Previous</button>
+          <span data-page-status aria-live="polite"></span>
+          <button type="button" data-page-next>Next</button>
+        </nav>
         <a class="arrow-link" href={featuredDetails.archivePath}>All {featuredDetails.name} Fieldwork</a>
       </div>
     </section>
@@ -105,16 +115,42 @@ const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains)
     const items = [...archive.querySelectorAll<HTMLElement>('[data-archive-item]')];
     const controls = [...archive.querySelectorAll<HTMLSelectElement>('[data-filter]')];
     const count = archive.querySelector('[data-filter-count]');
+    const empty = archive.querySelector<HTMLElement>('[data-filter-empty]');
+    const pagination = archive.querySelector<HTMLElement>('[data-pagination]');
+    const prev = archive.querySelector<HTMLButtonElement>('[data-page-prev]');
+    const next = archive.querySelector<HTMLButtonElement>('[data-page-next]');
+    const pageStatus = archive.querySelector<HTMLElement>('[data-page-status]');
+    const pageSize = 12;
+    const params = new URLSearchParams(window.location.search);
+    controls.forEach((control) => { control.value = params.get(control.dataset.filter ?? '') ?? ''; });
+    let page = Math.max(1, Number(params.get('page') ?? '1') || 1);
     const update = () => {
       const values: Record<string, string> = Object.fromEntries(controls.map((control) => [control.dataset.filter ?? '', control.value]));
-      let visible = 0;
+      const matching = items.filter((item) => Object.entries(values).every(([key, value]) => !value || (item.dataset[key] ?? '').split(' ').includes(value)));
+      const pages = Math.max(1, Math.ceil(matching.length / pageSize));
+      page = Math.min(page, pages);
+      const start = (page - 1) * pageSize;
       items.forEach((item) => {
         const match = Object.entries(values).every(([key, value]) => !value || (item.dataset[key] ?? '').split(' ').includes(value));
-        item.hidden = !match;
-        if (match) visible += 1;
+        item.hidden = !match || matching.indexOf(item) < start || matching.indexOf(item) >= start + pageSize;
       });
-      if (count) count.textContent = `${visible} ${visible === 1 ? 'note' : 'notes'}`;
+      if (count) count.textContent = `${matching.length} ${matching.length === 1 ? 'note' : 'notes'}`;
+      if (empty) empty.hidden = matching.length > 0;
+      if (pagination) pagination.hidden = matching.length <= pageSize;
+      if (pageStatus) pageStatus.textContent = `Page ${page} of ${pages}`;
+      if (prev) prev.disabled = page <= 1;
+      if (next) next.disabled = page >= pages;
     };
-    controls.forEach((control) => control.addEventListener('change', update));
+    const syncUrl = () => {
+      const nextParams = new URLSearchParams();
+      controls.forEach((control) => { if (control.value) nextParams.set(control.dataset.filter ?? '', control.value); });
+      if (page > 1) nextParams.set('page', String(page));
+      const query = nextParams.toString();
+      window.history.replaceState({}, '', `${window.location.pathname}${query ? `?${query}` : ''}`);
+    };
+    controls.forEach((control) => control.addEventListener('change', () => { page = 1; syncUrl(); update(); }));
+    prev?.addEventListener('click', () => { page -= 1; syncUrl(); update(); });
+    next?.addEventListener('click', () => { page += 1; syncUrl(); update(); });
+    update();
   }
 </script>
