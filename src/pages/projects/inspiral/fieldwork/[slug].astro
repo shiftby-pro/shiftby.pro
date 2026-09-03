@@ -1,10 +1,10 @@
 ---
 import FieldworkArticle from '../../../../components/fieldwork/FieldworkArticle.astro';
 import { getCollection, render } from 'astro:content';
-import { isPublishedIndexable } from '../../../../lib/fieldwork';
+import { isPublishedIndexable, isReviewNoindex } from '../../../../lib/fieldwork';
 
 export async function getStaticPaths() {
-  const items = await getCollection('fieldwork', ({ data }) => isPublishedIndexable(data) && data.project === 'inspiral');
+  const items = await getCollection('fieldwork', ({ data }) => (isPublishedIndexable(data) || isReviewNoindex(data)) && data.project === 'inspiral');
   return items.map((item) => ({ params: { slug: item.data.slug }, props: { item } }));
 }
 
