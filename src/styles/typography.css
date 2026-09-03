@@ -1,0 +1,51 @@
+/* Shared publication typography contract.
+   Component styles may choose a role, but should not redefine font families. */
+
+.kicker,
+.eyebrow,
+.section-label {
+  color: var(--accent);
+  font-family: var(--font-meta);
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  font-size: .68rem;
+  font-weight: 500;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 400;
+  letter-spacing: -.02em;
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-size: clamp(3.6rem, 8vw, 7.2rem);
+  line-height: .88;
+  max-width: 8.5ch;
+  margin: 24px 0 32px;
+  letter-spacing: -.03em;
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.3rem);
+  line-height: .98;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.55rem;
+  line-height: 1.1;
+  margin: 0;
+}
+
+/* Display serif is reserved for editorial emphasis; reading text remains sans. */
+.editorial-body {
+  font-family: var(--font-body);
+}
+
+.editorial-body h2 {
+  font-family: var(--font-display);
+  letter-spacing: -.025em;
+}
