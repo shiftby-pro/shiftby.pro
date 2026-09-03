@@ -2,7 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import '../../styles/project-fieldwork-hubs.css';
-import { sortFieldworkByPublication } from '../../lib/fieldwork';
+import { getFieldworkCanonicalPath, sortFieldworkByPublication } from '../../lib/fieldwork';
 
 const publicItems = sortFieldworkByPublication(await getCollection('fieldwork', ({ data }) => data.visibility === 'public'));
 
@@ -23,9 +23,13 @@ const itemsByProject = publicItems.reduce<Record<string, typeof publicItems>>((g
 const featuredProject = 'inspiral';
 const featuredDetails = projectDetails[featuredProject];
 const featuredProjectItems = itemsByProject[featuredProject] ?? [];
-const featuredItems = featuredProjectItems.slice(0, 3);
+const featuredItems = featuredProjectItems;
 const otherProjects = Object.keys(itemsByProject).filter((project) => project !== featuredProject && projectDetails[project]);
 const formatLabel = (format: string) => format.replace(/-/g, ' ');
+const purposeLabel: Record<string, string> = { analyze: 'Analysis', explain: 'Explanation', document: 'Documentation', teach: 'Teaching', report: 'Report', reflect: 'Reflection' };
+const projects = [...new Set(publicItems.map(({ data }) => data.project).filter(Boolean))] as string[];
+const formats = [...new Set(publicItems.map(({ data }) => data.format))];
+const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains))];
 ---
 <BaseLayout title="Fieldwork" description="Independent, evidence-bounded notes on AI-assisted research, systems and practice." activeSection="fieldwork">
   <article class="page-shell fieldwork-hub-page">
@@ -44,13 +48,19 @@ const formatLabel = (format: string) => format.replace(/-/g, ' ');
         <a class="arrow-link" href={featuredDetails.projectPath}>Explore Inspiral</a>
       </div>
 
-      <div class="fieldwork-collection-notes">
+      <div class="fieldwork-collection-notes" data-fieldwork-archive>
         <p class="section-label">Recent notes</p>
+        <form class="fieldwork-filters" aria-label="Filter fieldwork notes">
+          <label>Project<select data-filter="project"><option value="">All projects</option>{projects.map((project) => <option value={project}>{project.replaceAll('-', ' ')}</option>)}</select></label>
+          <label>Format<select data-filter="format"><option value="">All formats</option>{formats.map((format) => <option value={format}>{formatLabel(format)}</option>)}</select></label>
+          <label>Domain<select data-filter="domain"><option value="">All domains</option>{domains.map((domain) => <option value={domain}>{domain.replaceAll('-', ' ')}</option>)}</select></label>
+        </form>
+        <p class="fieldwork-filter-count" data-filter-count>{publicItems.length} {publicItems.length === 1 ? 'note' : 'notes'}</p>
         <ol class="fieldwork-note-list">
           {featuredItems.map((item) => (
-            <li>
-              <a href={`/projects/inspiral/fieldwork/${item.data.slug}/`}>
-                <span class="fieldwork-note-meta">{formatLabel(item.data.format)}</span>
+            <li data-archive-item data-project={item.data.project ?? ''} data-format={item.data.format} data-domain={item.data.work_domains.join(' ')}>
+              <a href={getFieldworkCanonicalPath(item)}>
+                <span class="fieldwork-note-meta">{purposeLabel[item.data.editorial_purpose]} · {formatLabel(item.data.format)} · {item.data.project ?? 'Fieldwork'}</span>
                 <strong>{item.data.title}</strong>
                 <span>{item.data.description}</span>
               </a>
@@ -86,3 +96,23 @@ const formatLabel = (format: string) => format.replace(/-/g, ' ');
     </aside>
   </article>
 </BaseLayout>
+
+<script>
+  const archive = document.querySelector('[data-fieldwork-archive]');
+  if (archive) {
+    const items = [...archive.querySelectorAll<HTMLElement>('[data-archive-item]')];
+    const controls = [...archive.querySelectorAll<HTMLSelectElement>('[data-filter]')];
+    const count = archive.querySelector('[data-filter-count]');
+    const update = () => {
+      const values: Record<string, string> = Object.fromEntries(controls.map((control) => [control.dataset.filter ?? '', control.value]));
+      let visible = 0;
+      items.forEach((item) => {
+        const match = Object.entries(values).every(([key, value]) => !value || (item.dataset[key] ?? '').split(' ').includes(value));
+        item.hidden = !match;
+        if (match) visible += 1;
+      });
+      if (count) count.textContent = `${visible} ${visible === 1 ? 'note' : 'notes'}`;
+    };
+    controls.forEach((control) => control.addEventListener('change', update));
+  }
+</script>
