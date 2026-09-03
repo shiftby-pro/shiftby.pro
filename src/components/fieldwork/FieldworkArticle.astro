@@ -40,7 +40,7 @@ const statusLabels: Record<FieldworkEntry['data']['current_status'], string> = {
   superseded: 'Superseded',
 };
 const purposeLabels: Record<FieldworkEntry['data']['editorial_purpose'], string> = {
-  analyze: 'Analysis', explain: 'Explanation', document: 'Documentation', teach: 'Method', report: 'Case study', reflect: 'Reflection',
+  analyze: 'Analysis', explain: 'Explanation', document: 'Documentation', teach: 'Teaching', report: 'Report', reflect: 'Reflection',
 };
 
 const breadcrumbs = [
@@ -139,7 +139,7 @@ const structuredData = {
       <p class="lede">{item.data.description}</p>
       <dl class="meta article-publication-meta">
         <div><dt>Project</dt><dd>{projectPath && projectName ? <a href={projectPath}>{projectName}</a> : 'Shiftby.pro'}</dd></div>
-        <div><dt>Work domain</dt><dd>{item.data.work_domains.map((domain) => domain.replaceAll('-', ' ')).join(', ')}</dd></div>
+        <div><dt>Work domains</dt><dd>{item.data.work_domains.map((domain) => domain.replaceAll('-', ' ')).join(', ')}</dd></div>
         {item.data.published_at && <div><dt>Published</dt><dd><time datetime={publishedIso}>{formatDate(item.data.published_at)}</time></dd></div>}
         {showUpdated && <div><dt>Updated</dt><dd><time datetime={modifiedIso}>{formatDate(item.data.updated_at)}</time></dd></div>}
         <div><dt>Current status</dt><dd>{statusLabels[item.data.current_status]}</dd></div>
