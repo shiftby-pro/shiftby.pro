@@ -7,7 +7,20 @@
     "build": "npm run validate:content && astro build",
     "preview": "astro preview",
     "check": "npm run validate:content && astro check",
-    "validate:content": "node scripts/validate-content.mjs"
+    "validate:content": "node scripts/validate-content.mjs",
+    "validate:contracts": "node scripts/validators/run.mjs contracts",
+    "validate:publication": "node scripts/validators/run.mjs publication",
+    "validate:ia": "node scripts/validators/run.mjs ia",
+    "validate:assets": "node scripts/validators/run.mjs assets",
+    "validate:structural": "node scripts/validators/run.mjs structural",
+    "validate:seo": "node scripts/validators/run.mjs seo",
+    "validate:structured-data": "node scripts/validators/run.mjs structured-data",
+    "validate:accessibility": "node scripts/validators/run.mjs accessibility",
+    "validate:security": "node scripts/validators/run.mjs security",
+    "validate:links": "node scripts/validators/run.mjs links",
+    "validate:performance": "node scripts/validators/run.mjs performance",
+    "validate:release": "node scripts/validators/run.mjs release",
+    "validate:all": "node scripts/validators/run.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "7.0.8",
