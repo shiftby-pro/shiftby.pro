@@ -67,7 +67,7 @@ for (const { data, file } of records) {
   if (data.seo_description.length > 170) errors.push(`${file}: seo_description exceeds 170 characters`);
   for (const image of [data.images?.representative, data.images?.social, ...(data.images?.evidence ?? [])]) {
     if (!image?.src || !image?.alt) errors.push(`${file}: every image must have src and alt`);
-    if (image?.src && !fs.existsSync(path.join(root, 'public', image.src.replace(/^\\//, '')))) errors.push(`${file}: missing image asset ${image.src}`);
+    if (image?.src && !fs.existsSync(path.join(root, 'public', image.src.startsWith('/') ? image.src.slice(1) : image.src))) errors.push(`${file}: missing image asset ${image.src}`);
   }
   const publishable = data.editorial_status === 'published' || data.published_status === 'published' || data.published_status === 'updated';
   if (publishable) {
