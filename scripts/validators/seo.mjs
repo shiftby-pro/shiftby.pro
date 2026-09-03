@@ -10,6 +10,7 @@ export function validateSEO() {
   const htmlFiles = files();
   for (const file of htmlFiles) {
     const html = fs.readFileSync(distDir + '/' + file, 'utf8');
+    if (isRedirectHtml(html)) continue;
     if (!/<title>[^<]+<\/title>/i.test(html)) errors.push(file + ': missing title');
     if (!/<meta name="description" content="[^"]+"/i.test(html)) errors.push(file + ': missing description');
     if (!/<link rel="canonical" href="https?:\/\/[^"]+"/i.test(html)) errors.push(file + ': missing absolute canonical');
