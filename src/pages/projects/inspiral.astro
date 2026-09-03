@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { isPublishedIndexable } from '../../lib/fieldwork';
+import { projectStructuredData } from '../../lib/structured-data';
 
 const fieldworkNotes = (await getCollection('fieldwork', ({ data }) => isPublishedIndexable(data)))
   .sort((a, b) => (b.data.published_at?.getTime() ?? 0) - (a.data.published_at?.getTime() ?? 0) || b.id.localeCompare(a.id));
@@ -73,6 +74,10 @@ const inspiral = {
   ogTitle="Inspiral — Persistent Understanding for Agentic Work"
   description="Inspiral is Shiftby’s active exploration of preserving hard-won context before agentic AI produces downstream communication work."
   activeSection="projects"
+  ogImage={new URL('/images/social/inspiral.png', Astro.site).href}
+  ogImageAlt="Inspiral persistent understanding for agentic work"
+  twitterCard="summary_large_image"
+  structuredData={projectStructuredData(Astro.site, fieldworkNotes.map((item) => ({ name: item.data.title, url: new URL(`/projects/inspiral/fieldwork/${item.data.slug}/`, Astro.site).href })))}
 >
   <article class="inspiral-signal-page">
     <header class="signal-hero">
@@ -173,6 +178,7 @@ const inspiral = {
         {inspiral.openai.rows.map(([label, product, role]) => <div class="openai-lifecycle-row"><span>{label}</span><h3>{product}</h3><p>{role}</p></div>)}
       </div>
       <p class="signal-principle">{inspiral.openai.principle}</p>
+      <p class="signal-principle">Shiftby.pro is independently published by Ananda Krishna Marri and is not affiliated with or endorsed by OpenAI. <a href="https://platform.openai.com/docs/overview">OpenAI platform documentation</a> provides product context; it does not validate Inspiral’s fieldwork.</p>
     </section>
 
     <section class="signal-section signal-close" aria-labelledby="inspiral-fieldwork">

@@ -2,12 +2,13 @@
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { isPublishedIndexable, sortFieldworkByPublication } from '../../../../lib/fieldwork';
+import { collectionStructuredData } from '../../../../lib/structured-data';
 
 const items = sortFieldworkByPublication(await getCollection('fieldwork', ({ data }) =>
   isPublishedIndexable(data) && data.project === 'inspiral',
 ));
 ---
-<BaseLayout title="Inspiral Fieldwork" description="Evidence-bounded fieldwork from Inspiral on preserving context, decisions, current state and human authority across AI-assisted work.">
+<BaseLayout title="Inspiral Fieldwork" description="Evidence-bounded fieldwork from Inspiral on preserving context, decisions, current state and human authority across AI-assisted work." ogImage={new URL('/images/social/inspiral.png', Astro.site).href} ogImageAlt="Inspiral Fieldwork on persistent understanding for AI-assisted work" twitterCard="summary_large_image" structuredData={collectionStructuredData(Astro.site, '/projects/inspiral/fieldwork/', 'Inspiral Fieldwork | Shiftby.pro', 'Evidence-bounded fieldwork from Inspiral on preserving context, decisions, current state and human authority across AI-assisted work.', items.map((item) => ({ name: item.data.title, url: new URL(`/projects/inspiral/fieldwork/${item.data.slug}/`, Astro.site).href })))}>
   <section class="hero">
     <p class="eyebrow">Inspiral / Fieldwork</p>
     <h1>Notes from an active exploration of trustworthy continuing work.</h1>

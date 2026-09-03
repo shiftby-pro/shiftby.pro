@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import '../../styles/project-fieldwork-hubs.css';
 import { getFieldworkCanonicalPath, isPublishedIndexable, sortFieldworkByPublication } from '../../lib/fieldwork';
+import { collectionStructuredData } from '../../lib/structured-data';
 
 const publicItems = sortFieldworkByPublication(await getCollection('fieldwork', ({ data }) => isPublishedIndexable(data)));
 
@@ -36,7 +37,7 @@ const practiceAreas = [...new Set(publicItems.map(({ data }) => data.practice_ar
 const statuses = [...new Set(publicItems.map(({ data }) => data.current_status))];
 const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains))];
 ---
-<BaseLayout title="Fieldwork" description="Independent, evidence-bounded notes on AI-assisted research, systems and practice." activeSection="fieldwork">
+<BaseLayout title="Fieldwork" description="Independent, evidence-bounded notes on AI-assisted research, systems and practice." activeSection="fieldwork" ogImage={new URL('/images/social/shiftby-pro.png', Astro.site).href} ogImageAlt="Shiftby.pro fieldwork archive on AI-assisted research, systems and practice" twitterCard="summary_large_image" structuredData={collectionStructuredData(Astro.site, '/fieldwork/', 'Fieldwork | Shiftby.pro', 'Independent, evidence-bounded notes on AI-assisted research, systems and practice.', publicItems.map((item) => ({ name: item.data.title, url: new URL(getFieldworkCanonicalPath(item), Astro.site).href })))}>
   <article class="page-shell fieldwork-hub-page">
     <header class="page-intro fieldwork-hub-intro">
       <p class="kicker">Fieldwork</p>

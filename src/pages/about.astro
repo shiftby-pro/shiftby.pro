@@ -1,7 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { aboutStructuredData } from '../lib/structured-data';
 ---
-<BaseLayout title="About" description="About Shiftby.pro, an independent fieldwork publication by Ananda Krishna Marri." activeSection="about">
+<BaseLayout title="About" description="About Shiftby.pro, an independent fieldwork publication by Ananda Krishna Marri, covering AI-assisted research, systems, evidence and accountable practice." activeSection="about" ogImage={new URL('/images/social/shiftby-pro.png', Astro.site).href} ogImageAlt="Shiftby.pro independent fieldwork publication" twitterCard="summary_large_image" structuredData={aboutStructuredData(Astro.site)}>
   <article class="page-shell about-page">
     <header class="page-intro">
       <p class="kicker">About the publication</p>
