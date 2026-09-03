@@ -232,7 +232,7 @@ h3 { font-size:1.55rem; line-height:1.1; margin:0; }
 .home-latest-list li:first-child a { padding-left:0; }
 .home-latest-list li:last-child a { padding-right:0; }
 .home-latest-list a:hover h3,.home-latest-list a:hover .home-latest-action { color:var(--accent); }
-.home-latest-meta { color:var(--accent-dark); font-family:'DM Mono',monospace; font-size:.62rem; letter-spacing:.07em; line-height:1.55; text-transform:uppercase; }
+.home-latest-meta { color:var(--accent-dark); font-family:var(--font-meta); font-size:.62rem; letter-spacing:.07em; line-height:1.55; text-transform:uppercase; }
 .home-latest-list h3 { margin:18px 0 14px; font-family:var(--font-body); font-size:1.48rem; font-weight:500; letter-spacing:-.018em; line-height:1.15; }
 .home-latest-list p { margin:0 0 22px; color:var(--muted); font-size:.84rem; line-height:1.6; }
 .home-latest-action { margin-top:auto; color:var(--accent-dark); font-size:.78rem; font-weight:600; }
@@ -249,8 +249,8 @@ h3 { font-size:1.55rem; line-height:1.1; margin:0; }
 .method-steps > div { position:relative; padding:18px 20px 0 0; min-height:130px; border-right:1px solid var(--line); }
 .method-steps > div + div { padding-left:16px; }
 .method-steps > div:last-child { border-right:0; }
-.step-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid #9aada6; border-radius:50%; margin-top:-37px; margin-bottom:18px; background:var(--paper); color:var(--accent-dark); font-family:'DM Mono',monospace; font-size:.6rem; }
-.method-steps h3 { font-family:'DM Sans',sans-serif; font-size:.78rem; font-weight:600; letter-spacing:0; margin:0 0 8px; }
+.step-icon { display:grid; place-items:center; width:37px; height:37px; border:1px solid #9aada6; border-radius:50%; margin-top:-37px; margin-bottom:18px; background:var(--paper); color:var(--accent-dark); font-family:var(--font-meta); font-size:.6rem; }
+.method-steps h3 { font-family:var(--font-body); font-size:.78rem; font-weight:600; letter-spacing:0; margin:0 0 8px; }
 .method-steps p { color:var(--ink); font-size:.76rem; line-height:1.5; margin:0; max-width:11rem; }
 .site-footer { margin-top:0; }
 .method > div:first-child h2 { font-family:var(--font-display); font-size:clamp(2.9rem,5vw,4.5rem); letter-spacing:-.025em; }
