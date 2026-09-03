@@ -5,7 +5,7 @@ import { parse } from 'yaml';
 const root = process.cwd();
 const contentDir = path.join(root, 'src/content/fieldwork');
 const manifest = JSON.parse(fs.readFileSync(path.join(contentDir, 'publication-manifest.json'), 'utf8'));
-const files = fs.readdirSync(contentDir).filter((file) => /\\.(md|mdx)$/.test(file));
+const files = fs.readdirSync(contentDir).filter((file) => /\.(md|mdx)$/.test(file));
 const errors = [];
 
 const readRecord = (file) => {
@@ -14,7 +14,7 @@ const readRecord = (file) => {
     errors.push(`${file}: missing frontmatter`);
     return null;
   }
-  const end = text.indexOf('\\n---', 3);
+  const end = text.indexOf('\n---', 3);
   if (end < 0) {
     errors.push(`${file}: unterminated frontmatter`);
     return null;
@@ -83,7 +83,7 @@ for (const entry of manifest.records) {
   if (!records.some(({ data }) => data.lcp_id === entry.lcp_id)) errors.push(`publication-manifest.json: missing content file for ${entry.lcp_id}`);
 }
 if (errors.length) {
-  console.error(['Content validation failed:', ...errors.map((error) => `- ${error}`)].join('\\n'));
+  console.error(['Content validation failed:', ...errors.map((error) => `- ${error}`)].join('\n'));
   process.exit(1);
 }
 console.log(`Content validation passed: ${records.length} records checked against ${manifest.records.length} table records.`);
