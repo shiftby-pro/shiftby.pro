@@ -24,7 +24,7 @@
 .fieldwork-collection-summary .status-label { display:block; margin:26px 0 22px; }
 .fieldwork-collection-notes > .section-label { margin:0 0 18px; }
 .fieldwork-filters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:0 0 10px; }
-.fieldwork-filters label { display:grid; gap:6px; color:var(--text-faint); font-family:var(--font-meta); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; }
+.fieldwork-filters label { display:grid; gap:6px; color:var(--text-muted); font-family:var(--font-meta); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; }
 .fieldwork-filters select { min-width:0; padding:9px 10px; border:1px solid var(--line); border-radius:0; background:var(--surface-page); color:var(--text-primary); font:inherit; font-size:.7rem; letter-spacing:0; text-transform:none; }
 .fieldwork-filters select:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
 .fieldwork-filter-count { margin:0 0 18px; color:var(--text-muted); font-size:.78rem; }
