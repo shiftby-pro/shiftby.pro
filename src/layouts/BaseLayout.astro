@@ -10,11 +10,12 @@ interface Props {
   seoTitle?: string;
   ogTitle?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   twitterCard?: 'summary' | 'summary_large_image';
   robots?: string;
   structuredData?: Record<string, unknown>;
 }
 
-const { title, description, activeSection = '', author, type, seoTitle, ogTitle, ogImage, twitterCard, robots, structuredData } = Astro.props;
+const { title, description, activeSection = '', author, type, seoTitle, ogTitle, ogImage, ogImageAlt, twitterCard, robots, structuredData } = Astro.props;
 ---
-<SiteShell title={title} description={description} activeSection={activeSection} author={author} type={type} seoTitle={seoTitle} ogTitle={ogTitle} ogImage={ogImage} twitterCard={twitterCard} robots={robots} structuredData={structuredData}><slot /></SiteShell>
+<SiteShell title={title} description={description} activeSection={activeSection} author={author} type={type} seoTitle={seoTitle} ogTitle={ogTitle} ogImage={ogImage} ogImageAlt={ogImageAlt} twitterCard={twitterCard} robots={robots} structuredData={structuredData}><slot /></SiteShell>

@@ -26,6 +26,8 @@ const fieldwork = defineCollection({
     indexing: z.enum(['index', 'noindex']),
     seo_title: z.string().min(1).optional(),
     seo_description: z.string().min(1).optional(),
+    social_image: z.string().regex(/^\/images\/[a-z0-9/_-]+\.png$/),
+    social_image_alt: z.string().min(1),
     published_at: z.coerce.date().optional(),
     updated_at: z.coerce.date().optional(),
   }),
