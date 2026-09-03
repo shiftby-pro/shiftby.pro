@@ -35,7 +35,7 @@ export function publishedRecords() {
   );
 }
 
-export function fail(errors) {
+export function isRedirectHtml(html) {\n  return /<meta[^>]+http-equiv=["']refresh["']/i.test(html);\n}\n\nexport function fail(errors) {
   if (errors.length) throw new Error(errors.map((error) => '- ' + error).join('\n'));
 }
 
