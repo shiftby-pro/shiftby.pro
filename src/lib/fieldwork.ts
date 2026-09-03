@@ -1,6 +1,9 @@
 import type { CollectionEntry } from 'astro:content';
+import { isPublishedIndexable } from './content-taxonomy';
 
 export type FieldworkEntry = CollectionEntry<'fieldwork'>;
+
+export { isPublishedIndexable };
 
 export function getFieldworkCanonicalPath(item: Pick<FieldworkEntry, 'data'>): string {
   if (item.data.project === 'inspiral') return `/projects/inspiral/fieldwork/${item.data.slug}/`;

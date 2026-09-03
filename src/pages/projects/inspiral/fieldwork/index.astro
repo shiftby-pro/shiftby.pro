@@ -1,10 +1,10 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { sortFieldworkByPublication } from '../../../../lib/fieldwork';
+import { isPublishedIndexable, sortFieldworkByPublication } from '../../../../lib/fieldwork';
 
 const items = sortFieldworkByPublication(await getCollection('fieldwork', ({ data }) =>
-  data.visibility === 'public' && data.project === 'inspiral',
+  isPublishedIndexable(data) && data.project === 'inspiral',
 ));
 ---
 <BaseLayout title="Inspiral Fieldwork" description="Field notes from ShiftBy's Inspiral project.">

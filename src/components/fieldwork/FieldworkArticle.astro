@@ -22,7 +22,7 @@ const seoTitle = sourceSeoTitle.includes('Shiftby.pro') ? sourceSeoTitle : `${so
 const publishedIso = item.data.published_at?.toISOString();
 const modifiedIso = (item.data.updated_at ?? item.data.published_at)?.toISOString();
 const showUpdated = Boolean(item.data.updated_at && item.data.updated_at.getTime() !== item.data.published_at?.getTime());
-const socialImageUrl = new URL(item.data.social_image, Astro.site).href;
+const socialImageUrl = new URL(item.data.images.social.src, Astro.site).href;
 const socialImageId = `${canonicalUrl}#primaryimage`;
 
 const formatDate = (date?: Date) => date?.toLocaleDateString('en-GB', {
@@ -72,7 +72,7 @@ const structuredData = {
       contentUrl: socialImageUrl,
       width: 1200,
       height: 630,
-      caption: item.data.social_image_alt,
+      caption: item.data.images.social.alt,
     },
     {
       '@type': 'WebPage',
@@ -116,7 +116,7 @@ const structuredData = {
   activeSection="fieldwork"
   type="article"
   ogImage={socialImageUrl}
-  ogImageAlt={item.data.social_image_alt}
+  ogImageAlt={item.data.images.social.alt}
   twitterCard="summary_large_image"
   robots={item.data.indexing === 'noindex' ? 'noindex, follow' : undefined}
   structuredData={structuredData}
@@ -140,9 +140,11 @@ const structuredData = {
       <dl class="meta article-publication-meta">
         <div><dt>Project</dt><dd>{projectPath && projectName ? <a href={projectPath}>{projectName}</a> : 'Shiftby.pro'}</dd></div>
         <div><dt>Work domains</dt><dd>{item.data.work_domains.map((domain) => domain.replaceAll('-', ' ')).join(', ')}</dd></div>
+        <div><dt>Practice area</dt><dd>{item.data.practice_area.replaceAll('-', ' ')}</dd></div>
         {item.data.published_at && <div><dt>Published</dt><dd><time datetime={publishedIso}>{formatDate(item.data.published_at)}</time></dd></div>}
         {showUpdated && <div><dt>Updated</dt><dd><time datetime={modifiedIso}>{formatDate(item.data.updated_at)}</time></dd></div>}
         <div><dt>Current status</dt><dd>{statusLabels[item.data.current_status]}</dd></div>
+        <div><dt>Publication</dt><dd>{item.data.published_status.replaceAll('-', ' ')}</dd></div>
         <div><dt>Author</dt><dd><a href="/about/" rel="author">{authorName}</a></dd></div>
       </dl>
     </header>

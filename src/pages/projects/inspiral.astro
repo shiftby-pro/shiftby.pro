@@ -1,8 +1,9 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
+import { isPublishedIndexable } from '../../lib/fieldwork';
 
-const fieldworkNotes = (await getCollection('fieldwork', ({ data }) => data.visibility === 'public'))
+const fieldworkNotes = (await getCollection('fieldwork', ({ data }) => isPublishedIndexable(data)))
   .sort((a, b) => (b.data.published_at?.getTime() ?? 0) - (a.data.published_at?.getTime() ?? 0) || b.id.localeCompare(a.id));
 const [featuredFieldwork, ...remainingFieldwork] = fieldworkNotes;
 const latestFieldwork = remainingFieldwork.slice(0, 3);

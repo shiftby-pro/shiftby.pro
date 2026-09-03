@@ -1,11 +1,11 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { getFieldworkCanonicalPath, sortFieldworkByPublication } from '../lib/fieldwork';
+import { getFieldworkCanonicalPath, isPublishedIndexable, sortFieldworkByPublication } from '../lib/fieldwork';
 
 const publicFieldwork = await getCollection(
   'fieldwork',
-  ({ data }) => data.visibility === 'public' && data.indexing === 'index',
+  ({ data }) => isPublishedIndexable(data),
 );
 
 const foundingFieldwork = publicFieldwork.find(({ data }) => data.content_id === 'SBP-CNT-0001');
