@@ -130,6 +130,12 @@ const inspiral = {
       <p>{inspiral.promise.body}</p>
     </section>
 
+    <section class="signal-section signal-definition" aria-labelledby="what-is-inspiral">
+      <p class="signal-label">What is Inspiral?</p>
+      <h2 id="what-is-inspiral">Inspiral is an active exploration of AI-assisted knowledge continuity.</h2>
+      <p>It investigates how governed source material becomes reusable knowledge and purpose-specific meaning without losing provenance, current state, limitations or human authority. ContextCore is the working governed-knowledge foundation; CanonLens is the planned purpose-specific meaning layer; ContentFlight is later-stage qualified communication.</p>
+    </section>
+
     <section class="signal-section signal-unlocks">
       <p class="signal-label">What it unlocks</p>
       <h2>{inspiral.unlocks.title}</h2>
@@ -145,6 +151,7 @@ const inspiral = {
         {inspiral.evidence.metrics.map(([value, label]) => <span><strong>{value}</strong>{label && <small>{label}</small>}</span>)}
         <span class="evidence-provenance-item"><strong>Provenance</strong><small>Retained</small></span>
       </div>
+      <p class="evidence-context">Snapshot: 3 September 2026. These figures describe the current ShiftBy working environment. “Active sources” are source records currently included in the ContextCore working set; “knowledge objects” are extracted knowledge records; “supported relationships” are recorded, evidence-linked relationships. Counts are approximate operational measurements, not independent validation of system quality.</p>
       <div class="maturity-boundary" aria-label="Inspiral maturity boundary">
         {inspiral.evidence.maturityBoundary.map(([state, project, detail]) => <div><small>{state}</small><span>{project}</span><p>{detail}</p></div>)}
       </div>
