@@ -96,6 +96,8 @@ main { max-width:1180px; margin:0 auto; padding:0 32px; }
 .article-callout { border-top:1px solid var(--accent); border-bottom:1px solid var(--line); padding:20px 0 24px; margin:3.4rem 0; font-family:var(--font-body); font-size:.9rem; line-height:1.6; }
 .article-callout strong { display:block; color:var(--accent-dark); font-family:var(--font-meta); font-size:.67rem; text-transform:uppercase; letter-spacing:.1em; margin-bottom:10px; }
 .article-callout p { margin:0; }
+.article-callout p + p { margin-top:.45rem; }
+.prose p.article-disclosure { margin-top:-2.2rem; margin-bottom:3.2rem; color:var(--muted); font-size:.82rem; line-height:1.5; }
 .continue { max-width:900px; margin:0 auto; border-top:1px solid var(--ink); padding-top:22px; }
 .continue a { display:block; max-width:34rem; margin-top:20px; font-size:1.7rem; line-height:1.1; text-decoration:none; }
 .continuity-diagram { display:grid; grid-template-columns:1fr 1px 1.5fr; gap:24px; align-items:stretch; font-family:var(--font-meta); font-size:.72rem; text-transform:uppercase; letter-spacing:.06em; }
