@@ -41,7 +41,6 @@ export function isRedirectHtml(html) {
 
 export function fail(errors) {
   if (errors.length) throw new Error(errors.map((error) => '- ' + error).join(String.fromCharCode(10)));
-'));
 }
 
 export function existsPublicAsset(src) {
