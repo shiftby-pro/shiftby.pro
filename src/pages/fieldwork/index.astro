@@ -2,9 +2,9 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import '../../styles/project-fieldwork-hubs.css';
+import { sortFieldworkByPublication } from '../../lib/fieldwork';
 
-const publicItems = (await getCollection('fieldwork', ({ data }) => data.visibility === 'public'))
-  .sort((a, b) => (b.data.published_at?.getTime() ?? 0) - (a.data.published_at?.getTime() ?? 0) || b.id.localeCompare(a.id));
+const publicItems = sortFieldworkByPublication(await getCollection('fieldwork', ({ data }) => data.visibility === 'public'));
 
 const projectDetails: Record<string, { name: string; description: string; projectPath: string; archivePath: string }> = {
   inspiral: {
@@ -16,13 +16,14 @@ const projectDetails: Record<string, { name: string; description: string; projec
 };
 
 const itemsByProject = publicItems.reduce<Record<string, typeof publicItems>>((groups, item) => {
-  (groups[item.data.project] ??= []).push(item);
+  if (item.data.project) (groups[item.data.project] ??= []).push(item);
   return groups;
 }, {});
 
 const featuredProject = 'inspiral';
 const featuredDetails = projectDetails[featuredProject];
-const featuredItems = (itemsByProject[featuredProject] ?? []).slice(0, 3);
+const featuredProjectItems = itemsByProject[featuredProject] ?? [];
+const featuredItems = featuredProjectItems.slice(0, 3);
 const otherProjects = Object.keys(itemsByProject).filter((project) => project !== featuredProject && projectDetails[project]);
 const formatLabel = (format: string) => format.replace(/-/g, ' ');
 ---
@@ -39,7 +40,7 @@ const formatLabel = (format: string) => format.replace(/-/g, ' ');
         <p class="section-label">Featured project collection</p>
         <h2 id="featured-collection">{featuredDetails.name}</h2>
         <p>{featuredDetails.description}</p>
-        <p class="status-label">Active exploration · {featuredItems.length} {featuredItems.length === 1 ? 'note' : 'notes'}</p>
+        <p class="status-label">Active exploration · {featuredProjectItems.length} {featuredProjectItems.length === 1 ? 'note' : 'notes'}</p>
         <a class="arrow-link" href={featuredDetails.projectPath}>Explore Inspiral</a>
       </div>
 
