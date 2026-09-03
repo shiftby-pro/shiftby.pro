@@ -15,6 +15,12 @@ interface Props {
 }
 
 const { title, description, canonical, author = 'Ananda Krishna Marri', type = 'website', siteName = 'Shiftby.pro', ogTitle = title, ogImage, ogImageAlt, twitterCard = 'summary', robots = 'index, follow', structuredData } = Astro.props;
+const structuredDataJson = structuredData
+  ? JSON.stringify(structuredData)
+      .replace(/</g, '\\u003c')
+      .replace(/>/g, '\\u003e')
+      .replace(/&/g, '\\u0026')
+  : undefined;
 ---
 <meta name="description" content={description} />
 <meta name="author" content={author} />
@@ -37,4 +43,4 @@ const { title, description, canonical, author = 'Ananda Krishna Marri', type = '
 {ogImage && <meta name="twitter:image" content={ogImage} />}
 {ogImage && ogImageAlt && <meta name="twitter:image:alt" content={ogImageAlt} />}
 <link rel="canonical" href={canonical} />
-{structuredData && <script is:inline type="application/ld+json" set:html={JSON.stringify(structuredData)} />}
+{structuredDataJson && <script is:inline type="application/ld+json" set:html={structuredDataJson} />}
