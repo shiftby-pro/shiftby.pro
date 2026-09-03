@@ -23,7 +23,10 @@ const itemsByProject = publicItems.reduce<Record<string, typeof publicItems>>((g
 const featuredProject = 'inspiral';
 const featuredDetails = projectDetails[featuredProject];
 const featuredProjectItems = itemsByProject[featuredProject] ?? [];
-const featuredItems = featuredProjectItems;
+// Recent notes are publication-wide; the featured collection remains the
+// project summary on the left. This keeps the global filters truthful as new
+// projects are published.
+const featuredItems = publicItems;
 const otherProjects = Object.keys(itemsByProject).filter((project) => project !== featuredProject && projectDetails[project]);
 const formatLabel = (format: string) => format.replace(/-/g, ' ');
 const purposeLabel: Record<string, string> = { analyze: 'Analysis', explain: 'Explanation', document: 'Documentation', teach: 'Teaching', report: 'Report', reflect: 'Reflection' };
@@ -44,8 +47,8 @@ const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains)
         <p class="section-label">Featured project collection</p>
         <h2 id="featured-collection">{featuredDetails.name}</h2>
         <p>{featuredDetails.description}</p>
-        <p class="status-label">Active exploration · {featuredProjectItems.length} {featuredProjectItems.length === 1 ? 'note' : 'notes'}</p>
-        <a class="arrow-link" href={featuredDetails.projectPath}>Explore Inspiral</a>
+        <p class="status-label">Exploration · Active · {featuredProjectItems.length} {featuredProjectItems.length === 1 ? 'note' : 'notes'}</p>
+        <a class="arrow-link" href={featuredDetails.projectPath}>Explore {featuredDetails.name}</a>
       </div>
 
       <div class="fieldwork-collection-notes" data-fieldwork-archive>
@@ -67,7 +70,7 @@ const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains)
             </li>
           ))}
         </ol>
-        <a class="arrow-link" href={featuredDetails.archivePath}>All Inspiral Fieldwork</a>
+        <a class="arrow-link" href={featuredDetails.archivePath}>All {featuredDetails.name} Fieldwork</a>
       </div>
     </section>
 
@@ -84,10 +87,9 @@ const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains)
       </section>
     )}
 
-    <section class="future-collections" aria-labelledby="future-collections">
-      <p class="section-label">Other project collections</p>
-      <h2 id="future-collections">Future project collections</h2>
-      <p>Additional independent project collections will appear here as their fieldwork becomes public.</p>
+    <section class="future-collections future-collections-empty" aria-labelledby="future-collections">
+      <p class="section-label">More projects soon</p>
+      <h2 id="future-collections">Additional project collections will appear here as their fieldwork becomes public.</h2>
     </section>
 
     <aside class="fieldwork-boundary-rail" aria-label="Fieldwork boundary">
