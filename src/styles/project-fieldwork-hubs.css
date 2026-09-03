@@ -1,0 +1,37 @@
+.directory-page,
+.fieldwork-hub-page { max-width: 1020px; }
+.directory-intro h1,.fieldwork-hub-intro h1 { font-family:var(--font-body); font-size:clamp(4rem,8vw,7.1rem); line-height:.9; max-width:none; }
+.directory-intro .lede,.fieldwork-hub-intro .lede { max-width:42rem; }
+.project-directory,.fieldwork-collection,.future-collections,.other-fieldwork-collections { border-top:1px solid var(--ink); }
+.project-directory > .section-label,.fieldwork-collection-notes > .section-label,.future-collections > .section-label,.other-fieldwork-collections > .section-label { display:block; margin:18px 0 0; }
+.project-directory-list { margin-top:18px; }
+.project-directory-row { display:grid; grid-template-columns:72px minmax(0,1fr) minmax(180px,.42fr); gap:28px; padding:30px 0 34px; border-top:1px solid var(--line); }
+.project-directory-row:first-child { border-top:0; }
+.project-number { margin:4px 0 0; color:var(--accent); font-family:var(--font-meta); font-size:.78rem; letter-spacing:.08em; }
+.project-directory-copy .section-label { display:block; margin:0 0 15px; }
+.project-directory-copy h2,.fieldwork-collection-summary h2,.future-collections h2,.other-fieldwork-collections h2 { font-family:var(--font-body); font-size:clamp(2.2rem,4.6vw,4rem); letter-spacing:-.055em; }
+.project-directory-copy h2 a { text-decoration:none; }
+.project-directory-copy p:not(.section-label),.fieldwork-collection-summary > p:not(.section-label):not(.status-label),.future-collections p,.other-fieldwork-collections li { max-width:32rem; margin:15px 0 0; color:var(--text-secondary); font-size:1.08rem; line-height:1.5; }
+.project-directory-actions { display:grid; align-content:start; gap:13px; padding-top:8px; }
+.project-directory-actions .arrow-link,.fieldwork-collection-summary .arrow-link,.fieldwork-collection-notes > .arrow-link { width:fit-content; }
+.project-directory-row-muted { color:var(--text-muted); }
+.project-directory-row-muted .project-number,.project-directory-row-muted .section-label,.project-directory-row-muted h2,.project-directory-row-muted p { color:var(--text-muted); }
+.project-directory-row-muted .status-label { align-self:start; margin-top:9px; }
+.directory-relationship,.fieldwork-boundary-rail { display:grid; grid-template-columns:minmax(160px,.48fr) minmax(0,1.1fr); gap:28px; margin-top:72px; padding:24px 0 28px; border-top:1px solid var(--ink); border-bottom:1px solid var(--line); }
+.directory-relationship p,.fieldwork-boundary-rail p { margin:0; }
+.directory-relationship p:last-child,.fieldwork-boundary-rail p:last-child { max-width:45rem; color:var(--text-secondary); font-size:1.07rem; line-height:1.55; }
+.fieldwork-collection { display:grid; grid-template-columns:minmax(235px,.75fr) minmax(0,1.25fr); gap:clamp(42px,7vw,88px); padding:36px 0 42px; }
+.fieldwork-collection-summary .status-label { display:block; margin:26px 0 22px; }
+.fieldwork-collection-notes > .section-label { margin:0 0 18px; }
+.fieldwork-note-list { margin:0 0 23px; padding:0; list-style:none; }
+.fieldwork-note-list li { border-top:1px solid var(--line); }
+.fieldwork-note-list li:last-child { border-bottom:1px solid var(--line); }
+.fieldwork-note-list a { display:grid; grid-template-columns:112px minmax(0,1fr); gap:7px 18px; padding:20px 0 21px; text-decoration:none; }
+.fieldwork-note-meta { grid-row:span 2; color:var(--accent); font-family:var(--font-meta); font-size:.66rem; letter-spacing:.08em; text-transform:uppercase; }
+.fieldwork-note-list strong { color:var(--text-primary); font-size:1.26rem; font-weight:500; letter-spacing:-.025em; line-height:1.2; }
+.fieldwork-note-list a > span:last-child { color:var(--text-secondary); font-size:.9rem; line-height:1.45; }
+.future-collections,.other-fieldwork-collections { margin-top:64px; padding:18px 0 32px; }
+.future-collections h2,.other-fieldwork-collections h2 { margin-top:42px; }
+.other-fieldwork-collections ul { margin:28px 0 0; padding:0; list-style:none; }
+.other-fieldwork-collections li + li { margin-top:12px; }
+@media (max-width:720px) { .directory-page,.fieldwork-hub-page { padding-top:66px; } .directory-intro h1,.fieldwork-hub-intro h1 { font-size:clamp(3.65rem,17vw,5.4rem); } .project-directory-row,.fieldwork-collection,.directory-relationship,.fieldwork-boundary-rail { grid-template-columns:1fr; } .project-directory-row { gap:16px; } .project-number { margin:0; } .project-directory-actions { gap:12px; padding-top:6px; } .project-directory-row-muted .status-label { margin-top:4px; } .fieldwork-collection { gap:44px; padding-top:28px; } .fieldwork-note-list a { grid-template-columns:1fr; gap:9px; } .fieldwork-note-meta { grid-row:auto; } .directory-relationship,.fieldwork-boundary-rail { gap:16px; margin-top:52px; } .future-collections,.other-fieldwork-collections { margin-top:52px; } }
