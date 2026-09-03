@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { getFieldworkCanonicalPath, isPublishedIndexable, sortFieldworkByPublication } from '../lib/fieldwork';
+import { homeStructuredData } from '../lib/structured-data';
 
 const publicFieldwork = await getCollection(
   'fieldwork',
@@ -27,9 +28,15 @@ const formatDate = (date?: Date) => date?.toLocaleDateString('en-GB', {
   timeZone: 'UTC',
 });
 ---
-<BaseLayout title="Shiftby.pro" seoTitle="Shiftby.pro — Independent Fieldwork on AI-Assisted Work" description="Independent fieldwork on AI-assisted research, systems and practice, documenting projects, implementation decisions, evidence and learning." activeSection="">
+<BaseLayout title="Shiftby.pro" seoTitle="Shiftby.pro — Independent Fieldwork on AI-Assisted Work" description="Independent fieldwork on AI-assisted research, systems and practice, documenting projects, implementation decisions, evidence and learning." activeSection="" ogImage={new URL('/images/social/shiftby-pro.png', Astro.site).href} ogImageAlt="Shiftby.pro independent fieldwork on AI-assisted work" twitterCard="summary_large_image" structuredData={homeStructuredData(Astro.site)}>
   <section class="hero">
-    <div class="hero-grid"><div><p class="kicker">Independent fieldwork publication</p><h1><span>Work that</span><span>stays connected.</span></h1><p class="lede">Practical fieldwork on how AI-assisted research, decisions, evidence and systems carry understanding forward as the work changes.</p><div class="hero-actions"><a class="button-link" href="/fieldwork/">Explore Fieldwork <span>→</span></a><a class="arrow-link" href="/about/">About Shiftby.pro</a></div></div><aside class="purpose-note"><div class="note-heading"><span class="quote-mark">“</span><span>Why this publication exists</span></div><p>When work changes, context is lost. Decisions get repeated. Evidence gets scattered. Understanding doesn’t carry forward.</p><p>Shiftby.pro documents how we build continuity—so the next step starts with what’s already known.</p><div class="note-rule"></div><strong>Evidence before certainty.</strong></aside></div>
+    <div class="hero-grid"><div><p class="kicker">Independent fieldwork publication</p><h1><span>Work that</span><span>stays connected.</span></h1><p class="lede">Practical fieldwork on how AI-assisted research, decisions, evidence and systems carry understanding forward as the work changes.</p><div class="hero-actions"><a class="button-link" href="/fieldwork/">Explore Fieldwork <span>→</span></a><a class="arrow-link" href="/projects/">Explore Projects</a><a class="arrow-link" href="/about/">About Shiftby.pro</a></div></div><aside class="purpose-note"><div class="note-heading"><span class="quote-mark">“</span><span>Why this publication exists</span></div><p>When work changes, context is lost. Decisions get repeated. Evidence gets scattered. Understanding doesn’t carry forward.</p><p>Shiftby.pro documents how we build continuity—so the next step starts with what’s already known.</p><div class="note-rule"></div><strong>Evidence before certainty.</strong></aside></div>
+  </section>
+
+  <section class="section home-definition" aria-labelledby="what-is-shiftby">
+    <div class="section-heading"><h2 id="what-is-shiftby" class="section-label heading-label">What is Shiftby.pro?</h2></div>
+    <p class="definition-copy">Shiftby.pro is an independent fieldwork publication by Ananda Krishna Marri about AI-assisted knowledge continuity, semantic content engineering and evidence-bounded systems. Its current project, Inspiral, explores how sources, decisions, context, limitations and human authority can survive between continuing AI-assisted tasks.</p>
+    <div class="definition-themes"><span>AI-assisted knowledge continuity</span><span>Semantic content engineering</span><span>Evidence-bounded systems</span></div>
   </section>
 
   <section class="section" aria-labelledby="founding-fieldwork">
@@ -52,7 +59,7 @@ const formatDate = (date?: Date) => date?.toLocaleDateString('en-GB', {
               <span class="home-latest-meta">{formatLabel(item.data.format)} · {item.data.project}{item.data.published_at && ` · ${formatDate(item.data.published_at)}`}</span>
               <h3>{item.data.title}</h3>
               <p>{item.data.description}</p>
-              <span class="home-latest-action">Read field note →</span>
+              <span class="home-latest-action">Read {item.data.title} →</span>
             </a>
           </li>
         ))}

@@ -1,13 +1,15 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import '../../styles/project-fieldwork-hubs.css';
+import { collectionStructuredData } from '../../lib/structured-data';
 ---
-<BaseLayout title="Projects" description="Shiftby.pro projects and active explorations." activeSection="projects">
+<BaseLayout title="Projects" description="Explore Shiftby.pro projects on AI-assisted work, knowledge continuity, evidence-bounded systems and accountable judgement." activeSection="projects" ogImage={new URL('/images/social/shiftby-pro.png', Astro.site).href} ogImageAlt="Shiftby.pro independent fieldwork and active projects" twitterCard="summary_large_image" structuredData={collectionStructuredData(Astro.site, '/projects/', 'Projects | Shiftby.pro', 'Independent explorations into AI-assisted work, knowledge continuity and accountable judgement.', [{ name: 'Inspiral', url: new URL('/projects/inspiral/', Astro.site).href }])}>
   <article class="page-shell directory-page">
     <header class="page-intro directory-intro">
       <p class="kicker">Project directory</p>
       <h1>Projects</h1>
       <p class="lede">Independent explorations into how AI-assisted work can retain context, evidence and accountable judgement.</p>
+      <div class="hero-actions"><a class="arrow-link" href="/">Back to Shiftby.pro home</a><a class="arrow-link" href="/fieldwork/">Browse Fieldwork</a></div>
     </header>
 
     <section class="project-directory" aria-labelledby="current-projects">

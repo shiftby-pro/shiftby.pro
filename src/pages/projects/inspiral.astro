@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
 import { isPublishedIndexable } from '../../lib/fieldwork';
+import { projectStructuredData } from '../../lib/structured-data';
 
 const fieldworkNotes = (await getCollection('fieldwork', ({ data }) => isPublishedIndexable(data)))
   .sort((a, b) => (b.data.published_at?.getTime() ?? 0) - (a.data.published_at?.getTime() ?? 0) || b.id.localeCompare(a.id));
@@ -73,6 +74,10 @@ const inspiral = {
   ogTitle="Inspiral — Persistent Understanding for Agentic Work"
   description="Inspiral is Shiftby’s active exploration of preserving hard-won context before agentic AI produces downstream communication work."
   activeSection="projects"
+  ogImage={new URL('/images/social/inspiral.png', Astro.site).href}
+  ogImageAlt="Inspiral persistent understanding for agentic work"
+  twitterCard="summary_large_image"
+  structuredData={projectStructuredData(Astro.site, fieldworkNotes.map((item) => ({ name: item.data.title, url: new URL(`/projects/inspiral/fieldwork/${item.data.slug}/`, Astro.site).href })))}
 >
   <article class="inspiral-signal-page">
     <header class="signal-hero">
@@ -130,6 +135,12 @@ const inspiral = {
       <p>{inspiral.promise.body}</p>
     </section>
 
+    <section class="signal-section signal-definition" aria-labelledby="what-is-inspiral">
+      <p class="signal-label">What is Inspiral?</p>
+      <h2 id="what-is-inspiral">Inspiral is an active exploration of AI-assisted knowledge continuity.</h2>
+      <p>It investigates how governed source material becomes reusable knowledge and purpose-specific meaning without losing provenance, current state, limitations or human authority. ContextCore is the working governed-knowledge foundation; CanonLens is the planned purpose-specific meaning layer; ContentFlight is later-stage qualified communication.</p>
+    </section>
+
     <section class="signal-section signal-unlocks">
       <p class="signal-label">What it unlocks</p>
       <h2>{inspiral.unlocks.title}</h2>
@@ -145,6 +156,7 @@ const inspiral = {
         {inspiral.evidence.metrics.map(([value, label]) => <span><strong>{value}</strong>{label && <small>{label}</small>}</span>)}
         <span class="evidence-provenance-item"><strong>Provenance</strong><small>Retained</small></span>
       </div>
+      <p class="evidence-context">Snapshot: 3 September 2026. These figures describe the current ShiftBy working environment. “Active sources” are source records currently included in the ContextCore working set; “knowledge objects” are extracted knowledge records; “supported relationships” are recorded, evidence-linked relationships. Counts are approximate operational measurements, not independent validation of system quality.</p>
       <div class="maturity-boundary" aria-label="Inspiral maturity boundary">
         {inspiral.evidence.maturityBoundary.map(([state, project, detail]) => <div><small>{state}</small><span>{project}</span><p>{detail}</p></div>)}
       </div>
@@ -166,6 +178,7 @@ const inspiral = {
         {inspiral.openai.rows.map(([label, product, role]) => <div class="openai-lifecycle-row"><span>{label}</span><h3>{product}</h3><p>{role}</p></div>)}
       </div>
       <p class="signal-principle">{inspiral.openai.principle}</p>
+      <p class="signal-principle">Shiftby.pro is independently published by Ananda Krishna Marri and is not affiliated with or endorsed by OpenAI. <a href="https://platform.openai.com/docs/overview">OpenAI platform documentation</a> provides product context; it does not validate Inspiral’s fieldwork.</p>
     </section>
 
     <section class="signal-section signal-close" aria-labelledby="inspiral-fieldwork">
