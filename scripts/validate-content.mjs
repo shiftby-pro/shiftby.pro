@@ -62,7 +62,7 @@ for (const { data, file } of records) {
     if (JSON.stringify(value) !== JSON.stringify(expected[field])) errors.push(`${file}: ${field} disagrees with table projection (${JSON.stringify(value)} !== ${JSON.stringify(expected[field])})`);
   }
   if (data.slug !== data.canonical_url.split('/').filter(Boolean).at(-1)) errors.push(`${file}: slug does not match canonical_url`);
-  if (!/^\\/[^ ]+\\/$/.test(data.canonical_url)) errors.push(`${file}: canonical_url must be a site-relative path ending in /`);
+  if (!data.canonical_url.startsWith('/') || !data.canonical_url.endsWith('/') || data.canonical_url.includes(' ')) errors.push(`${file}: canonical_url must be a site-relative path ending in /`);
   if (data.seo_title.length > 70) errors.push(`${file}: seo_title exceeds 70 characters`);
   if (data.seo_description.length > 170) errors.push(`${file}: seo_description exceeds 170 characters`);
   for (const image of [data.images?.representative, data.images?.social, ...(data.images?.evidence ?? [])]) {
