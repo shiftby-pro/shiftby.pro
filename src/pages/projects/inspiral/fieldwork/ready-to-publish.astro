@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import { isReadyToPublish, sortFieldworkByPublication } from '../../../../lib/fieldwork';
+
+const items = sortFieldworkByPublication(await getCollection('fieldwork', ({ data }) =>
+  isReadyToPublish(data) && data.project === 'inspiral',
+));
+---
+<BaseLayout
+  title="Ready to publish"
+  description="Editorial review view for Inspiral fieldwork that has passed the publication metadata gate."
+  activeSection="fieldwork"
+  robots="noindex, nofollow"
+>
+  <section class="hero">
+    <p class="eyebrow">Inspiral / Editorial workflow</p>
+    <h1>Ready to publish</h1>
+    <p class="lede">A filtered view of notes whose brief, metadata, assets and approval state satisfy the release gate. This page is intentionally excluded from search.</p>
+  </section>
+  <section aria-labelledby="ready-notes">
+    <h2 id="ready-notes">Approved release candidates</h2>
+    {items.length > 0 ? (
+      <ul class="card-list">
+        {items.map((item) => (
+          <li>
+            <a href={item.data.canonical_url}>
+              <strong>{item.data.title}</strong>
+              <span>{item.data.format.replaceAll('-', ' ')} · {item.data.work_domains.join(', ')}</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p>No notes currently meet the complete ready-to-publish gate.</p>
+    )}
+  </section>
+</BaseLayout>
