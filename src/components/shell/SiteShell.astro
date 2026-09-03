@@ -13,12 +13,13 @@ interface Props {
   seoTitle?: string;
   ogTitle?: string;
   ogImage?: string;
+  ogImageAlt?: string;
   twitterCard?: 'summary' | 'summary_large_image';
   robots?: string;
   structuredData?: Record<string, unknown>;
 }
 
-const { title, description = 'Independent fieldwork on AI-assisted research, systems and practice.', activeSection = '', author = 'Ananda Krishna Marri', type = 'website', seoTitle, ogTitle, ogImage, twitterCard, robots, structuredData } = Astro.props;
+const { title, description = 'Independent fieldwork on AI-assisted research, systems and practice.', activeSection = '', author = 'Ananda Krishna Marri', type = 'website', seoTitle, ogTitle, ogImage, ogImageAlt, twitterCard, robots, structuredData } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const pageTitle = seoTitle ?? (title === 'Shiftby.pro' ? title : `${title} | Shiftby.pro`);
 ---
@@ -29,7 +30,7 @@ const pageTitle = seoTitle ?? (title === 'Shiftby.pro' ? title : `${title} | Shi
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#f7f8f5" />
     <title>{pageTitle}</title>
-    <SEO title={pageTitle} description={description} canonical={canonical} author={author} type={type} ogTitle={ogTitle} ogImage={ogImage} twitterCard={twitterCard} robots={robots} structuredData={structuredData} />
+    <SEO title={pageTitle} description={description} canonical={canonical} author={author} type={type} ogTitle={ogTitle} ogImage={ogImage} ogImageAlt={ogImageAlt} twitterCard={twitterCard} robots={robots} structuredData={structuredData} />
   </head>
   <body>
     <SiteHeader activeSection={activeSection} />
