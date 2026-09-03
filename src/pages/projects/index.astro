@@ -1,12 +1,46 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import '../../styles/project-fieldwork-hubs.css';
 ---
 <BaseLayout title="Projects" description="Shiftby.pro projects and active explorations." activeSection="projects">
-  <article class="page-shell project-index-page">
-    <header class="page-intro"><p class="kicker">The project index</p><h1>Explorations with a working edge.</h1><p class="lede">Active bodies of work investigating how AI-assisted systems can retain context, evidence and accountable judgement.</p></header>
-    <div class="project-index-list">
-      <a class="project-index-item" href="/projects/inspiral/"><span class="section-label">01 / Exploration • Active</span><h2>Inspiral</h2><p>Persistent understanding for AI-assisted work.</p><span class="arrow-link">View project</span></a>
-      <div class="project-index-item project-index-item-muted"><span class="section-label">02 / Practice • In progress</span><h2>AI Security Assurance</h2><p>Repository-grounded assurance, testing and accountable AI engineering.</p><span class="status-label">Project page to follow</span></div>
-    </div>
+  <article class="page-shell directory-page">
+    <header class="page-intro directory-intro">
+      <p class="kicker">Project directory</p>
+      <h1>Projects</h1>
+      <p class="lede">Independent explorations into how AI-assisted work can retain context, evidence and accountable judgement.</p>
+    </header>
+
+    <section class="project-directory" aria-labelledby="current-projects">
+      <p id="current-projects" class="section-label">Current projects</p>
+      <div class="project-directory-list">
+        <article class="project-directory-row">
+          <p class="project-number" aria-hidden="true">01</p>
+          <div class="project-directory-copy">
+            <p class="section-label">Exploration · Active</p>
+            <h2><a href="/projects/inspiral/">Inspiral</a></h2>
+            <p>Persistent understanding for AI-assisted work.</p>
+          </div>
+          <nav class="project-directory-actions" aria-label="Inspiral links">
+            <a class="arrow-link" href="/projects/inspiral/">Explore project</a>
+            <a class="arrow-link" href="/projects/inspiral/fieldwork/">Read Fieldwork</a>
+          </nav>
+        </article>
+
+        <article class="project-directory-row project-directory-row-muted">
+          <p class="project-number" aria-hidden="true">02</p>
+          <div class="project-directory-copy">
+            <p class="section-label">Practice · In progress</p>
+            <h2>AI Security Assurance</h2>
+            <p>Repository-grounded assurance, testing and accountable AI engineering.</p>
+          </div>
+          <p class="status-label">Project page to follow</p>
+        </article>
+      </div>
+    </section>
+
+    <aside class="directory-relationship" aria-label="How projects and fieldwork relate">
+      <p class="section-label">How this directory works</p>
+      <p>Projects carry an inquiry forward. Fieldwork records the observations, methods, evidence and limits encountered while pursuing it.</p>
+    </aside>
   </article>
 </BaseLayout>

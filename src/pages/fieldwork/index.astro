@@ -1,3 +1,87 @@
 ---
-return Astro.redirect('/projects/inspiral/fieldwork/', 301);
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+import '../../styles/project-fieldwork-hubs.css';
+
+const publicItems = (await getCollection('fieldwork', ({ data }) => data.visibility === 'public'))
+  .sort((a, b) => (b.data.published_at?.getTime() ?? 0) - (a.data.published_at?.getTime() ?? 0) || b.id.localeCompare(a.id));
+
+const projectDetails: Record<string, { name: string; description: string; projectPath: string; archivePath: string }> = {
+  inspiral: {
+    name: 'Inspiral',
+    description: 'Persistent understanding for AI-assisted work.',
+    projectPath: '/projects/inspiral/',
+    archivePath: '/projects/inspiral/fieldwork/',
+  },
+};
+
+const itemsByProject = publicItems.reduce<Record<string, typeof publicItems>>((groups, item) => {
+  (groups[item.data.project] ??= []).push(item);
+  return groups;
+}, {});
+
+const featuredProject = 'inspiral';
+const featuredDetails = projectDetails[featuredProject];
+const featuredItems = (itemsByProject[featuredProject] ?? []).slice(0, 3);
+const otherProjects = Object.keys(itemsByProject).filter((project) => project !== featuredProject && projectDetails[project]);
+const formatLabel = (format: string) => format.replace(/-/g, ' ');
 ---
+<BaseLayout title="Fieldwork" description="Independent, evidence-bounded notes on AI-assisted research, systems and practice." activeSection="fieldwork">
+  <article class="page-shell fieldwork-hub-page">
+    <header class="page-intro fieldwork-hub-intro">
+      <p class="kicker">Fieldwork</p>
+      <h1>Fieldwork</h1>
+      <p class="lede">Independent, evidence-bounded notes on AI-assisted research, systems and practice.</p>
+    </header>
+
+    <section class="fieldwork-collection" aria-labelledby="featured-collection">
+      <div class="fieldwork-collection-summary">
+        <p class="section-label">Featured project collection</p>
+        <h2 id="featured-collection">{featuredDetails.name}</h2>
+        <p>{featuredDetails.description}</p>
+        <p class="status-label">Active exploration · {featuredItems.length} {featuredItems.length === 1 ? 'note' : 'notes'}</p>
+        <a class="arrow-link" href={featuredDetails.projectPath}>Explore Inspiral</a>
+      </div>
+
+      <div class="fieldwork-collection-notes">
+        <p class="section-label">Recent notes</p>
+        <ol class="fieldwork-note-list">
+          {featuredItems.map((item) => (
+            <li>
+              <a href={`/projects/inspiral/fieldwork/${item.data.slug}/`}>
+                <span class="fieldwork-note-meta">{formatLabel(item.data.format)}</span>
+                <strong>{item.data.title}</strong>
+                <span>{item.data.description}</span>
+              </a>
+            </li>
+          ))}
+        </ol>
+        <a class="arrow-link" href={featuredDetails.archivePath}>All Inspiral Fieldwork</a>
+      </div>
+    </section>
+
+    {otherProjects.length > 0 && (
+      <section class="other-fieldwork-collections" aria-labelledby="other-collections">
+        <p class="section-label">Other project collections</p>
+        <h2 id="other-collections">More fieldwork</h2>
+        <ul>
+          {otherProjects.map((project) => {
+            const details = projectDetails[project];
+            return <li><a href={details.archivePath}>{details.name}</a></li>;
+          })}
+        </ul>
+      </section>
+    )}
+
+    <section class="future-collections" aria-labelledby="future-collections">
+      <p class="section-label">Other project collections</p>
+      <h2 id="future-collections">Future project collections</h2>
+      <p>Additional independent project collections will appear here as their fieldwork becomes public.</p>
+    </section>
+
+    <aside class="fieldwork-boundary-rail" aria-label="Fieldwork boundary">
+      <p class="section-label">Fieldwork boundary</p>
+      <p>Fieldwork records observations, methods, evidence and limits. It is not a product roadmap, a promise of future capability, or a general performance claim.</p>
+    </aside>
+  </article>
+</BaseLayout>
