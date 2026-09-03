@@ -6,7 +6,8 @@ export function validateStructuredData() {
   if (!fs.existsSync(distDir)) errors.push('dist directory missing');
   const files = fs.existsSync(distDir) ? fs.readdirSync(distDir, { recursive: true }).filter((file) => String(file).endsWith('.html')) : [];
   for (const file of files) {
-    const html = fs.readFileSync(distDir + '/' + file, 'utf8');\n    if (isRedirectHtml(html)) continue;
+    const html = fs.readFileSync(distDir + '/' + file, 'utf8');
+    if (isRedirectHtml(html)) continue;
     const matches = [...html.matchAll(/<script[^>]+application\/ld\+json[^>]*>([\s\S]*?)<\/script>/gi)];
     if (!matches.length) { errors.push(file + ': missing JSON-LD'); continue; }
     for (const match of matches) {
