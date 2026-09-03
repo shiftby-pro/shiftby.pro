@@ -1,5 +1,5 @@
 import fs from 'node:fs';
-import { distDir, publishedRecords, fail } from './common.mjs';
+import { distDir, publishedRecords, fail, isRedirectHtml } from './common.mjs';
 
 function files() {
   return fs.existsSync(distDir) ? fs.readdirSync(distDir, { recursive: true }).filter((file) => String(file).endsWith('.html')).map((file) => String(file)) : [];
