@@ -6,7 +6,7 @@ on:
     branches: [main]
 
 jobs:
-  validate:
+  contracts:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -14,6 +14,27 @@ jobs:
         with:
           node-version: 22
       - run: npm install
-      - run: npm run validate:content
+      - run: npm run validate:contracts
+      - run: npm run validate:publication
+      - run: npm run validate:ia
+      - run: npm run validate:assets
+
+  build-and-output:
+    needs: contracts
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm install
       - run: npm run check
       - run: npm run build
+      - run: npm run validate:structural
+      - run: npm run validate:seo
+      - run: npm run validate:structured-data
+      - run: npm run validate:accessibility
+      - run: npm run validate:security
+      - run: npm run validate:links
+      - run: npm run validate:performance
+      - run: npm run validate:release
