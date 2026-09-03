@@ -23,6 +23,12 @@
 .fieldwork-collection { display:grid; grid-template-columns:minmax(235px,.75fr) minmax(0,1.25fr); gap:clamp(42px,7vw,88px); padding:36px 0 42px; }
 .fieldwork-collection-summary .status-label { display:block; margin:26px 0 22px; }
 .fieldwork-collection-notes > .section-label { margin:0 0 18px; }
+.fieldwork-filters { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:0 0 10px; }
+.fieldwork-filters label { display:grid; gap:6px; color:var(--text-faint); font-family:var(--font-meta); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; }
+.fieldwork-filters select { min-width:0; padding:9px 10px; border:1px solid var(--line); border-radius:0; background:var(--surface-page); color:var(--text-primary); font:inherit; font-size:.7rem; letter-spacing:0; text-transform:none; }
+.fieldwork-filters select:focus-visible { outline:2px solid var(--accent); outline-offset:2px; }
+.fieldwork-filter-count { margin:0 0 18px; color:var(--text-muted); font-size:.78rem; }
+.fieldwork-note-list li[hidden] { display:none; }
 .fieldwork-note-list { margin:0 0 23px; padding:0; list-style:none; }
 .fieldwork-note-list li { border-top:1px solid var(--line); }
 .fieldwork-note-list li:last-child { border-bottom:1px solid var(--line); }
@@ -34,4 +40,4 @@
 .future-collections h2,.other-fieldwork-collections h2 { margin-top:42px; }
 .other-fieldwork-collections ul { margin:28px 0 0; padding:0; list-style:none; }
 .other-fieldwork-collections li + li { margin-top:12px; }
-@media (max-width:720px) { .directory-page,.fieldwork-hub-page { padding-top:66px; } .directory-intro h1,.fieldwork-hub-intro h1 { font-size:clamp(3.65rem,17vw,5.4rem); } .project-directory-row,.fieldwork-collection,.directory-relationship,.fieldwork-boundary-rail { grid-template-columns:1fr; } .project-directory-row { gap:16px; } .project-number { margin:0; } .project-directory-actions { gap:12px; padding-top:6px; } .project-directory-row-muted .status-label { margin-top:4px; } .fieldwork-collection { gap:44px; padding-top:28px; } .fieldwork-note-list a { grid-template-columns:1fr; gap:9px; } .fieldwork-note-meta { grid-row:auto; } .directory-relationship,.fieldwork-boundary-rail { gap:16px; margin-top:52px; } .future-collections,.other-fieldwork-collections { margin-top:52px; } }
+@media (max-width:720px) { .directory-page,.fieldwork-hub-page { padding-top:66px; } .directory-intro h1,.fieldwork-hub-intro h1 { font-size:clamp(3.65rem,17vw,5.4rem); } .project-directory-row,.fieldwork-collection,.directory-relationship,.fieldwork-boundary-rail { grid-template-columns:1fr; } .project-directory-row { gap:16px; } .project-number { margin:0; } .project-directory-actions { gap:12px; padding-top:6px; } .project-directory-row-muted .status-label { margin-top:4px; } .fieldwork-collection { gap:44px; padding-top:28px; } .fieldwork-filters { grid-template-columns:1fr; } .fieldwork-note-list a { grid-template-columns:1fr; gap:9px; } .fieldwork-note-meta { grid-row:auto; } .directory-relationship,.fieldwork-boundary-rail { gap:16px; margin-top:52px; } .future-collections,.other-fieldwork-collections { margin-top:52px; } }
