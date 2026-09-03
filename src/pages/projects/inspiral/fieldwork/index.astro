@@ -7,7 +7,7 @@ const items = sortFieldworkByPublication(await getCollection('fieldwork', ({ dat
   isPublishedIndexable(data) && data.project === 'inspiral',
 ));
 ---
-<BaseLayout title="Inspiral Fieldwork" description="Field notes from ShiftBy's Inspiral project.">
+<BaseLayout title="Inspiral Fieldwork" description="Evidence-bounded fieldwork from Inspiral on preserving context, decisions, current state and human authority across AI-assisted work.">
   <section class="hero">
     <p class="eyebrow">Inspiral / Fieldwork</p>
     <h1>Notes from an active exploration of trustworthy continuing work.</h1>
@@ -16,6 +16,7 @@ const items = sortFieldworkByPublication(await getCollection('fieldwork', ({ dat
   <section aria-labelledby="fieldwork-notes">
     <p class="eyebrow">All notes</p>
     <h2 id="fieldwork-notes">Fieldwork archive</h2>
+    <p class="lede">This archive follows one question: how can continuing AI-assisted work begin from trustworthy context instead of reconstructing it from prompts? Notes are categorized by purpose, format, practice area and current status, and distinguish observed evidence from interpretation and unresolved work.</p>
     <ul class="card-list">
       {items.map((item) => (
         <li>
