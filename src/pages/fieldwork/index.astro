@@ -127,12 +127,13 @@ const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains)
     const update = () => {
       const values: Record<string, string> = Object.fromEntries(controls.map((control) => [control.dataset.filter ?? '', control.value]));
       const matching = items.filter((item) => Object.entries(values).every(([key, value]) => !value || (item.dataset[key] ?? '').split(' ').includes(value)));
+      const matchingIndex = new Map(matching.map((item, index) => [item, index]));
       const pages = Math.max(1, Math.ceil(matching.length / pageSize));
       page = Math.min(page, pages);
       const start = (page - 1) * pageSize;
       items.forEach((item) => {
-        const match = Object.entries(values).every(([key, value]) => !value || (item.dataset[key] ?? '').split(' ').includes(value));
-        item.hidden = !match || matching.indexOf(item) < start || matching.indexOf(item) >= start + pageSize;
+        const index = matchingIndex.get(item);
+        item.hidden = index === undefined || index < start || index >= start + pageSize;
       });
       if (count) count.textContent = `${matching.length} ${matching.length === 1 ? 'note' : 'notes'}`;
       if (empty) empty.hidden = matching.length > 0;
