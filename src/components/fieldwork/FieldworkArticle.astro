@@ -1,0 +1,132 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import type { FieldworkEntry } from '../../lib/fieldwork';
+import { getFieldworkCanonicalPath, getSeriesName } from '../../lib/fieldwork';
+
+interface Props {
+  item: FieldworkEntry;
+}
+
+const { item } = Astro.props;
+const canonicalPath = getFieldworkCanonicalPath(item);
+const canonicalUrl = new URL(canonicalPath, Astro.site).href;
+const authorName = item.data.author.replaceAll('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+const authorUrl = new URL('/about/', Astro.site).href;
+const projectName = item.data.project?.replaceAll('-', ' ').replace(/\b\w/g, (letter) => letter.toUpperCase());
+const projectPath = item.data.project ? `/projects/${item.data.project}/` : undefined;
+const collectionPath = item.data.project ? `${projectPath}fieldwork/` : '/fieldwork/';
+const collectionUrl = new URL(collectionPath, Astro.site).href;
+const description = item.data.seo_description ?? item.data.description;
+const sourceSeoTitle = item.data.seo_title ?? item.data.title;
+const seoTitle = sourceSeoTitle.includes('Shiftby.pro') ? sourceSeoTitle : `${sourceSeoTitle} | Shiftby.pro`;
+const publishedIso = item.data.published_at?.toISOString();
+const modifiedIso = (item.data.updated_at ?? item.data.published_at)?.toISOString();
+const showUpdated = Boolean(item.data.updated_at && item.data.updated_at.getTime() !== item.data.published_at?.getTime());
+
+const formatDate = (date?: Date) => date?.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+  timeZone: 'UTC',
+});
+
+const statusLabels: Record<FieldworkEntry['data']['current_status'], string> = {
+  current: 'Current',
+  historical: 'Historical',
+  'mixed-qualified': 'Mixed / qualified',
+  'unknown-verify': 'Verify current state',
+  superseded: 'Superseded',
+};
+
+const breadcrumbs = [
+  { name: 'Home', path: '/' },
+  ...(item.data.project && projectName && projectPath ? [{ name: projectName, path: projectPath }] : []),
+  { name: getSeriesName(item), path: collectionPath },
+  { name: item.data.title, path: canonicalPath },
+];
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Person',
+      '@id': `${authorUrl}#author`,
+      name: authorName,
+      url: authorUrl,
+    },
+    {
+      '@type': 'CollectionPage',
+      '@id': collectionUrl,
+      name: getSeriesName(item),
+      url: collectionUrl,
+    },
+    {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+      url: canonicalUrl,
+      name: item.data.title,
+      isPartOf: { '@id': collectionUrl },
+    },
+    {
+      '@type': 'Article',
+      '@id': `${canonicalUrl}#article`,
+      url: canonicalUrl,
+      headline: item.data.title,
+      description,
+      ...(publishedIso ? { datePublished: publishedIso } : {}),
+      ...(modifiedIso ? { dateModified: modifiedIso } : {}),
+      author: { '@id': `${authorUrl}#author` },
+      publisher: { '@id': `${authorUrl}#author` },
+      mainEntityOfPage: { '@id': canonicalUrl },
+      isPartOf: { '@id': collectionUrl },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      '@id': `${canonicalUrl}#breadcrumb`,
+      itemListElement: breadcrumbs.map((crumb, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        name: crumb.name,
+        item: new URL(crumb.path, Astro.site).href,
+      })),
+    },
+  ],
+};
+---
+<BaseLayout
+  title={item.data.title}
+  seoTitle={seoTitle}
+  description={description}
+  activeSection="fieldwork"
+  type="article"
+  robots={item.data.indexing === 'noindex' ? 'noindex, follow' : undefined}
+  structuredData={structuredData}
+>
+  <article class="article">
+    <nav class="article-breadcrumbs" aria-label="Breadcrumb">
+      <ol>
+        {breadcrumbs.map((crumb, index) => (
+          <li>
+            {index < breadcrumbs.length - 1
+              ? <a href={crumb.path}>{crumb.name}</a>
+              : <span aria-current="page">{crumb.name}</span>}
+          </li>
+        ))}
+      </ol>
+    </nav>
+    <header class="article-header">
+      <p class="eyebrow">{getSeriesName(item)} / {item.data.format.replaceAll('-', ' ')}</p>
+      <h1>{item.data.title}</h1>
+      <p class="lede">{item.data.description}</p>
+      <dl class="meta article-publication-meta">
+        <div><dt>Project</dt><dd>{projectPath && projectName ? <a href={projectPath}>{projectName}</a> : 'Shiftby.pro'}</dd></div>
+        <div><dt>Work domain</dt><dd>{item.data.work_domains[0].replaceAll('-', ' ')}</dd></div>
+        {item.data.published_at && <div><dt>Published</dt><dd><time datetime={publishedIso}>{formatDate(item.data.published_at)}</time></dd></div>}
+        {showUpdated && <div><dt>Updated</dt><dd><time datetime={modifiedIso}>{formatDate(item.data.updated_at)}</time></dd></div>}
+        <div><dt>Current status</dt><dd>{statusLabels[item.data.current_status]}</dd></div>
+        <div><dt>Author</dt><dd><a href="/about/" rel="author">{authorName}</a></dd></div>
+      </dl>
+    </header>
+    <div class="prose"><slot /></div>
+  </article>
+</BaseLayout>
