@@ -25,3 +25,7 @@ export function isPublishedIndexable(data: { visibility: string; published_statu
 export function isReadyToPublish(data: { visibility: string; editorial_status: string; published_status: string; indexing: string; release_approved?: boolean }): boolean {
   return data.visibility === 'public' && data.editorial_status === 'ready' && data.published_status === 'not-published' && data.indexing === 'index' && data.release_approved === true;
 }
+
+export function isReviewNoindex(data: { visibility: string; editorial_status: string; indexing: string }): boolean {
+  return data.visibility === 'public' && data.editorial_status === 'review' && data.indexing === 'noindex';
+}
