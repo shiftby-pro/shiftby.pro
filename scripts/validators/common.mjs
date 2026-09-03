@@ -14,7 +14,7 @@ export function contentFiles() {
 export function readRecord(file) {
   const source = fs.readFileSync(path.join(contentDir, file), 'utf8');
   if (!source.startsWith('---')) throw new Error(file + ': missing frontmatter');
-  const end = source.indexOf('
+  const end = source.indexOf(String.fromCharCode(10) + '---', 3);
 ---', 3);
   if (end < 0) throw new Error(file + ': unterminated frontmatter');
   return { file, source, data: parse(source.slice(3, end)) };
@@ -41,7 +41,7 @@ export function isRedirectHtml(html) {
 }
 
 export function fail(errors) {
-  if (errors.length) throw new Error(errors.map((error) => '- ' + error).join('
+  if (errors.length) throw new Error(errors.map((error) => '- ' + error).join(String.fromCharCode(10)));
 '));
 }
 
