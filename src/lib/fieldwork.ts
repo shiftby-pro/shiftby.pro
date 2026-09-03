@@ -1,14 +1,12 @@
 import type { CollectionEntry } from 'astro:content';
-import { isPublishedIndexable } from './content-taxonomy';
+import { isPublishedIndexable, isReadyToPublish } from './content-taxonomy';
 
 export type FieldworkEntry = CollectionEntry<'fieldwork'>;
 
-export { isPublishedIndexable };
+export { isPublishedIndexable, isReadyToPublish };
 
 export function getFieldworkCanonicalPath(item: Pick<FieldworkEntry, 'data'>): string {
-  if (item.data.project === 'inspiral') return `/projects/inspiral/fieldwork/${item.data.slug}/`;
-  if (item.data.project === 'ai-security-assurance') return `/projects/ai-security-assurance/fieldwork/${item.data.slug}/`;
-  return `/fieldwork/${item.data.slug}/`;
+  return item.data.canonical_url;
 }
 
 export function getSeriesName(item: Pick<FieldworkEntry, 'data'>): string {
