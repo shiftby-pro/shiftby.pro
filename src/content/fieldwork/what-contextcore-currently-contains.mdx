@@ -4,8 +4,8 @@ content_id: SBP-CNT-0004
 title: "What ContextCore Currently Contains"
 slug: "what-contextcore-currently-contains"
 canonical_url: /projects/inspiral/fieldwork/what-contextcore-currently-contains/
-description: "Review draft: a bounded status note on what ContextCore currently contains."
-editorial_purpose: document
+description: "A bounded fieldwork note on what ContextCore currently makes inspectable, and what its evidence does not establish."
+editorial_purpose: report
 format: technical-note
 content_role: companion
 series: inspiral-fieldwork
@@ -16,32 +16,89 @@ work_domains:
 subjects:
   - contextcore
   - current-state
+  - evidence-and-lineage
 primary_audience: ai-practitioner
 themes:
   - knowledge-systems
   - evidence-and-lineage
 author: ananda-krishna-marri
 visibility: public
-editorial_status: review
+editorial_status: published
 body_authority: notion
 editorial_brief_url: "https://app.notion.com/p/3ce17667df5481e6acc6ce2dc7cf61f5?pvs=204"
-current_status: unknown-verify
-published_status: not-published
-indexing: noindex
-release_approved: false
+current_status: mixed-qualified
+published_status: published
+indexing: index
+release_approved: true
 seo_title: "What ContextCore Currently Contains"
-seo_description: "Review draft: a bounded status note on what ContextCore currently contains."
+seo_description: "A bounded fieldwork note on what ContextCore currently makes inspectable, and what its evidence does not establish."
+published_at: 2026-09-03
 images:
   representative:
     src: "/images/social/inspiral.png"
-    alt: "Inspiral project visual used as a temporary review placeholder for LCP-04."
-  evidence: []
-  evidence_exception: "Evidence assets pending brief approval and public-asset review."
+    alt: "Inspiral project visual for What ContextCore Currently Contains."
+  evidence:
+    - src: "/images/fieldwork/lcp-04/contextcore-foundation-pipeline.png"
+      alt: "ContextCore foundation pipeline showing source material moving through population, validation, similarity analysis, connected knowledge and semantic profiles."
+    - src: "/images/fieldwork/lcp-04/decision-membership-proof.png"
+      alt: "Decision-family membership proof view showing a selected member traced through capability, semantic family and source evidence."
   social:
     src: "/images/social/inspiral.png"
-    alt: "Inspiral project visual used as a temporary review placeholder for LCP-04."
+    alt: "Inspiral project visual for What ContextCore Currently Contains."
 ---
 
-This LCP-04 record is intentionally held for review.
+ContextCore currently makes a bounded knowledge foundation inspectable: source material can be traced through population, validation, similarity analysis, connected knowledge and semantic profiles. The view helps inspect relationships and evidence paths; it does not show that organisational knowledge is complete, current or approved for every use.
 
-The publication brief, evidence assets and public status have not yet been approved. This placeholder is not a public account of ContextCore’s current state and must remain noindex until the release gate is satisfied.
+<aside class="article-callout"><strong>Direct answer</strong><p>The current ContextCore view shows a working path from source material to a usable, inspectable knowledge foundation. A reader should not infer complete organisational coverage, automatic verification, runtime decision authority or approval for every downstream use.</p></aside>
+
+## What the current view is intended to show
+
+The working snapshot presents six bounded stages:
+
+1. source material;
+2. population;
+3. validation;
+4. similarity analysis;
+5. knowledge connected;
+6. semantic profiles prepared.
+
+The sequence supports inspection of how source material can move toward a usable foundation. It does not, by itself, establish that each source is complete, that every relationship is correct, or that a downstream decision may be taken automatically.
+
+## An observed membership path
+
+One observed Inspiral case is a Decision-family member inspected with its capability, layer and family context alongside a source-evidence trail. The purpose of this surface is to make a bounded relationship and its supporting path inspectable.
+
+It should not be read as proof of complete organisational knowledge, universal membership, or a product-wide validation result. Counts and relationships are working snapshots at capture and remain subject to review and change.
+
+## Evidence
+
+The two surfaces below are the smallest evidence set needed to answer the question: an overview of the foundation path, followed by one inspectable membership-proof path. The connected map, member list and deeper evidence-trail views remain available for future object-specific notes rather than being reproduced here.
+
+<figure class="fieldwork-evidence-image">
+  <img src="/images/fieldwork/lcp-04/contextcore-foundation-pipeline.png" alt="ContextCore foundation pipeline showing source material moving through population, validation, similarity analysis, connected knowledge and semantic profiles." loading="lazy" />
+  <figcaption><strong>ContextCore foundation pipeline — working snapshot.</strong> This shows the source-to-usable-foundation path described in this note. It supports inspectability of the staged flow; it does not prove complete coverage, automatic verification, production readiness or runtime decision authority. Counts and profile state are snapshot-dependent.</figcaption>
+</figure>
+
+<figure class="fieldwork-evidence-image">
+  <img src="/images/fieldwork/lcp-04/decision-membership-proof.png" alt="Decision-family membership proof view showing a selected member traced through capability, semantic family and source evidence." loading="lazy" />
+  <figcaption><strong>Decision-family membership proof — working snapshot.</strong> This shows one selected member traced from capability and semantic family to source evidence. It supports a bounded evidence path; it does not prove complete family coverage, universal membership, live runtime truth or product-wide validation. Identifiers and excerpts are shown from a separate non-public working system.</figcaption>
+</figure>
+
+## What the evidence does not establish
+
+This note does not claim automatic verification, complete organisational coverage, runtime decision authority, or current truth beyond the reviewed snapshot. It records a bounded current-state observation, not a system-wide validation. The foundation can help people inspect relationships and evidence paths; human review is still required to decide whether a relationship is supported, current and sufficient for a particular use.
+
+## Tools used to produce this dashboard view
+
+The dashboard shown in this note was developed through a concrete combination of tools and working records:
+
+- **ChatGPT Sites** supported UI development and deployment of the dashboard experience.
+- **Codex** acted as the coding agent used to develop the dashboard implementation.
+- **Codex with the Supabase plugin** inspected and analysed ContextCore data that had already been generated by the ContextCore backend.
+- **Codex with the Figma plugin** connected that data analysis with wireframes and interaction structure for the dashboard projection.
+
+The ContextCore backend generated the underlying data. These tools helped inspect the data, shape its dashboard projection, connect the projection to wireframes and implement the interface. They did not create, independently validate or authorise the underlying semantic relationships. Ananda Krishna Marri retains final claim and publication authority.
+
+## Continue the fieldwork
+
+The next question is how evidence, current status and authority survive when work continues or changes. Continue with [What Must Survive Between AI-Assisted Tasks](/projects/inspiral/fieldwork/what-must-survive-between-ai-assisted-tasks/), or return to the [Inspiral project](/projects/inspiral/) for the wider fieldwork sequence.

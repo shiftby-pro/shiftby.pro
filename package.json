@@ -4,7 +4,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run validate:content && astro build",
+    "build": "npm run validate:content && ASTRO_TELEMETRY_DISABLED=1 astro build",
     "preview": "astro preview",
     "check": "npm run validate:content && astro check",
     "validate:content": "node scripts/validate-content.mjs",

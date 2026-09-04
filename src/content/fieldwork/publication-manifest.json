@@ -66,17 +66,17 @@
       "format": "technical-note",
       "project": "inspiral",
       "canonical_url": "/projects/inspiral/fieldwork/what-contextcore-currently-contains/",
-      "editorial_status": "review",
-      "published_status": "not-published",
+      "editorial_status": "published",
+      "published_status": "published",
       "visibility": "public",
-      "indexing": "noindex",
-      "release_approved": false,
+      "indexing": "index",
+      "release_approved": true,
       "seo_title": "What ContextCore Currently Contains",
-      "seo_description": "Review draft: a bounded status note on what ContextCore currently contains.",
+      "seo_description": "A bounded fieldwork note on what ContextCore currently makes inspectable, and what its evidence does not establish.",
       "representative_image": "/images/social/inspiral.png",
-      "evidence_images": [],
+      "evidence_images": ["/images/fieldwork/lcp-04/contextcore-foundation-pipeline.png", "/images/fieldwork/lcp-04/decision-membership-proof.png"],
       "social_image": "/images/social/inspiral.png",
-      "image_role": "Placeholder project visual; replace or approve before publication."
+      "image_role": "Two selected working-system evidence surfaces for a bounded current-state note."
     }
   ]
 }

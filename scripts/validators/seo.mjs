@@ -15,7 +15,15 @@ export function validateSEO() {
     if (!/<meta name="description" content="[^"]+"/i.test(html)) errors.push(file + ': missing description');
     if (!/<link rel="canonical" href="https?:\/\/[^"]+"/i.test(html)) errors.push(file + ': missing absolute canonical');
     if (!/<meta property="og:title" content="[^"]+"/i.test(html)) errors.push(file + ': missing og:title');
+    if (!/<meta property="og:description" content="[^"]+"/i.test(html)) errors.push(file + ': missing og:description');
+    if (!/<meta property="og:url" content="https?:\/\/[^"]+"/i.test(html)) errors.push(file + ': missing absolute og:url');
     if (!/<meta name="twitter:card" content="[^"]+"/i.test(html)) errors.push(file + ': missing twitter:card');
+    if (!/<meta name="twitter:title" content="[^"]+"/i.test(html)) errors.push(file + ': missing twitter:title');
+    if (!/<meta name="twitter:description" content="[^"]+"/i.test(html)) errors.push(file + ': missing twitter:description');
+    if (!/<link rel="icon" href="\/favicon\.svg"/i.test(html)) errors.push(file + ': missing favicon');
+    const canonical = html.match(/<link rel="canonical" href="([^"]+)"/i)?.[1];
+    const ogUrl = html.match(/<meta property="og:url" content="([^"]+)"/i)?.[1];
+    if (canonical && ogUrl && canonical !== ogUrl) errors.push(file + ': canonical and og:url differ');
   }
   const sitemap = fs.existsSync(distDir + '/sitemap.xml') ? fs.readFileSync(distDir + '/sitemap.xml', 'utf8') : '';
   const feed = fs.existsSync(distDir + '/feed.xml') ? fs.readFileSync(distDir + '/feed.xml', 'utf8') : '';
@@ -25,8 +33,6 @@ export function validateSEO() {
     if (!sitemap.includes(item.data.canonical_url)) errors.push('published route absent from sitemap: ' + item.data.canonical_url);
     if (!feed.includes(item.data.canonical_url)) errors.push('published route absent from RSS: ' + item.data.canonical_url);
   }
-  if (sitemap.includes('/what-contextcore-currently-contains/')) errors.push('LCP-04 present in sitemap');
-  if (feed.includes('/what-contextcore-currently-contains/')) errors.push('LCP-04 present in RSS');
   fail(errors);
   return htmlFiles.length + ' HTML documents and discovery outputs checked';
 }
