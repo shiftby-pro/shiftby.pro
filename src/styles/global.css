@@ -81,8 +81,8 @@ main { max-width:1180px; margin:0 auto; padding:0 32px; }
 .prose blockquote { border-left:2px solid var(--accent); margin:2.3rem 0; padding:4px 0 4px 28px; font-size:1.55rem; line-height:1.25; }
 .prose a { color:var(--accent-dark); }
 .prose figure { margin:3.3rem calc((690px - 900px) / 2); padding:28px; background:var(--surface); }
-.prose .fieldwork-evidence-image { padding:12px; background:transparent; border:1px solid var(--line); }
-.fieldwork-evidence-image img { display:block; width:100%; height:auto; }
+.prose .fieldwork-evidence-image { max-width:100%; margin:3.3rem 0; padding:12px; box-sizing:border-box; background:transparent; border:1px solid var(--line); }
+.fieldwork-evidence-image img { display:block; width:100%; max-width:100%; height:auto; }
 .prose .fieldwork-evidence-image figcaption { font-size:.82rem; }
 .prose pre { margin:0; overflow-x:auto; padding:0; background:transparent; color:var(--accent-dark); font-family:var(--font-meta); font-size:.74rem; line-height:1.7; white-space:pre-wrap; }
 .prose figcaption { color:var(--muted); font-family:var(--font-body); font-size:.75rem; line-height:1.5; margin-top:18px; }
