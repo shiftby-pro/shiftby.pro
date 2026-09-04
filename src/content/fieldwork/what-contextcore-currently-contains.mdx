@@ -57,12 +57,12 @@ A source document is not yet usable context. Extraction alone can produce plausi
 ContextCore addresses that gap by making those conditions explicit before later reasoning begins.
 ## The ContextCore flow
 The ContextCore part of the Inspiral agentic flow is:
-```mermaid
-flowchart LR
-    A[STG-01\nSource & Signal Intake] --> B[STG-02\nSemantic Modelling]
-    B --> C[STG-03\nSemantic Relationships]
-    C --> D[STG-04\nCapability Baselines]
-```
+<ol class="contextcore-flow" aria-label="ContextCore stages in the Inspiral agentic flow">
+  <li><span>STG-01</span><strong>Source &amp; Signal Intake</strong></li>
+  <li><span>STG-02</span><strong>Semantic Modelling</strong></li>
+  <li><span>STG-03</span><strong>Semantic Relationships</strong></li>
+  <li><span>STG-04</span><strong>Capability Baselines</strong></li>
+</ol>
 Each handoff narrows uncertainty while preserving the evidence and authority needed by the next stage.
 ## Agents and skills used in the ContextCore flow
 The flow used bounded agent profiles for selected tasks. Model-assisted stages proposed or assessed bounded outputs; deterministic Python and database logic retained control of identity, validation, authority, relationship projection, capability membership and persistence.
