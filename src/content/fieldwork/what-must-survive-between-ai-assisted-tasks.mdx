@@ -1,7 +1,9 @@
 ---
+lcp_id: LCP-02
 content_id: SBP-CNT-0002
 title: "What Must Survive Between AI-Assisted Tasks"
 slug: "what-must-survive-between-ai-assisted-tasks"
+canonical_url: /projects/inspiral/fieldwork/what-must-survive-between-ai-assisted-tasks/
 description: "A lightweight handoff for recovering the evidence, decisions, current state, limitations and authority a later AI-assisted task needs to reuse work safely."
 featured_statement: "Before a later AI-assisted task reuses earlier work, it needs to recover the conditions that make reuse safe—not simply receive the last answer."
 editorial_purpose: teach
@@ -27,19 +29,21 @@ themes:
   - governance
 author: ananda-krishna-marri
 visibility: public
-editorial_status: ready
+editorial_status: published
 body_authority: git
 current_status: current
 published_status: published
 indexing: index
+release_approved: true
 seo_title: "What Must Survive Between AI-Assisted Tasks"
 seo_description: "A lightweight handoff method for recovering the evidence, decisions, current state, limits and authority needed to reuse work safely."
 images:
   representative:
     src: "/images/social/fieldwork/lcp-02.png"
     alt: "Shiftby.pro fieldwork card for What Must Survive Between AI-Assisted Tasks, showing five checkpoints: task, support, rationale, state and authority."
-  evidence: []
-  evidence_exception: "Text-led method note; no single evidence surface is required for this handoff pattern."
+  evidence:
+    - src: "/images/fieldwork/lcp-02/stg06-adapter-audit.png"
+      alt: "Codex review of STG-06 comparing lessons from earlier Inspiral stages, confirming reuse of the shared OpenAI adapter and identifying a targeted correction before the next smoke test."
   social:
     src: "/images/social/fieldwork/lcp-02.png"
     alt: "Shiftby.pro fieldwork card for What Must Survive Between AI-Assisted Tasks, showing five checkpoints: task, support, rationale, state and authority."
@@ -47,79 +51,144 @@ published_at: 2026-09-01
 editorial_brief_url: "https://app.notion.com/p/3ce17667df5481ceae60d509ebb8ccbf?pvs=204"
 ---
 
-import '../../styles/lcp02-handoff.css';
-
-## When a task resumes
-
-A useful output can end one task. It does not tell a later task what remains usable.
-
-<aside class="article-callout"><strong>Direct answer</strong><p>Before a later AI-assisted task reuses earlier work, recover the current task, supporting evidence, rationale, current or superseded state, limitations and accountable authority. If any of these are unclear, narrow, investigate, hold or escalate instead of treating the last answer as current truth.</p></aside>
-
-The work may have changed since the earlier output: a source can be rechecked, a decision revised, implementation advanced, a claim narrowed, or an uncertainty left open. The practical question is not only *What was said?* It is *What may still be used for this task, and on what basis?*
-
+Before a later AI-assisted task reuses earlier work, it needs to recover the conditions that make reuse safe—not simply receive the last answer.
+A useful output can complete one task. It does not tell a later task what remains usable.
+The work may have changed since the earlier output. A source may have been rechecked, a decision revised, implementation advanced, a claim narrowed or an uncertainty left open.
+The practical question is therefore not only:
+> What was said?
+It is:
+> What may still be used for this task, and on what basis?
+<aside class="article-callout"><strong>DIRECT ANSWER</strong><p>A later AI-assisted task can continue responsibly only when it recovers what it is continuing, what supports it, why the direction still applies, what has changed, and who can authorise reuse or change.</p></aside>
 ## The five handoff questions
-
 Before continuing work that may affect a claim, decision or current state, use this lightweight handoff. The questions identify the context relevant to the task; they do not require every task to carry every record.
-
-| Ask | Recover | If it is unclear |
-| --- | --- | --- |
-| What exactly are we continuing? | The current task, intended decision or bounded claim. | Restate or narrow the task before reusing prior work. |
-| What supports it? | The relevant source and evidence path. | Recheck the source, investigate further or reduce the claim. |
-| Why does this direction still apply? | The decision, rationale and known alternatives. | Confirm that the decision still applies, or reopen it; do not treat history as authority. |
-| What is current, superseded or unresolved? | Current state, changed conditions and visible limitations. | Pause, mark the uncertainty or ask for a current-state check. |
-| Who can authorise reuse or change? | The accountable human role and the decision it can make. | Escalate; do not convert an unapproved inference into an operating conclusion. |
-
-## Choose the next action
-
+<table>
+<tr>
+<th scope="col">Ask</th>
+<th scope="col">Recover</th>
+<th scope="col">If it is unclear</th>
+</tr>
+<tr>
+<td>1. What exactly are we continuing?</td>
+<td>The current task, intended decision or bounded claim.</td>
+<td>Restate or narrow the task before reusing prior work.</td>
+</tr>
+<tr>
+<td>2. What supports it?</td>
+<td>The relevant source and evidence path.</td>
+<td>Recheck the source, investigate further or reduce the claim.</td>
+</tr>
+<tr>
+<td>3. Why does this direction still apply?</td>
+<td>The decision, rationale and known alternatives.</td>
+<td>Confirm that the decision still applies, or reopen it; do not treat history as authority.</td>
+</tr>
+<tr>
+<td>4. What is current, superseded or unresolved?</td>
+<td>Current state, changed conditions and visible limitations.</td>
+<td>Pause, mark the uncertainty or ask for a current-state check.</td>
+</tr>
+<tr>
+<td>5. Who can authorise reuse or change?</td>
+<td>The accountable human role and the decision it can make.</td>
+<td>Escalate; do not convert an unapproved inference into an operating conclusion.</td>
+</tr>
+</table>
+The table is deliberately small. Its purpose is not to create another large governance process. Its purpose is to interrupt the assumption that a previous answer is automatically ready for reuse.
+## The signal to look for
+A later task should not begin with:
+> Here is the previous output. Continue from this.
+It should begin with:
+> Here is the previous output, its supporting context, its current status, its limitations and the authority under which it may be reused.
+That distinction changes how AI-based applications should be designed.
+The handoff is not only a prompt-writing concern. It is a system-boundary concern.
+If the next task cannot recover what it is continuing, what supports it, what changed and who can authorise the next move, then the system is not truly continuing work. It is reconstructing work from incomplete memory.
+## How the handoff changes the next action
 The handoff does not produce one automatic outcome. It makes the appropriate next action visible.
-
-<div class="handoff-outcomes" role="list" aria-label="Possible next actions after a handoff">
-  <div role="listitem">
-    <p class="handoff-outcomes-label">Reuse</p>
-    <p>Support remains applicable, current state is known and authority is clear.</p>
-  </div>
-  <div role="listitem">
-    <p class="handoff-outcomes-label">Narrow or investigate</p>
-    <p>Evidence is weak or the proposed claim exceeds what its support can carry.</p>
-  </div>
-  <div role="listitem">
-    <p class="handoff-outcomes-label">Hold</p>
-    <p>Current state or an important limitation is still unresolved.</p>
-  </div>
-  <div role="listitem">
-    <p class="handoff-outcomes-label">Escalate</p>
-    <p>The required authority is absent; do not convert inference into a conclusion.</p>
-  </div>
-</div>
-
-This is deliberately small. It turns continuity from a vague instruction to “preserve context” into a concrete check before later work proceeds.
-
-## A bounded fieldwork application
-
-The [earlier fieldwork note](/projects/inspiral/fieldwork/why-content-generation-was-not-the-hard-problem/) describes a proposed downstream communication item that initially looked structurally valid. Review found that its wording depended on meaning beyond the available upstream semantic material.
-
-The handoff made the responsible response clearer: the claim could not be reused as written; its support and boundary needed review. Progression stopped while the wording and upstream boundary were reconsidered.
-
-The example does not prove that the method will resolve every gap. It shows the kind of decision a handoff is meant to make visible: reuse, narrow, investigate, hold or escalate.
-
+Sometimes earlier material can be reused. Sometimes the claim must be narrowed. Sometimes the source must be checked again. Sometimes the previous decision must be reopened. Sometimes the task must pause because the required authority is absent.
+The important result is not always a completed answer. It may be a visible insufficiency, a review state or an escalation request.
+That is especially important for agentic systems. An agent that can continue acting must also know when continuation is not justified.
+## What this looked like inside the Inspiral agentic flow
+The handoff problem became visible while reviewing the connected implementation stages of the Inspiral agentic flow.
+STG-02, STG-03, STG-04, STG-05 and STG-06 are not isolated AI experiments. They form a sequence in which context, semantic meaning, evidence, model outputs and implementation state must move safely from one stage to the next.
+The review examined whether each stage preserved:
+- governed source material;
+- semantic profiles and capability meaning;
+- task-specific model requests;
+- typed outputs and provider status;
+- evidence and authority references;
+- review-required conditions;
+- persistence and downstream reconstruction.
+The review therefore examined the complete AI boundary:
+- what entered the OpenAI request;
+- which task and output contract were active;
+- which adapter and execution path were used;
+- whether incomplete or failed provider responses were preserved;
+- whether model references matched permitted authority references;
+- whether review-required conditions survived into later stages;
+- whether the result could be reconciled deterministically.
+The review confirmed that STG-06 could reuse the existing OpenAI adapter already used by earlier stages in the Inspiral flow. No new adapter or orchestration framework was required. The public-safe implementation summary is recorded in the approved LCP-02 evidence record.
+It also found that the flow could not yet safely proceed. Unresolved issues included the active repository path, exhaustive request budgets, Batch recovery, output and transport measurement, persistence and downstream intake.
+<figure class="fieldwork-evidence-image">
+  <img src="/images/fieldwork/lcp-02/stg06-adapter-audit.png" alt="Codex review of STG-06 comparing lessons from earlier Inspiral stages, confirming reuse of the shared OpenAI adapter and identifying a targeted correction before the next smoke test." loading="lazy" />
+  <figcaption><strong>Codex review of STG-06 inside the Inspiral agentic flow.</strong> This evidence surface shows a review comparing lessons from earlier stages, confirming reuse of the shared OpenAI adapter and identifying a targeted correction before the next smoke test. It records a bounded review observation; it does not establish production readiness or autonomous implementation authority.</figcaption>
+</figure>
+The important lesson was not simply that one stage had encountered errors. It was that an agentic flow must carry forward failure states, limitations and review conditions rather than allowing the next stage to treat an incomplete result as ready.
+## What earlier stages revealed
+The connected stages of the Inspiral agentic flow provided concrete examples of what must survive between tasks.
+- **STG-02** showed why terminal provider output must not be silently discarded.
+- **STG-03** showed why output capacity must reflect the actual schema rather than an assumed response size.
+- **STG-05** showed why large persistence payloads may require bounded reference transport.
+- **STG-06** showed why the entire AI boundary must be reviewed, including input construction, execution, output handling, authority validation and review propagation.
+These are not isolated implementation details. They are handoff conditions within the flow.
+If they disappear between stages, the next stage may receive an apparently valid result without knowing how trustworthy, complete or reusable it is.
+## A handoff is more than passing data
+Passing data from one task to another is not the same as passing understanding.
+A later task may receive the previous result but still lack:
+- the source from which it came;
+- the evidence supporting it;
+- the decision that shaped it;
+- the state in which it was produced;
+- the limitations that constrained it;
+- the authority required to change it.
+Without those elements, the later task may produce a fluent continuation while silently changing the meaning of the earlier work.
+The five handoff questions create a small control surface between tasks. They help preserve not only the answer, but also the conditions under which the answer may be trusted.
+## OpenAI and connected tools used in this fieldwork
+The specifications and implementation plans for the Inspiral agentic flow were maintained in [Notion](https://www.notion.com).
+[Codex](https://openai.com/codex/) supported repository inspection, comparison of the STG-02–STG-06 implementation plans, shared-adapter tracing, test review and remediation analysis.
+The [Notion app/plugin](https://chatgpt.com/plugins/plugin_asdk_app_69c18c28f1188191bf5b8445c4ab0a2e?q=notion) provided the governed specifications, stage definitions and implementation context. The [OpenAI Developers Plugin](https://chatgpt.com/plugins/plugin_connector_1p_32dba5a7095c8191adca04ee30276304?q=openai) was used to consult official guidance on structured outputs, response handling, batching and agentic implementation. The [OpenAI API](https://openai.com/api/) and [Agents SDK](https://developers.openai.com/api/docs/guides/agents) provided relevant implementation context for the shared model path, orchestration, handoffs, tool boundaries and execution safety.
+Together, these tools helped examine what must survive between stages: task context, schemas, provider response status, evidence and authority references, review conditions, persistence and recovery state.
+Ananda Krishna Marri selected the evidence, set the method’s boundaries, resolved consequential interpretation and retained implementation and publication authority.
+---
+## OPENAI CONTRIBUTION RECORD
+**Contribution:** Codex and connected Notion context supported the review of the Inspiral STG-02–STG-06 flow and helped identify the context, evidence, authority and recovery state required between agentic stages.
+**Human authority:** Ananda Krishna Marri retained responsibility for evidence selection, interpretation, implementation decisions and publication.
+**Limitation:** This record does not establish production validation, quantified efficiency gains, autonomous implementation or partnership.
+> [Shiftby.pro](http://Shiftby.pro) is an independent fieldwork publication. References to OpenAI products describe tools used in the work and do not imply endorsement, certification or partnership.
 ## When this method is insufficient
-
-A handoff is not a substitute for evidence, current-state checks or human judgement. It cannot establish an unsupported relationship, answer an unresolved question or authorise a consequential decision.
-
-Where the material is incomplete, conflicting or too sensitive for inference, the useful result may be a visible insufficiency and a request for further work—not a completed answer.
-
-<aside class="fieldwork-endmatter" aria-label="Fieldwork notes">
-  <div>
-    <p class="fieldwork-endmatter-label">Fieldwork boundary</p>
-    <p>This method is a bounded practice from ShiftBy’s working context. It does not establish that every task needs all five questions, that a technical mechanism can answer them automatically, or that Inspiral has implemented or validated an end-to-end continuity system.</p>
-  </div>
-  <div class="fieldwork-endmatter-next">
-    <p class="fieldwork-endmatter-label">Continue the fieldwork</p>
-    <p>Next: <a href="/projects/inspiral/fieldwork/how-openai-supports-inspiral-fieldwork/">How OpenAI Supports Inspiral Fieldwork</a>—a focused account of the concrete contribution of OpenAI and ChatGPT tools, the limits of retrieval and generation, and the human authority that remains with the work.</p>
-  </div>
-</aside>
-
-## Sources and related work
-
-- [NIST AI Risk Management Framework](https://www.nist.gov/itl/ai-risk-management-framework) — external reference for managing AI risk and documenting governance boundaries; it does not validate this handoff method.
-- [NIST AI RMF Playbook](https://airc.nist.gov/AI_RMF_Knowledge_Base/Playbook) — practical reference for Govern, Map, Measure and Manage activities; this note is a ShiftBy fieldwork adaptation, not a NIST procedure.
+The five questions are not a substitute for evidence, current-state checks or human judgement.
+They cannot:
+- establish an unsupported relationship;
+- make an obsolete record current;
+- resolve contradictory authority;
+- approve a consequential change;
+- turn an incomplete model result into a complete one;
+- guarantee that a technical implementation is production-ready.
+When the material is incomplete, conflicting or too sensitive for inference, the correct result may be to hold, investigate or escalate.
+## The boundary for agentic work
+An agentic solution should not be designed only around:
+> Input → model → output
+It should also account for:
+> Context → task → model interaction → result → validation → authority → next task
+The durable unit is not the last answer. It is the answer together with its provenance, decision context, current state, limitations, review status and permission to continue.
+That is what must survive between AI-assisted tasks.
+---
+## Evidence and limits
+This Method note draws on the LCP-02 handoff analysis and the STG-02–STG-06 implementation review conducted within the Inspiral agentic flow.
+It supports the narrower observation that later AI-assisted work requires recoverable context, evidence, current state, limitations and human authority before earlier work is reused.
+It does not establish quantified productivity gains, prove an end-to-end continuity system or demonstrate that the current STG-06 implementation is production-ready.
+## AI contribution
+Codex supported implementation-plan review, repository inspection, test review, comparison of earlier-stage failure patterns and consultation of official OpenAI documentation.
+The Notion app/plugin provided access to the governed specifications and implementation plans. The OpenAI Developers Plugin supported review of official implementation guidance.
+Ananda Krishna Marri selected the evidence, determined the claim boundaries, resolved consequential interpretation and retains final publication authority.
+## Continue the story
+Next: **How OpenAI Supports Inspiral Fieldwork**—a focused account of the concrete contribution of OpenAI tools, the limits of retrieval and generation, and the human authority that remains with the work.

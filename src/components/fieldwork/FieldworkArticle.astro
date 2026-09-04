@@ -22,8 +22,9 @@ const seoTitle = sourceSeoTitle.includes('Shiftby.pro') ? sourceSeoTitle : `${so
 const publishedIso = item.data.published_at?.toISOString();
 const modifiedIso = (item.data.updated_at ?? item.data.published_at)?.toISOString();
 const showUpdated = Boolean(item.data.updated_at && item.data.updated_at.getTime() !== item.data.published_at?.getTime());
+const representativeImageUrl = new URL(item.data.images.representative.src, Astro.site).href;
+const representativeImageId = `${canonicalUrl}#representative-image`;
 const socialImageUrl = new URL(item.data.images.social.src, Astro.site).href;
-const socialImageId = `${canonicalUrl}#primaryimage`;
 
 const formatDate = (date?: Date) => date?.toLocaleDateString('en-GB', {
   day: 'numeric',
@@ -67,12 +68,10 @@ const structuredData = {
     },
     {
       '@type': 'ImageObject',
-      '@id': socialImageId,
-      url: socialImageUrl,
-      contentUrl: socialImageUrl,
-      width: 1200,
-      height: 630,
-      caption: item.data.images.social.alt,
+      '@id': representativeImageId,
+      url: representativeImageUrl,
+      contentUrl: representativeImageUrl,
+      caption: item.data.images.representative.alt,
     },
     {
       '@type': 'WebPage',
@@ -80,7 +79,7 @@ const structuredData = {
       url: canonicalUrl,
       name: item.data.title,
       isPartOf: { '@id': collectionUrl },
-      primaryImageOfPage: { '@id': socialImageId },
+      primaryImageOfPage: { '@id': representativeImageId },
     },
     {
       '@type': 'Article',
@@ -92,7 +91,7 @@ const structuredData = {
       ...(modifiedIso ? { dateModified: modifiedIso } : {}),
       author: { '@id': `${authorUrl}#author` },
       publisher: { '@id': `${authorUrl}#author` },
-      image: { '@id': socialImageId },
+      image: { '@id': representativeImageId },
       mainEntityOfPage: { '@id': canonicalUrl },
       isPartOf: { '@id': collectionUrl },
     },
