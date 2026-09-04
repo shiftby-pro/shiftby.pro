@@ -77,6 +77,8 @@ main { max-width:1180px; margin:0 auto; padding:0 32px; }
 .prose { max-width:690px; margin:0 auto; font-family:var(--font-body); font-size:1.32rem; line-height:1.58; }
 .prose p { margin:0 0 1.35em; }
 .prose h2 { font-family:var(--font-body); font-size:clamp(2.2rem,4vw,3.5rem); margin:2.25em 0 .55em; }
+.prose .openai-section-heading { max-width:22ch; margin-top:2.4em; font-size:clamp(1.8rem,3.2vw,2.8rem); line-height:1.12; }
+.prose .openai-record-heading { margin:2.2rem 0 .8rem; color:var(--accent-dark); font-family:var(--font-meta); font-size:.68rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase; }
 .prose strong { font-weight:400; }
 .prose blockquote { border-left:2px solid var(--accent); margin:2.3rem 0; padding:4px 0 4px 28px; font-size:1.55rem; line-height:1.25; }
 .prose a { color:var(--accent-dark); }
