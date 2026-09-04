@@ -53,7 +53,7 @@ editorial_brief_url: "https://app.notion.com/p/3ce17667df5481ceae60d509ebb8ccbf?
 
 <table>
 <tr>
-<td>Note type</td>
+<th scope="row">Note type</th>
 <td>Method</td>
 </tr>
 <tr>
@@ -81,7 +81,7 @@ editorial_brief_url: "https://app.notion.com/p/3ce17667df5481ceae60d509ebb8ccbf?
 <td>/projects/inspiral/fieldwork/what-must-survive-between-ai-assisted-tasks/</td>
 </tr>
 </table>
-# What Must Survive Between AI-Assisted Tasks
+## What Must Survive Between AI-Assisted Tasks
 Before a later AI-assisted task reuses earlier work, it needs to recover the conditions that make reuse safe—not simply receive the last answer.
 A useful output can complete one task. It does not tell a later task what remains usable.
 The work may have changed since the earlier output. A source may have been rechecked, a decision revised, implementation advanced, a claim narrowed or an uncertainty left open.
@@ -90,13 +90,13 @@ The practical question is therefore not only:
 It is:
 > What may still be used for this task, and on what basis?
 <aside class="article-callout"><strong>DIRECT ANSWER</strong><p>A later AI-assisted task can continue responsibly only when it recovers what it is continuing, what supports it, why the direction still applies, what has changed, and who can authorise reuse or change.</p></aside>
-# The five handoff questions
+## The five handoff questions
 Before continuing work that may affect a claim, decision or current state, use this lightweight handoff. The questions identify the context relevant to the task; they do not require every task to carry every record.
 <table>
 <tr>
-<td>Ask</td>
-<td>Recover</td>
-<td>If it is unclear</td>
+<th scope="col">Ask</th>
+<th scope="col">Recover</th>
+<th scope="col">If it is unclear</th>
 </tr>
 <tr>
 <td>1. What exactly are we continuing?</td>
@@ -125,7 +125,7 @@ Before continuing work that may affect a claim, decision or current state, use t
 </tr>
 </table>
 The table is deliberately small. Its purpose is not to create another large governance process. Its purpose is to interrupt the assumption that a previous answer is automatically ready for reuse.
-# The signal to look for
+## The signal to look for
 A later task should not begin with:
 > Here is the previous output. Continue from this.
 It should begin with:
@@ -133,12 +133,12 @@ It should begin with:
 That distinction changes how AI-based applications should be designed.
 The handoff is not only a prompt-writing concern. It is a system-boundary concern.
 If the next task cannot recover what it is continuing, what supports it, what changed and who can authorise the next move, then the system is not truly continuing work. It is reconstructing work from incomplete memory.
-# How the handoff changes the next action
+## How the handoff changes the next action
 The handoff does not produce one automatic outcome. It makes the appropriate next action visible.
 Sometimes earlier material can be reused. Sometimes the claim must be narrowed. Sometimes the source must be checked again. Sometimes the previous decision must be reopened. Sometimes the task must pause because the required authority is absent.
 The important result is not always a completed answer. It may be a visible insufficiency, a review state or an escalation request.
 That is especially important for agentic systems. An agent that can continue acting must also know when continuation is not justified.
-# What this looked like inside the Inspiral agentic flow
+## What this looked like inside the Inspiral agentic flow
 The handoff problem became visible while reviewing the connected implementation stages of the Inspiral agentic flow.
 STG-02, STG-03, STG-04, STG-05 and STG-06 are not isolated AI experiments. They form a sequence in which context, semantic meaning, evidence, model outputs and implementation state must move safely from one stage to the next.
 The review examined whether each stage preserved:
@@ -164,7 +164,7 @@ It also found that the flow could not yet safely proceed. Unresolved issues incl
   <figcaption><strong>Codex review of STG-06 inside the Inspiral agentic flow.</strong> This evidence surface shows a review comparing lessons from earlier stages, confirming reuse of the shared OpenAI adapter and identifying a targeted correction before the next smoke test. It records a bounded review observation; it does not establish production readiness or autonomous implementation authority.</figcaption>
 </figure>
 The important lesson was not simply that one stage had encountered errors. It was that an agentic flow must carry forward failure states, limitations and review conditions rather than allowing the next stage to treat an incomplete result as ready.
-# What earlier stages revealed
+## What earlier stages revealed
 The connected stages of the Inspiral agentic flow provided concrete examples of what must survive between tasks.
 - **STG-02** showed why terminal provider output must not be silently discarded.
 - **STG-03** showed why output capacity must reflect the actual schema rather than an assumed response size.
@@ -172,7 +172,7 @@ The connected stages of the Inspiral agentic flow provided concrete examples of 
 - **STG-06** showed why the entire AI boundary must be reviewed, including input construction, execution, output handling, authority validation and review propagation.
 These are not isolated implementation details. They are handoff conditions within the flow.
 If they disappear between stages, the next stage may receive an apparently valid result without knowing how trustworthy, complete or reusable it is.
-# A handoff is more than passing data
+## A handoff is more than passing data
 Passing data from one task to another is not the same as passing understanding.
 A later task may receive the previous result but still lack:
 - the source from which it came;
@@ -183,7 +183,7 @@ A later task may receive the previous result but still lack:
 - the authority required to change it.
 Without those elements, the later task may produce a fluent continuation while silently changing the meaning of the earlier work.
 The five handoff questions create a small control surface between tasks. They help preserve not only the answer, but also the conditions under which the answer may be trusted.
-# OpenAI and connected tools used in this fieldwork
+## OpenAI and connected tools used in this fieldwork
 The specifications and implementation plans for the Inspiral agentic flow were maintained in [Notion](https://www.notion.com).
 [Codex](https://openai.com/codex/) supported repository inspection, comparison of the STG-02–STG-06 implementation plans, shared-adapter tracing, test review and remediation analysis.
 The [Notion app/plugin](https://chatgpt.com/plugins/plugin_asdk_app_69c18c28f1188191bf5b8445c4ab0a2e?q=notion) provided the governed specifications, stage definitions and implementation context. The [OpenAI Developers Plugin](https://chatgpt.com/plugins/plugin_connector_1p_32dba5a7095c8191adca04ee30276304?q=openai) was used to consult official guidance on structured outputs, response handling, batching and agentic implementation. The [OpenAI API](https://openai.com/api/) and [Agents SDK](https://developers.openai.com/api/docs/guides/agents) provided relevant implementation context for the shared model path, orchestration, handoffs, tool boundaries and execution safety.
@@ -195,7 +195,7 @@ Ananda Krishna Marri selected the evidence, set the method’s boundaries, resol
 **Human authority:** Ananda Krishna Marri retained responsibility for evidence selection, interpretation, implementation decisions and publication.
 **Limitation:** This record does not establish production validation, quantified efficiency gains, autonomous implementation or partnership.
 > [Shiftby.pro](http://Shiftby.pro) is an independent fieldwork publication. References to OpenAI products describe tools used in the work and do not imply endorsement, certification or partnership.
-# When this method is insufficient
+## When this method is insufficient
 The five questions are not a substitute for evidence, current-state checks or human judgement.
 They cannot:
 - establish an unsupported relationship;
@@ -205,7 +205,7 @@ They cannot:
 - turn an incomplete model result into a complete one;
 - guarantee that a technical implementation is production-ready.
 When the material is incomplete, conflicting or too sensitive for inference, the correct result may be to hold, investigate or escalate.
-# The boundary for agentic work
+## The boundary for agentic work
 An agentic solution should not be designed only around:
 > Input → model → output
 It should also account for:
