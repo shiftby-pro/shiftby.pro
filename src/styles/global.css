@@ -92,6 +92,10 @@ main { max-width:1180px; margin:0 auto; padding:0 32px; }
 .prose th { color:var(--accent-dark); font-weight:600; border-top:1px solid var(--ink); }
 .prose table.contribution-ledger { display:table; overflow:visible; table-layout:fixed; }
 .prose .contribution-ledger th,.prose .contribution-ledger td { width:33.333%; min-width:0; }
+.prose table.source-type-table { display:table; table-layout:fixed; margin:1.35rem 0 2rem; font-size:.72rem; }
+.prose .source-type-table th,.prose .source-type-table td { min-width:0; padding:7px 10px; line-height:1.25; }
+.prose .source-type-table th:first-child,.prose .source-type-table td:first-child { width:78%; }
+.prose .source-type-table th:last-child,.prose .source-type-table td:last-child { width:22%; }
 .prose ul { padding-left:1.2em; }
 .prose li { padding-left:.2em; margin-bottom:.35em; }
 .article-callout { border-top:1px solid var(--accent); border-bottom:1px solid var(--line); padding:20px 0 24px; margin:3.4rem 0; font-family:var(--font-body); font-size:.9rem; line-height:1.6; }
