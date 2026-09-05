@@ -123,11 +123,9 @@ const structuredData = {
   <article class="article">
     <nav class="article-breadcrumbs" aria-label="Breadcrumb">
       <ol>
-        {breadcrumbs.map((crumb, index) => (
+        {breadcrumbs.slice(0, -1).map((crumb) => (
           <li>
-            {index < breadcrumbs.length - 1
-              ? <a href={crumb.path}>{crumb.name}</a>
-              : <span aria-current="page">{crumb.name}</span>}
+            <a href={crumb.path}>{crumb.name}</a>
           </li>
         ))}
       </ol>
