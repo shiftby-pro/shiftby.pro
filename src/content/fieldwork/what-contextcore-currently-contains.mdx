@@ -47,325 +47,164 @@ images:
     alt: "Inspiral project visual for What ContextCore Currently Contains."
 ---
 
-ContextCore is the first part of the Inspiral agentic flow. It turns accepted source material into governed capability knowledge that later stages can reuse without rediscovering meaning from raw documents.
-The important outcome is not simply that information has been extracted or displayed. The outcome is that meaning, provenance, relationships, evidence, boundaries and current state remain connected.
-<aside class="article-callout"><strong>DIRECT ANSWER</strong><p>ContextCore currently contains a completed, governed source-to-knowledge foundation for the current Inspiral scope. It preserves where material came from, what reusable meaning was extracted, how accepted meaning is connected, why capability membership is valid and what remains uncertain.</p></aside>
+ContextCore is the first part of the Inspiral agentic flow. It turns accepted source material into governed capability knowledge that later stages can reuse without reconstructing meaning from raw documents.
+
+<aside class="article-callout"><strong>DIRECT ANSWER</strong><p>ContextCore currently contains a completed, governed source-to-knowledge foundation for the current Inspiral scope. It preserves provenance, reusable meaning, valid relationships, capability membership, boundaries and unresolved state.</p></aside>
+
 ## The question
-What must happen before source material can be safely reused by later stages of an agentic system?
-A source document is not yet usable context. Extraction alone can produce plausible text, but it does not establish authority, provenance, relationship validity or capability membership.
-ContextCore addresses that gap by making those conditions explicit before later reasoning begins.
-## The ContextCore flow
-The ContextCore part of the Inspiral agentic flow is:
+
+What must happen before source material can be safely reused by a later stage of an agentic system?
+
+Extraction alone can produce plausible text, but it does not establish authority, provenance, relationship validity or capability membership. ContextCore makes those conditions explicit before later reasoning begins.
+
+## ContextCore in the Inspiral flow
+
+The ContextCore portion of the Inspiral agentic flow is:
+
 <ol class="contextcore-flow" aria-label="ContextCore stages in the Inspiral agentic flow">
   <li><span>STG-01</span><strong>Source &amp; Signal Intake</strong></li>
   <li><span>STG-02</span><strong>Semantic Modelling</strong></li>
   <li><span>STG-03</span><strong>Semantic Relationships</strong></li>
   <li><span>STG-04</span><strong>Capability Baselines</strong></li>
 </ol>
-Each handoff narrows uncertainty while preserving the evidence and authority needed by the next stage.
-## Agents and skills used in the ContextCore flow
-The flow used bounded agent profiles for selected tasks. Model-assisted stages proposed or assessed bounded outputs; deterministic Python and database logic retained control of identity, validation, authority, relationship projection, capability membership and persistence.
-<table>
-<tr>
-<th scope="col">Stage</th>
-<th scope="col">Agent / skill</th>
-<th scope="col">Contribution</th>
-<th scope="col">Boundary</th>
-</tr>
-<tr>
-<td>STG-01</td>
-<td>`source.classify`</td>
-<td>Classified the permitted source route and intake treatment in the recorded implementation configuration.</td>
-<td>It did not create semantic meaning or approve downstream knowledge.</td>
-</tr>
-<tr>
-<td>STG-02</td>
-<td>`semantic.extract.items`</td>
-<td>Extracted bounded candidates from accepted source packages.</td>
-<td>The model did not choose the semantic layer or family.</td>
-</tr>
-<tr>
-<td>STG-02</td>
-<td>`semantic.classify.items`</td>
-<td>Assessed candidate meaning, type fit, atomicity and usability.</td>
-<td>Validation and acceptance remained governed runtime decisions.</td>
-</tr>
-<tr>
-<td>STG-02</td>
-<td>`semantic.compare.items`</td>
-<td>Compared compatible candidates and identified equivalence, distinction or conflict.</td>
-<td>It did not silently replace current meaning.</td>
-</tr>
-<tr>
-<td>STG-02</td>
-<td>`semantic.normalize.items`</td>
-<td>Proposed bounded normalization for accepted equivalence groups.</td>
-<td>Normalization did not widen source meaning.</td>
-</tr>
-<tr>
-<td>STG-03</td>
-<td>`relationship.discover`</td>
-<td>Discovered bounded relationship candidates.</td>
-<td>Python and the database owned endpoint validity, direction, approval and Edge projection.</td>
-</tr>
-<tr>
-<td>STG-03</td>
-<td>`context.associate`</td>
-<td>Identified supporting-context associations.</td>
-<td>These associations did not become semantic authority or ordinary Edges.</td>
-</tr>
-<tr>
-<td>STG-04</td>
-<td>None</td>
-<td>Assembled capability baselines from current governed database state.</td>
-<td>This stage was deterministic; no model call was required.</td>
-</tr>
-</table>
-All model-assisted stages used the shared OpenAI adapter. The adapter provided the model interaction path; it did not transfer authority for governance decisions to the model.
-<table>
-<tr>
-<th scope="col">Stage</th>
-<th scope="col">Responsibility</th>
-<th scope="col">What survives for the next stage</th>
-</tr>
-<tr>
-<td>STG-01 — Source & Signal Intake</td>
-<td>Determine which current source material is valid, bounded and ready for processing.</td>
-<td>Source identity, type, scope, provenance and immutable package materialisation.</td>
-</tr>
-<tr>
-<td>STG-02 — Semantic Modelling</td>
-<td>Extract and validate reusable semantic meaning and supporting context.</td>
-<td>Semantic objects, supporting-context items, versions, comparison state and lifecycle state.</td>
-</tr>
-<tr>
-<td>STG-03 — Semantic Relationships</td>
-<td>Determine how accepted semantic meaning is validly connected.</td>
-<td>Governed Relationship versions, support references, separate context associations and deterministic Edges.</td>
-</tr>
-<tr>
-<td>STG-04 — Capability Baselines</td>
-<td>Assemble purpose-neutral governed territory for each capability.</td>
-<td>Capability membership, authority envelope, boundaries, gaps and exact membership-proof lineage.</td>
-</tr>
-</table>
-This is not a sequence in which each stage rereads the original documents and makes its own interpretation. Each stage consumes the preceding stage’s accepted typed result or durable database projection.
+
+Each handoff narrows uncertainty while preserving the evidence and authority required by the next stage. The stages consume accepted typed results or durable database projections; they do not independently reread the original documents and silently reinterpret them.
+
+### What each stage preserves
+
+| Stage | Responsibility | Handoff result |
+|---|---|---|
+| STG-01 | Freeze valid, bounded source material and provenance. | Source identity, type, scope and immutable package materialisation. |
+| STG-02 | Extract and validate reusable meaning and supporting context. | Semantic objects, versions, comparison state and lifecycle state. |
+| STG-03 | Establish valid connections between accepted semantic objects. | Governed Relationships, support references, separate context associations and deterministic Edges. |
+| STG-04 | Assemble purpose-neutral governed territory for each capability. | Capability membership, authority envelope, boundaries, gaps and proof lineage. |
+
+## Agents and skills used in the flow
+
+Model-assisted stages proposed or assessed bounded outputs. Deterministic Python and database logic retained control of identity, validation, authority, relationship projection, capability membership and persistence.
+
+| Stage | Agent or skill | Contribution and boundary |
+|---|---|---|
+| STG-01 | `source.classify` | Classified the permitted source route; it did not create meaning or approve downstream knowledge. |
+| STG-02 | `semantic.extract.items` | Extracted bounded candidates; the model did not choose their semantic layer or family. |
+| STG-02 | `semantic.classify.items` | Assessed type fit, atomicity and usability; governed validation retained acceptance authority. |
+| STG-02 | `semantic.compare.items` / `semantic.normalize.items` | Identified equivalence, distinction or conflict and proposed bounded normalization without replacing or widening current meaning. |
+| STG-03 | `relationship.discover` / `context.associate` | Proposed relationship and supporting-context candidates; Python and the database owned endpoint validity, direction, approval and projection. |
+| STG-04 | None | Assembled capability baselines deterministically from current governed database state. |
+
+All model-assisted stages used the shared OpenAI adapter. The adapter provided the model interaction path; it did not transfer governance authority to the model.
+
 ## 1. Start with source authority
-The flow begins with the Inspiral Source Hub.
-During the implementation closure recorded on 23 August 2026, the Source Hub contained 25 registered source records across 14 controlled source types:
-<table class="source-type-table">
-<tr>
-<th scope="col">Source type</th>
-<th scope="col">Count</th>
-</tr>
-<tr>
-<td>`CAPABILITY`</td>
-<td>3</td>
-</tr>
-<tr>
-<td>`APPLIED_CAPABILITY`</td>
-<td>3</td>
-</tr>
-<tr>
-<td>`USE_CASE`</td>
-<td>5</td>
-</tr>
-<tr>
-<td>`OPERATING_EVIDENCE`</td>
-<td>2</td>
-</tr>
-<tr>
-<td>`WORKED_EXAMPLE`</td>
-<td>2</td>
-</tr>
-<tr>
-<td>`LEARNING_EVIDENCE`</td>
-<td>2</td>
-</tr>
-<tr>
-<td>`DOCTRINE`</td>
-<td>1</td>
-</tr>
-<tr>
-<td>`BUSINESS_MODEL`</td>
-<td>1</td>
-</tr>
-<tr>
-<td>`COMMERCIAL_CATALOGUE`</td>
-<td>1</td>
-</tr>
-<tr>
-<td>`RESEARCH`</td>
-<td>1</td>
-</tr>
-<tr>
-<td>`PERSPECTIVE`</td>
-<td>1</td>
-</tr>
-<tr>
-<td>`WORKING_REFERENCE`</td>
-<td>1</td>
-</tr>
-<tr>
-<td>`PRODUCT_EXPLORATION`</td>
-<td>1</td>
-</tr>
-<tr>
-<td>`IMPLEMENTATION_EVIDENCE`</td>
-<td>1</td>
-</tr>
-</table>
-The normal default STG-01 denominator was 24: one active `WORKING_REFERENCE` was explicit-only and excluded from default selection. These counts are a dated implementation snapshot, not a permanent production invariant. Source type is only one routing input; source class, semantic scope, extraction layers, eligible stage and authority/use scope determine how each source may be used.
-STG-01 freezes the current source denominator, retrieves selected sources, preserves their controlled identity and provenance, and creates bounded package or chunk materialisations. It also records excluded, unavailable or review-required sources instead of silently dropping them.
-This creates a reliable starting boundary:
-> The system knows which source was selected, which version was processed, what route it was permitted to take and whether the package is complete enough for downstream use.
-STG-01 does not decide what the source means. That responsibility belongs to STG-02.
+
+The flow begins with the Inspiral Source Hub. During the implementation closure recorded on 23 August 2026, it contained 25 registered source records across 14 controlled source types:
+
+| Source type | Count |
+|---|---:|
+| `CAPABILITY` | 3 |
+| `APPLIED_CAPABILITY` | 3 |
+| `USE_CASE` | 5 |
+| `OPERATING_EVIDENCE` | 2 |
+| `WORKED_EXAMPLE` | 2 |
+| `LEARNING_EVIDENCE` | 2 |
+| `DOCTRINE` | 1 |
+| `BUSINESS_MODEL` | 1 |
+| `COMMERCIAL_CATALOGUE` | 1 |
+| `RESEARCH` | 1 |
+| `PERSPECTIVE` | 1 |
+| `WORKING_REFERENCE` | 1 |
+| `PRODUCT_EXPLORATION` | 1 |
+| `IMPLEMENTATION_EVIDENCE` | 1 |
+
+The normal default STG-01 denominator was 24 because one active `WORKING_REFERENCE` was explicit-only. These are dated implementation counts, not permanent production invariants. STG-01 freezes the selected denominator, preserves controlled identity and provenance, materialises bounded packages or chunks and records excluded or review-required sources rather than silently dropping them.
+
 ## 2. Separate reusable meaning from supporting context
-STG-02 asks:
-> What reusable semantic meaning and supporting context exist in the current accepted source material?
-It creates candidates across the governed semantic layers:
-- doctrinal authority;
-- canonical capability meaning;
-- opportunity meaning;
-- enterprise context; and
-- commercial application.
-Evidence, examples, signals, use cases and explanatory material may also be retained as supporting context. Supporting context is useful for later retrieval, but it does not become semantic authority merely because it was extracted.
-This separation prevents a useful example or screenshot from being mistaken for a canonical proposition, claim or capability definition.
-STG-02 then validates candidates against bounded source evidence, compares compatible meanings and preserves distinctions such as equivalent, distinct, narrower, broader, conflicting, superseding or unresolved.
-A structurally valid model response is still only a candidate. It is not automatically approved meaning.
+
+STG-02 creates candidates across doctrinal authority, canonical capability meaning, opportunity meaning, enterprise context and commercial application. Evidence, examples, signals and use cases may also be retained as supporting context.
+
+Supporting context can aid retrieval, but it does not become semantic authority merely because it was extracted. Candidates are validated against bounded source evidence, compared and assigned distinctions such as equivalent, narrower, broader, conflicting, superseding or unresolved. A structurally valid model response remains a candidate until governed validation accepts it.
+
 ## 3. Govern the connections
-STG-03 asks:
-> How are accepted current semantic objects validly connected?
-A relationship is not created simply because two objects are similar, share a source or have compatible capability scope. The connection needs an approved relationship type, valid endpoint versions, the correct direction and sufficient support.
-The resulting governed Relationship is distinct from its operational Edge:
-- the Relationship is the governed semantic assertion;
-- the Edge is its deterministic operational projection.
-Supporting-context associations remain separate. They can connect evidence or examples to a semantic member for retrieval without becoming semantic authority, capability membership or ordinary graph traversal.
-This distinction is central to trustworthy agentic work. A graph can be technically connected while still lacking sufficient evidence for a particular downstream use.
+
+STG-03 requires an approved relationship type, valid endpoint versions, the correct direction and sufficient support. The governed Relationship is the semantic assertion; the Edge is its deterministic operational projection. Supporting-context associations remain separate and cannot silently become authority, capability membership or ordinary graph traversal.
+
 ## 4. Assemble capability baselines
-STG-04 asks:
-> What governed semantic territory belongs to this capability, under which authority and boundaries?
-It reads the current accepted database state from the STG-03 projection and assembles a purpose-neutral Capability Baseline.
-The baseline preserves:
-- one exact capability root;
-- required canonical core meaning;
-- applicable Layer 0 authority;
-- supporting semantic territory;
-- optional commercial references;
-- separate supporting context;
-- capability boundary constraints;
-- explicit gaps; and
-- exact membership-proof lineage.
-Capability membership is therefore proven through version-pinned Relationship and Edge evidence. It is not inferred from similarity, source proximity, a scope label or an implementation document.
-The baseline is not yet a communication profile. It is the governed territory that later Inspiral agentic-flow stages may use.
+
+STG-04 reads the accepted database state and assembles a purpose-neutral Capability Baseline. It preserves the exact capability root, canonical meaning, applicable authority, supporting territory, boundaries, explicit gaps, separate context and version-pinned membership-proof lineage.
+
+Capability membership is therefore proven through governed Relationship and Edge evidence. It is not inferred from similarity, source proximity, a scope label or an implementation document. The baseline is governed territory for later Inspiral stages, not yet a communication-purpose profile.
+
 ## Current implementation snapshot
-The implementation closure recorded on 23 August 2026 produced the following bounded ContextCore result snapshot:
+
+The 23 August 2026 implementation closure recorded this bounded ContextCore slice:
+
 - 25 registered Source Hub records, with 24 in the normal default STG-01 denominator;
 - 33 immutable STG-01 package or chunk materialisations, with semantic and supporting-context routes kept distinct;
-- three completed capability baselines for Decision Integrity, Organizational Memory and Human–AI Accountability;
-- governed semantic Relationships reconciled with their operational Edge projections; and
-- separate supporting-context associations with lineage that can be inspected back to source evidence.
-These figures are tied to the 23 August 2026 implementation closure and should be read together with the linked evidence surfaces. They are evidence of the completed current slice, not a claim that all organisational knowledge or every possible relationship has been captured.
-## ContextCore transformation and lineage evidence
-The two approved views below expose complementary parts of the completed ContextCore slice. The first shows how bounded source material moves through the foundation pipeline. The second shows how one selected capability member can be followed through its governed membership context toward source evidence.
-They should be read as evidence surfaces, not as the architecture itself. Each view supports inspection of a specific result while remaining subject to its approved caption, alternative text and public-use limitation.
-## Foundation transformation view
+- three completed capability baselines for Decision Integrity, Organizational Memory and Human–AI Accountability; and
+- governed Relationships, Edge projections and supporting-context associations with inspectable source lineage.
+
+These figures describe a dated working slice. They do not claim that all organisational knowledge or every possible relationship has been captured.
+
+## Transformation and lineage evidence
+
+The two approved views expose complementary parts of the completed slice: the first shows how bounded source material moves through the foundation pipeline; the second follows one capability member through its membership context toward source evidence. They are evidence surfaces, not the architecture itself.
+
+### Foundation transformation view
+
 ![ContextCore foundation pipeline showing source material moving through population, validation, similarity analysis, connected knowledge and semantic profiles.](/images/fieldwork/lcp-04/contextcore-foundation-pipeline.png)
-The foundation transformation view shows the bounded path from source material through population, validation, similarity analysis, connected knowledge and semantic profiles. It makes the transformation path inspectable, including the distinction between processing activity and governed results.
-It does not establish complete organisational coverage, automatic verification, production readiness or runtime decision authority. Any displayed counters belong to a dated working snapshot and may change with the underlying data and implementation.
-## Membership-lineage view
+
+This view makes the source-to-foundation transformation inspectable, including the distinction between processing activity and governed results. Its counters are dated working values; it does not establish complete coverage, automatic verification, production readiness or runtime decision authority.
+
+### Membership-lineage view
+
 ![Focused evidence trail showing one Decision Integrity member through the L2 Opportunity layer and Decision family.](/images/fieldwork/lcp-04/decision-membership-proof.png)
-The membership-lineage view is a focused lineage crop for one selected Decision Integrity member. It shows how that member sits within the L2 Opportunity layer and the Decision family, providing an inspectable route through the bounded membership context.
-The crop does not, by itself, prove the underlying source evidence, validate every relationship or establish complete family coverage. Those claims depend on the governed Relationship and Edge records, version-pinned membership proof and linked source evidence described elsewhere in this note.
-## How the views fit together
-Read together, the views expose a bounded chain of transformation and proof:
+
+This view shows one selected Decision Integrity member within the L2 Opportunity layer and Decision family. It supports a bounded lineage path; it does not by itself prove every relationship, the underlying source evidence or complete family coverage.
+
+Read together, the views show:
+
 > source material → bounded population → validation → governed relationships → capability membership → source evidence
-The transformation view explains how accepted material becomes connected knowledge. The lineage view shows how a particular result can be inspected without treating visual proximity, similarity or a shared label as proof of membership.
-The linked Evidence and Assets records remain authoritative for each visual’s approved caption, alternative text and public-use limitation. These dated views support the claim that the current slice is inspectable; they do not prove that ContextCore contains all organisational knowledge or that every possible relationship has been resolved.
-## What “complete” means here
-For the current governed ContextCore slice, completion means:
-- the selected source and package denominator is accounted;
-- returned semantic candidates are persisted or explicitly dispositioned;
-- validation and comparison outcomes remain visible;
-- accepted Relationships and operational Edges reconcile;
-- supporting-context associations remain separate;
-- capability membership has exact proof lineage;
-- authority and boundary gaps are explicit;
-- current results are distinguishable from historical results; and
-- later stages can consume the baseline without rebuilding it from raw source prose.
-Complete does not mean that every possible source, relationship or interpretation has been resolved.
-## What ContextCore does not do
-ContextCore does not:
-- determine purpose-specific relevance;
-- create a communication-purpose semantic profile;
-- decide which meaning is worth communicating to a particular audience;
-- generate an article or other communication asset;
-- authorise a consequential state change; or
-- prove that all organisational knowledge is complete or current.
-In the Inspiral agentic flow, those responsibilities belong to later stages. CanonLens uses governed capability knowledge to derive contextual meaning; ContentFlight turns bounded meaning into validated communication.
+
+## What the current slice establishes
+
+For this governed slice, completion means that selected source and package denominators are accounted for, semantic candidates are persisted or dispositioned, validation outcomes remain visible, Relationships and Edges reconcile, supporting context stays separate and capability membership has exact proof lineage. Later stages can consume the baseline without rebuilding it from raw source prose.
+
+It does not mean that every possible source, relationship or interpretation has been resolved. ContextCore does not determine purpose-specific relevance, create a communication profile, generate an article or authorise a consequential state change. Those responsibilities belong to later Inspiral stages such as CanonLens and ContentFlight.
+
 ## Why this matters for agentic systems
-Without this foundation, each later task can quietly repeat the same dangerous shortcuts:
-- rereading raw documents and producing a new interpretation;
-- treating a plausible model response as authority;
-- confusing similarity with a governed relationship;
-- losing the evidence behind a claim;
-- carrying forward superseded state; or
-- inventing a missing boundary when context is incomplete.
-ContextCore makes continuation safer because later agents can determine what information is current, where it came from, how it is connected and what they are allowed to do with it. That reduces the need to reread raw documents, recreate prior interpretations or silently widen the evidence boundary.
+
+Without this foundation, a later task can mistake a plausible model response for authority, confuse similarity with a governed relationship, lose the evidence behind a claim, carry forward superseded state or invent a boundary when context is incomplete. ContextCore gives later agents a bounded answer to four questions: what is current, where did it come from, how is it connected and what may be done with it?
+
 ## OpenAI and connected tools used in this fieldwork
-The Inspiral work used different tools for different parts of the ContextCore investigation. Their contributions should not be collapsed into a generic claim that “AI built the system.”
-<table>
-<tr>
-<th scope="col">Tool</th>
-<th scope="col">Contribution to ContextCore</th>
-</tr>
-<tr>
-<td>[ChatGPT Work ](https://openai.com/chatgpt-work/)with connected Notion context</td>
-<td>Supported problem synthesis for Inspiral, definition of Inspiral intent, high-level implementation planning, the Master Functional Specification, the Functional Flow and the first draft stage specifications.</td>
-</tr>
-<tr>
-<td>[Codex](https://openai.com/codex/)</td>
-<td>Acted as the coding agent for end-to-end ContextCore development, including repository inspection, implementation comparison, shared-adapter tracing, skill development, test review and remediation analysis.</td>
-</tr>
-<tr>
-<td>[OpenAI Developers](https://chatgpt.com/plugins/plugin_connector_1p_32dba5a7095c8191adca04ee30276304?q=openai+devel)</td>
-<td>Provided official implementation context for OpenAI agentic architecture, the shared adapter, AI boundaries and bounded skill development.</td>
-</tr>
-<tr>
-<td>[Notion App](https://www.notion.com/)</td>
-<td>Held the source-data pages and working records from which ContextCore source material, evidence and lineage were assembled.</td>
-</tr>
-<tr>
-<td>[Notion app/plugin](https://chatgpt.com/plugins/plugin_asdk_app_69c18c28f1188191bf5b8445c4ab0a2e?q=notion)</td>
-<td>Retrieved the governed specifications, implementation plans, stage definitions and source context used to guide and verify the work.</td>
-</tr>
-<tr>
-<td>[Supabase plugin](https://chatgpt.com/plugins/plugin_asdk_app_69d3e5ee6a708191baa733f7b8931995?q=supabase)</td>
-<td>Supported inspection of the persistent ContextCore data used by the dashboard, capability views and evidence drill-downs.</td>
-</tr>
-<tr>
-<td>[ChatGPT Sites](https://openai.com/academy/chatgpt-sites/)</td>
-<td>Supported ContextCore dashboard visualisation, Cytoscape graph display and drill-down from capability relationships toward source lineage using governed specifications and Supabase data.</td>
-</tr>
-<tr>
-<td>[Figma plugin](https://chatgpt.com/plugins/plugin_connector_68df038e0ba48191908c8434991bbac2?q=figma)</td>
-<td>Supported the design direction and interface planning for the Inspiral dashboard.</td>
-</tr>
-<tr>
-<td>[ChatGPT Product Design plugin](https://chatgpt.com/plugins/Plugin_fa77aec24fc08191bc6e57f377126d76?q=figm)</td>
-<td>Supported product-flow definition and mockups grounded in the available ContextCore data.</td>
-</tr>
-</table>
-For this note, the screenshots are evidence surfaces for the ContextCore dashboard and lineage work. They should be read as dated views into the implemented system, not as the architecture by themselves. They do not imply that any one tool independently created, verified or authorised the system.
-Human review selected the evidence surfaces, resolved the boundary between ContextCore and CanonLens, checked the claims against the stage contracts and retained implementation and publication authority.
+
+The tools contributed different kinds of capacity to the ContextCore investigation; none independently created, verified or authorised the system.
+
+| Tool | Contribution to ContextCore |
+|---|---|
+| [ChatGPT Work](https://openai.com/chatgpt-work/) with connected Notion context | Supported Inspiral problem synthesis, intent definition, high-level implementation planning, the Master Functional Specification, Functional Flow and first draft stage specifications. |
+| [Codex](https://openai.com/codex/) | Developed ContextCore end to end through repository inspection, implementation comparison, shared-adapter tracing, skill development, test review and remediation analysis. |
+| [OpenAI Developers](https://chatgpt.com/plugins/plugin_connector_1p_32dba5a7095c8191adca04ee30276304?q=openai+devel) | Provided implementation context for OpenAI agentic architecture, AI boundaries and bounded skill development. |
+| [Notion App](https://www.notion.com/) | Held the source-data pages and working records from which source material, evidence and lineage were assembled. |
+| [Notion app/plugin](https://chatgpt.com/plugins/plugin_asdk_app_69c18c28f1188191bf5b8445c4ab0a2e?q=notion) | Retrieved governed specifications, implementation plans, stage definitions and source context used to guide and verify the work. |
+| [Supabase plugin](https://chatgpt.com/plugins/plugin_asdk_app_69d3e5ee6a708191baa733f7b8931995?q=supabase) | Supported inspection of persistent ContextCore data used by the dashboard, capability views and evidence drill-downs. |
+| [ChatGPT Sites](https://openai.com/academy/chatgpt-sites/) | Supported ContextCore dashboard visualisation, Cytoscape graph display and drill-down from capability relationships toward source lineage. |
+| [Figma plugin](https://chatgpt.com/plugins/plugin_connector_68df038e0ba48191908c8434991bbac2?q=figma) and [ChatGPT Product Design plugin](https://chatgpt.com/plugins/Plugin_fa77aec24fc08191bc6e57f377126d76?q=figm) | Supported dashboard design direction, product-flow definition and mockups grounded in available ContextCore data. |
+
+Human review selected the evidence surfaces, resolved the boundary between ContextCore and CanonLens, checked claims against stage contracts and retained implementation and publication authority.
+
 ## OPENAI CONTRIBUTION RECORD
-**Contribution:** ChatGPT Work and connected Notion context supported Inspiral problem synthesis, intent definition and planning. The Notion App and Notion app/plugin provided source data, specifications and implementation context. Codex supported end-to-end ContextCore development and remediation. OpenAI Developers guidance informed the agentic architecture and shared adapter. Supabase, ChatGPT Sites, Figma and Product Design tooling supported persistent-data review, dashboard visualisation, graph/lineage presentation and interface planning.
-**Human authority:** Ananda Krishna Marri selected the evidence, resolved the semantic and stage boundaries, reviewed the implementation and limitations, and retained implementation and publication authority.
+
+**Contribution:** ChatGPT Work and connected Notion context supported Inspiral problem synthesis, intent definition and planning. The Notion App and plugin provided source data, specifications and implementation context. Codex supported end-to-end ContextCore development and remediation. OpenAI Developers guidance informed the agentic architecture and shared adapter. Supabase, ChatGPT Sites, Figma and Product Design tooling supported persistent-data review, dashboard visualisation, lineage presentation and interface planning.
+
+**Human authority:** Ananda Krishna Marri selected the evidence, resolved semantic and stage boundaries, reviewed implementation and limitations, and retained implementation and publication authority.
+
 **Limitation:** These contributions do not establish complete organisational coverage, universal correctness, production-wide maturity, autonomous authority or partnership.
+
 > [Shiftby.pro](http://Shiftby.pro) is an independent fieldwork publication. References to tools describe how they were used in the work and do not imply endorsement, certification or partnership.
-## Evidence and limits
-The screenshots and implementation snapshot support bounded claims about the current ContextCore slice, inspectability and lineage presentation. They do not prove complete organisational coverage, universal correctness or readiness for every downstream purpose. Counts, relationships, profile states and interface labels may change as the underlying data and implementation change.
+
 ## Boundary
-This note describes the completed current ContextCore slice in the Inspiral agentic flow, not the full CanonLens or ContentFlight implementation. The article remains limited to the current ContextCore slice and does not establish complete organisational coverage, universal correctness or readiness for every downstream purpose.
+
+This note describes the completed current ContextCore slice in the Inspiral agentic flow, not the full CanonLens or ContentFlight implementation. Counts, relationships, profile states and interface labels may change as the underlying data and implementation change.
+
 ## Continue the fieldwork
+
 The next question is how CanonLens turns governed capability knowledge into purpose-specific contextual meaning without rebuilding or weakening the ContextCore foundation.
