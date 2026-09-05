@@ -7,12 +7,11 @@ import { collectionStructuredData } from '../../lib/structured-data';
 
 const publicItems = sortFieldworkByPublication(await getCollection('fieldwork', ({ data }) => isPublishedIndexable(data)));
 
-const projectDetails: Record<string, { name: string; description: string; projectPath: string; archivePath: string }> = {
+const projectDetails: Record<string, { name: string; description: string; projectPath: string }> = {
   inspiral: {
     name: 'Inspiral',
     description: 'Persistent understanding for AI-assisted work.',
     projectPath: '/projects/inspiral/',
-    archivePath: '/projects/inspiral/fieldwork/',
   },
 };
 
@@ -82,7 +81,6 @@ const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains)
           <span data-page-status aria-live="polite"></span>
           <button type="button" data-page-next>Next</button>
         </nav>
-        <a class="arrow-link" href={featuredDetails.archivePath}>All {featuredDetails.name} Fieldwork</a>
       </div>
     </section>
 
@@ -93,7 +91,7 @@ const domains = [...new Set(publicItems.flatMap(({ data }) => data.work_domains)
         <ul>
           {otherProjects.map((project) => {
             const details = projectDetails[project];
-            return <li><a href={details.archivePath}>{details.name}</a></li>;
+            return <li><a href={details.projectPath}>{details.name}</a></li>;
           })}
         </ul>
       </section>
