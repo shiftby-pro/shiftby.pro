@@ -4,7 +4,7 @@ import { getFieldworkCanonicalPath, isPublishedIndexable } from '../lib/fieldwor
 export async function GET({ site }: { site: URL }) {
   const items = await getCollection('fieldwork', ({ data }) => isPublishedIndexable(data));
   const entries: Array<{ path: string; lastmod?: Date }> = [
-    ...['/', '/projects/', '/projects/inspiral/', '/fieldwork/', '/projects/inspiral/fieldwork/', '/about/'].map((path) => ({ path })),
+    ...['/', '/projects/', '/projects/inspiral/', '/fieldwork/', '/about/'].map((path) => ({ path })),
     ...items.map((item) => ({ path: getFieldworkCanonicalPath(item), lastmod: item.data.updated_at ?? item.data.published_at })),
   ];
   const escapeXml = (value: string) => value.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;').replaceAll('"', '&quot;').replaceAll("'", '&apos;');
